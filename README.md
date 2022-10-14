@@ -54,3 +54,6 @@ __5. マネージャー関係：__
 
 __6. マップ自動生成：__
   * マップ生成のクラス作成 
+
+### デザイナー主人公案
+<img width="600" alt="PlayerPlan011" src="https://github.com/Ryuki-Arai/LateTeamProduction/blob/main/REDME_Picture/Designer_Plan_Player.png">

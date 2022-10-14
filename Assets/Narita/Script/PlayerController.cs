@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     public bool Pillow { get => _pillow; set => _pillow = value; }
 
     public int Level { get => _level; set => _level = value; }
-    public float Timerlimit { get => _timerlimit;}
 
+    public float Timer { get => _timer;}
     void Start()
     {
         _anim = GetComponent<Animator>();

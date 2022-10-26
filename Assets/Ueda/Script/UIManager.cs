@@ -28,6 +28,11 @@ public class UIManager : MonoBehaviour
         if(charge >= 1) charge = 1; 
         _chargeSlider.value = charge;
         //スライダーが満タンになったらプレイヤーのboolを変える
+        if (_chargeSlider.value == _chargeSlider.maxValue)
+        {
+            //_player.PillowEnemy.ReturnPillow = true;
+            _chargeSlider.value = 0;
+        }
     }
     public void TimerText(float time)
     {

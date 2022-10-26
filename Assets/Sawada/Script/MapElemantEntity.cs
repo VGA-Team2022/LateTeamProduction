@@ -15,7 +15,7 @@ public class MapElemantEntity
     public int _houseValueInArrow;
     [Tooltip("破魔矢と盛り塩がある家の数")]
     public int _houseValueArrowAndSolt;
-    [Tooltip("ギミック「掛け軸」の数")]
-    public bool _existBoard;
 }
+
+
 

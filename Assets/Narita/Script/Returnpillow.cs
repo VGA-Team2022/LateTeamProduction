@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class Returnpillow : MonoBehaviour
 {
     /// <summary>枕返しを行ったかどうか</summary>
+    [SerializeField,Header("枕を返されたかどうか")]
     bool returnPillow;
     //Image image = null;
     SpriteRenderer image = null;
     /// <summary>起きる時間</summary>
+    [SerializeField,Header("起きる時間（基準）")]
     float getupTime = 0f;
     /// <summary>playerが大人か子供かで変化する</summary>
+    [SerializeField,Header("プレイヤーの状態で変化する時間")]
     float _timeInPlayerStats = 0f;
     /// <summary>赤ん坊がいた場合使用する</summary>
+    [SerializeField, Header("部屋の中に赤ん坊がいた場合変化する時間")]
     float _timeInBaby = 0f;
     /// <summary>時計</summary>
     float timer;

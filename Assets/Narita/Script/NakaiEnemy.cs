@@ -5,13 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class NakaiEnemy : MonoBehaviour
 {
-
+    [SerializeField]
     float _moveSpeed = 5f;
     Rigidbody2D _rb = null;
     float z = 90;
     int number = 0;
     [SerializeField]
     bool playerFind = false;
+    Transform[] points = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,47 +22,48 @@ public class NakaiEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerFind)
+        if (points != null)//ポイントを受け取っている
         {
-            switch (number % 4)//0%4 = 0;1%4 = 1;...
+            if (!playerFind)//プレイヤーを見つけていない
             {
-                case 0:
-                    {
-                        _rb.velocity = Vector2.up * _moveSpeed;
-                        break;
-                    }
-                case 1:
-                    {
-                        _rb.velocity = Vector2.left * _moveSpeed;
-                        break;
-                    }
-                case 2:
-                    {
-                        _rb.velocity = Vector2.down * _moveSpeed;
-                        break;
-                    }
-                case 3:
-                    {
-                        _rb.velocity = Vector2.right * _moveSpeed;
-                        break;
-                    }
+                GotoPoint(points);
             }
-        }
-        else
-        {
+            else
+            {
 
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             playerFind = true;
+            Debug.Log("プレイヤーを見つけました");
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void GetPoints(Transform[] pointsArray)
     {
-        transform.Rotate(0.0f, 0.0f, z);
-        number++;
+        points = new Transform[pointsArray.Length];
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = pointsArray[i];
+        }
+    }
+
+    void GotoPoint(Transform[] pointsArray)
+    {
+        //自分自身とポイントの距離を求める
+        float distance = Vector2.Distance(transform.position, pointsArray[number % pointsArray.Length].position);
+        if (distance >= 0)//距離がなくなる、到達するまで
+        {
+            //方向を定める
+            Vector2 dir = (pointsArray[number].position - transform.position).normalized * _moveSpeed;
+            transform.Translate(dir * Time.deltaTime);//一定の速さ
+        }
+        else//到達したら
+        {
+            number++;    
+        }
     }
 }

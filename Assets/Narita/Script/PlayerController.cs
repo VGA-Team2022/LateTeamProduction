@@ -74,6 +74,11 @@ public class PlayerController : MonoBehaviour
                 ui.ChargeSlider(timer);
             }
         }
+        else if(Input.GetButtonUp("Jump"))
+        {
+            timer = 0;
+            ui.ChargeSlider(timer);
+        }
     }
 
     void LateUpdate()
@@ -107,6 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         pillowEnemy = null;
         timer = 0;
+        ui.ChargeSlider(timer);
     }
 
     private void ChildMode(float h, float v)

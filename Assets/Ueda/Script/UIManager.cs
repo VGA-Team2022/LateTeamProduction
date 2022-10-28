@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         //スライダーが満タンになったらプレイヤーのboolを変える
         if (_chargeSlider.value == _chargeSlider.maxValue)
         {
-            //_player.PillowEnemy.ReturnPillow = true;
+            _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
         }
     }

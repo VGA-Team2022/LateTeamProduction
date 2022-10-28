@@ -6,12 +6,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     /// <summary>動く速度（子供）</summary>
+    [SerializeField,Header("子供状態の動くスピード")]
     float childMoveSpeed = 10f;
     /// <summary>動く速度（大人）</summary>
+    [SerializeField, Header("大人状態の動くスピード")]
     float adultMoveSpeed = 15f;
     /// <summary>時計</summary>
     float timer = 0f;
     /// <summary>枕を返すまでにかかる時間</summary>//atai
+    [SerializeField,Header("枕を返すまでにかかる時間")]
     float timerlimit = 0.5f;
     Vector2 moveVelocity;
     /// <summary>止まる直前の速度方向</summary>
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>枕返し圏内</summary>
     bool pillow = false;
     /// <summary>大人か子供か</summary>
+    [SerializeField,Header("プレイヤーが大人か子供か")]
     bool adultState = false;
 
     /// <summary>枕返し圏内</summary>
@@ -67,7 +71,7 @@ public class PlayerController : MonoBehaviour
             if (pillowEnemy)//枕返し圏内にいたら
             {
                 timer += Time.deltaTime;
-                //ui.ChargeSlider(timer);
+                ui.ChargeSlider(timer);
             }
         }
     }

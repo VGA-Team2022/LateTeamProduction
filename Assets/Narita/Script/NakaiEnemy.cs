@@ -12,7 +12,6 @@ public class NakaiEnemy : MonoBehaviour
     int number = 0;
     [SerializeField]
     bool playerFind = false;
-    bool pointsCheck = false;
     Transform[] points = null;
     // Start is called before the first frame update
     void Start()

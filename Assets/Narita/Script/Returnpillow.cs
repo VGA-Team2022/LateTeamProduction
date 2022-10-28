@@ -39,7 +39,7 @@ public class Returnpillow : MonoBehaviour
         if (returnPillow)
         {
             //«“–‚½‚è”»’è‚ÍŒã‚Å•ÏX—\’è
-            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<CircleCollider2D>().enabled = false;
             //«•Ï‚¦‚éF‚ÍŒã‚Å•ÏX—\’è
             if (!image)
             {

@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public bool Pillow { get => _pillow; set => _pillow = value; }
     public int Level { get => level; set => level = value; }
     public float Timerlimit { get => _timerlimit; set => _timerlimit = value; }
-    public Returnpillow _PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
+    public Returnpillow PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
     public GameObject PillowEnemyObject { get => pillowEnemy; set => pillowEnemy = value; }
     void Start()
     {

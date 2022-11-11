@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //_mapInstance = 
-        _sleepingEnemy = _mapInstance.Entity.SleeperValue;
+        //_sleepingEnemy = _mapInstance.Entity.SleeperValue;
         _clearTime = _timeLimit;
     }
 

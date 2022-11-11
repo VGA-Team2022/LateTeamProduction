@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     /// <summary>タメ時間を表すスライダー</summary>
     [SerializeField] Slider _chargeSlider = null;
+    /// <summary>枕の上に表示するスライダー</summary>
+    [SerializeField] GameObject _chargeSliderMini = null;
     /// <summary>残り時間を表示するテキスト</summary>
     [SerializeField] TextMeshProUGUI _timerText = null;
     /// <summary>クリア時に表示するUI</summary>
@@ -23,9 +25,8 @@ public class UIManager : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<PlayerController>();
         _clearUI.SetActive(false);
-        _gameOverUI.SetActive(true);
+        _gameOverUI.SetActive(false);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -35,11 +36,17 @@ public class UIManager : MonoBehaviour
     {
         if(charge >= 1) charge = 1; 
         _chargeSlider.value = charge;
+        _chargeSliderMini.GetComponent<Slider>().value = charge;
+
+        if(_player.PillowEnemyObject != null) _chargeSliderMini.transform.position = _player.PillowEnemyObject.transform.position + new Vector3(0, 1, 0);
+        _chargeSliderMini.SetActive(true);
+
         //スライダーが満タンになったらプレイヤーのboolを変える
         if (_chargeSlider.value == _chargeSlider.maxValue)
         {
             _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
+            _chargeSliderMini.SetActive(false);
         }
     }
     public void TimerText(float time)

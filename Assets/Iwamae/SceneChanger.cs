@@ -7,31 +7,29 @@ using System.Threading.Tasks;
 /// </summary>
 public class SceneChanger : MonoBehaviour
 {
-    [Tooltip("シーン遷移先の名前")]
-    [SerializeField] string _sceneName;
+    [SerializeField] GameObject fade;
+    GameObject fadeCanvas;
 
-    public GameObject fade;//インスペクタからPrefab化したCanvasを入れる
-    public GameObject fadeCanvas;//操作するCanvas、タグで探す
-
-    void Start()
+    void Awake()
     {
-        if (!FadeController.isFadeInstance)//isFadeInstanceは後で用意する
+        if (!FadeController._FadeInstance)
         {
             Instantiate(fade);
         }
-        Invoke("findFadeObject", 0.02f);//起動時用にCanvasの召喚をちょっと待つ
+        Invoke("findFadeObject", 0.2f);
     }
 
     void findFadeObject()
     {
-        fadeCanvas = GameObject.FindGameObjectWithTag("Fade");//Canvasをみつける
-        fadeCanvas.GetComponent<FadeController>().fadeIn();//フェードインフラグを立てる
+        fadeCanvas = GameObject.FindGameObjectWithTag("Fade");
+        fadeCanvas.GetComponent<FadeController>().fadeIn();
     }
 
     public async void ChangeScene(string name)
     {
-        fadeCanvas.GetComponent<FadeController>().fadeOut();//フェードアウトフラグを立てる
-        await Task.Delay(200);//暗転するまで待つ
+        fadeCanvas.GetComponent<FadeController>().fadeOut();
+        await Task.Delay(200);
         SceneManager.LoadScene(name);
+        fadeCanvas.GetComponent<FadeController>().fadeIn();
     }
 }

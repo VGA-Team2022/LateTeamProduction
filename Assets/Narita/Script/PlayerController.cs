@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     /// <summary>動く速度（子供）</summary>
-    [SerializeField,Header("子供状態の動くスピード")]
+    [SerializeField, Header("子供状態の動くスピード")]
     float _childMoveSpeed = 10f;
     /// <summary>動く速度（大人）</summary>
     [SerializeField, Header("大人状態の動くスピード")]
@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     /// <summary>時計</summary>
     float _timer = 0f;
     /// <summary>枕を返すまでにかかる時間</summary>//atai
-    [SerializeField,Header("枕を返すまでにかかる時間")]
+    [SerializeField, Header("枕を返すまでにかかる時間")]
     float _timerlimit = 0.5f;
+    [SerializeField, Header("誤差の許容範囲")]
+    float toleranceDis = 0.2f;
     Vector2 _moveVelocity;
     /// <summary>止まる直前の速度方向</summary>
     Vector2 _lastMoveVelocity;
@@ -27,20 +29,29 @@ public class PlayerController : MonoBehaviour
     /// <summary>枕を返す標的のscriptを保持する</summary>
     Returnpillow _pillowEnemy;
     /// <summary>枕を返す標的のgameobjectを保持する</summary>
-    GameObject pillowEnemy;
+    GameObject _pillowEnemyObject;
+    /// <summary>敵の位置情報</summary>
+    Vector2 _enemyPos = default;
+    /// <summary>プレイヤーが枕を返せる位置</summary>
+    Vector2 _returnPillowPos = default;
+    /// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
+    float _returnPillowdisToEnemy = 1f;
+    /// <summary>プレイヤーと_returnPillowPosの距離</summary>
+    float _returnPillowdisToPlayer;
     UIManager _ui;
     /// <summary>枕返し圏内</summary>
     bool _pillow = false;
     /// <summary>大人か子供か</summary>
-    [SerializeField,Header("プレイヤーが大人か子供か")]
+    [SerializeField, Header("プレイヤーが大人か子供か")]
     bool _adultState = false;
 
+    bool _toutyaku = false;
     /// <summary>枕返し圏内</summary>
     public bool Pillow { get => _pillow; set => _pillow = value; }
     public int Level { get => level; set => level = value; }
     public float Timerlimit { get => _timerlimit; set => _timerlimit = value; }
     public Returnpillow PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
-    public GameObject PillowEnemyObject { get => pillowEnemy; set => pillowEnemy = value; }
+    public GameObject PillowEnemyObject { get => _pillowEnemyObject; set => _pillowEnemyObject = value; }
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -72,15 +83,18 @@ public class PlayerController : MonoBehaviour
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
-                _timer += Time.deltaTime;
-                _ui.ChargeSlider(_timer);
+                TranslatePlayerPos();
             }
         }
-        else if(Input.GetButtonUp("Jump"))
+        if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う
         {
-            _timer = 0;
-            _ui.ChargeSlider(_timer);
+            PlayerAndEnemyDis();
         }
+        //else if (Input.GetButtonUp("Jump"))
+        //{
+        //    _timer = 0;
+        //    _ui.ChargeSlider(_timer);
+        //}
     }
 
     void LateUpdate()
@@ -105,20 +119,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
     {
-        //if (collision.gameObject.CompareTag("ReturnPillow"))
-        //{
-        //    pillowEnemy = collision.GetComponent<Returnpillow>();
-        //}
-
-        if(collision.gameObject.TryGetComponent<Returnpillow>(out var returnpillow))
+        if (collision.gameObject.CompareTag("ReturnPillow"))
         {
-            pillowEnemy = collision.gameObject;
-            _pillowEnemy = returnpillow;
+            _pillowEnemyObject = collision.gameObject;
+            _pillowEnemy = _pillowEnemyObject.GetComponent<Returnpillow>();
+            _enemyPos = _pillowEnemyObject.transform.position;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _pillowEnemy = null;
+        _pillowEnemyObject = null;
+        _toutyaku = false;
         _timer = 0;
         _ui.ChargeSlider(_timer);
     }
@@ -131,5 +142,52 @@ public class PlayerController : MonoBehaviour
     private void AdultMode(float h, float v)
     {
         _moveVelocity = new Vector2(h, v).normalized * _adultMoveSpeed;
+    }
+
+    private void PlayerAndEnemyDis()//距離計算
+    {
+        if (Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowdisToEnemy, _enemyPos.y))
+        >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowdisToEnemy, _enemyPos.y)))
+        {
+            _returnPillowPos = new Vector2(_enemyPos.x + _returnPillowdisToEnemy, _enemyPos.y);
+        }
+        else
+        {
+            _returnPillowPos = new Vector2(_enemyPos.x - _returnPillowdisToEnemy, _enemyPos.y);
+        }
+    }
+    private void TranslatePlayerPos()
+    {
+        _returnPillowdisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
+        if (_returnPillowdisToPlayer > toleranceDis)//誤差範囲
+        {
+            if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > toleranceDis)
+            {
+                if (transform.position.x > _returnPillowPos.x)
+                {
+                    transform.Translate(Vector2.left * Time.deltaTime * _childMoveSpeed);
+                }
+                else if (transform.position.x < _returnPillowPos.x)
+                {
+                    transform.Translate(Vector2.right * Time.deltaTime * _childMoveSpeed);
+                }
+            }
+            else
+            {
+                if (transform.position.y > _returnPillowPos.y)
+                {
+                    transform.Translate(Vector2.down * Time.deltaTime * _childMoveSpeed);
+                }
+                else if (transform.position.y < _returnPillowPos.y)
+                {
+                    transform.Translate(Vector2.up * Time.deltaTime * _childMoveSpeed);
+                }
+            }
+        }
+        else
+        {
+            _timer += Time.deltaTime;
+            _ui.ChargeSlider(_timer);
+        }
     }
 }

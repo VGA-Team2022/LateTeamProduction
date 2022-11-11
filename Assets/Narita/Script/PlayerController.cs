@@ -27,25 +27,23 @@ public class PlayerController : MonoBehaviour
     Animator _anim;
     Rigidbody2D _rb;
     /// <summary>枕を返す標的のscriptを保持する</summary>
-    Returnpillow _pillowEnemy;
+    Returnpillow _pillowEnemy = null;
     /// <summary>枕を返す標的のgameobjectを保持する</summary>
-    GameObject _pillowEnemyObject;
+    GameObject _pillowEnemyObject = null;
     /// <summary>敵の位置情報</summary>
     Vector2 _enemyPos = default;
     /// <summary>プレイヤーが枕を返せる位置</summary>
     Vector2 _returnPillowPos = default;
     /// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
-    float _returnPillowdisToEnemy = 1f;
+    float _returnPillowDisToEnemy = 1f;
     /// <summary>プレイヤーと_returnPillowPosの距離</summary>
-    float _returnPillowdisToPlayer;
+    float _returnPillowDisToPlayer;
     UIManager _ui;
     /// <summary>枕返し圏内</summary>
     bool _pillow = false;
     /// <summary>大人か子供か</summary>
     [SerializeField, Header("プレイヤーが大人か子供か")]
     bool _adultState = false;
-
-    bool _toutyaku = false;
     /// <summary>枕返し圏内</summary>
     public bool Pillow { get => _pillow; set => _pillow = value; }
     public int Level { get => level; set => level = value; }
@@ -84,6 +82,9 @@ public class PlayerController : MonoBehaviour
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 TranslatePlayerPos();
+
+                _timer += Time.deltaTime;
+                _ui.ChargeSlider(_timer);
             }
         }
         if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う
@@ -128,10 +129,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _pillowEnemyObject = null;
-        _toutyaku = false;
-        _timer = 0;
-        _ui.ChargeSlider(_timer);
+        InformationReset();
     }
 
     private void ChildMode(float h, float v)
@@ -144,50 +142,57 @@ public class PlayerController : MonoBehaviour
         _moveVelocity = new Vector2(h, v).normalized * _adultMoveSpeed;
     }
 
+    public void InformationReset()
+    {
+        _pillowEnemyObject = null;
+        _pillowEnemy = null;
+        _enemyPos = default;
+        _timer = 0;
+        _ui.ChargeSlider(_timer);
+    }
+
     private void PlayerAndEnemyDis()//距離計算
     {
-        if (Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowdisToEnemy, _enemyPos.y))
-        >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowdisToEnemy, _enemyPos.y)))
+        if (Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y))
+        >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y)))
         {
-            _returnPillowPos = new Vector2(_enemyPos.x + _returnPillowdisToEnemy, _enemyPos.y);
+            _returnPillowPos = new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y);
         }
         else
         {
-            _returnPillowPos = new Vector2(_enemyPos.x - _returnPillowdisToEnemy, _enemyPos.y);
+            _returnPillowPos = new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y);
         }
     }
     private void TranslatePlayerPos()
     {
-        _returnPillowdisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
-        if (_returnPillowdisToPlayer > toleranceDis)//誤差範囲
+        if (!_pillowEnemyObject)//Enemy情報を持っていたら
         {
-            if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > toleranceDis)
+            _returnPillowDisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
+            if (_returnPillowDisToPlayer > toleranceDis)//誤差範囲
             {
-                if (transform.position.x > _returnPillowPos.x)
+                if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > toleranceDis)
                 {
-                    transform.Translate(Vector2.left * Time.deltaTime * _childMoveSpeed);
+                    if (transform.position.x > _returnPillowPos.x)
+                    {
+                        transform.Translate(Vector2.left * Time.deltaTime * _childMoveSpeed);
+                    }
+                    else if (transform.position.x < _returnPillowPos.x)
+                    {
+                        transform.Translate(Vector2.right * Time.deltaTime * _childMoveSpeed);
+                    }
                 }
-                else if (transform.position.x < _returnPillowPos.x)
+                else
                 {
-                    transform.Translate(Vector2.right * Time.deltaTime * _childMoveSpeed);
+                    if (transform.position.y > _returnPillowPos.y)
+                    {
+                        transform.Translate(Vector2.down * Time.deltaTime * _childMoveSpeed);
+                    }
+                    else if (transform.position.y < _returnPillowPos.y)
+                    {
+                        transform.Translate(Vector2.up * Time.deltaTime * _childMoveSpeed);
+                    }
                 }
             }
-            else
-            {
-                if (transform.position.y > _returnPillowPos.y)
-                {
-                    transform.Translate(Vector2.down * Time.deltaTime * _childMoveSpeed);
-                }
-                else if (transform.position.y < _returnPillowPos.y)
-                {
-                    transform.Translate(Vector2.up * Time.deltaTime * _childMoveSpeed);
-                }
-            }
-        }
-        else
-        {
-            _timer += Time.deltaTime;
-            _ui.ChargeSlider(_timer);
         }
     }
 }

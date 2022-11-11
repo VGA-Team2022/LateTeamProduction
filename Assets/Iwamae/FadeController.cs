@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// シーン遷移時のフェード処理の管理
+/// </summary>
+
 public class FadeController : MonoBehaviour
 {
-    public static bool isFadeInstance = false;
+    public static bool _FadeInstance = false;
+    public bool _isFadeIn = false;
+    public bool _isFadeOut = false;
+    public float _alpha = 0.0f;
+    public float _fadeSpeed = 0.2f;
 
-    public bool isFadeIn = false;//フェードインするフラグ
-    public bool isFadeOut = false;//フェードアウトするフラグ
-
-    public float alpha = 0.0f;//透過率、これを変化させる
-    public float fadeSpeed = 0.2f;//フェードに掛かる時間
-
-    void Start()
+    void Awake()
     {
-        if (!isFadeInstance)//起動時
+        if (!_FadeInstance)
         {
             DontDestroyOnLoad(this);
-            isFadeInstance = true;
+            _FadeInstance = true;
         }
-        else//起動時以外は重複しないようにする
+        else
         {
             Destroy(this);
         }
@@ -28,37 +30,37 @@ public class FadeController : MonoBehaviour
 
     void Update()
     {
-        if (isFadeIn)
+        if (_isFadeIn)
         {
-            alpha -= Time.deltaTime / fadeSpeed;
-            if (alpha <= 0.0f)//透明になったら、フェードインを終了
+            _alpha -= Time.deltaTime / _fadeSpeed;
+            if (_alpha <= 0.0f)
             {
-                isFadeIn = false;
-                alpha = 0.0f;
+                _isFadeIn = false;
+                _alpha = 0.0f;
             }
-            this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, _alpha);
         }
-        else if (isFadeOut)
+        else if (_isFadeOut)
         {
-            alpha += Time.deltaTime / fadeSpeed;
-            if (alpha >= 1.0f)//真っ黒になったら、フェードアウトを終了
+            _alpha += Time.deltaTime / _fadeSpeed;
+            if (_alpha >= 1.0f)
             {
-                isFadeOut = false;
-                alpha = 1.0f;
+                _isFadeOut = false;
+                _alpha = 1.0f;
             }
-            this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, _alpha);
         }
     }
 
     public void fadeIn()
     {
-        isFadeIn = true;
-        isFadeOut = false;
+        _isFadeIn = true;
+        Debug.Log("フェードイン");
     }
 
     public void fadeOut()
     {
-        isFadeOut = true;
-        isFadeIn = false;
+        _isFadeOut = true;
+        Debug.Log("フェードアウト");
     }
 }

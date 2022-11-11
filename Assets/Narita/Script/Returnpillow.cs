@@ -6,19 +6,20 @@ using UnityEngine.UI;
 public class Returnpillow : MonoBehaviour
 {
     /// <summary>枕返しを行ったかどうか</summary>
-    [SerializeField,Header("枕を返されたかどうか")]
+    [SerializeField, Header("枕を返されたかどうか")]
     bool _returnPillow;
     //Image image = null;
     SpriteRenderer image = null;
     /// <summary>起きる時間</summary>
-    [SerializeField,Header("起きる時間（基準）")]
+    [SerializeField, Header("起きる時間（基準）")]
     float _getupTime = 0f;
     /// <summary>playerが大人か子供かで変化する</summary>
-    [SerializeField,Header("プレイヤーの状態で変化する時間")]
+    [SerializeField, Header("プレイヤーの状態で変化する時間")]
     float _timeInPlayerStats = 0f;
     /// <summary>赤ん坊がいた場合使用する</summary>
     [SerializeField, Header("部屋の中に赤ん坊がいた場合変化する時間")]
     float _timeInBaby = 0f;
+    Collider2D[] collider = null;
     /// <summary>時計</summary>
     float timer;
     Animator anim = null;
@@ -31,6 +32,7 @@ public class Returnpillow : MonoBehaviour
         anim = GetComponent<Animator>();
         //image = GetComponent<Image>();
         image = GetComponent<SpriteRenderer>();
+        collider = GetComponents<Collider2D>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,10 @@ public class Returnpillow : MonoBehaviour
         if (_returnPillow)
         {
             //↓当たり判定は後で変更予定
-            GetComponent<CircleCollider2D>().enabled = false;
+            foreach (var col in collider)
+            {
+                col.enabled = false;
+            }
             //↓変える色は後で変更予定
             if (!image)
             {

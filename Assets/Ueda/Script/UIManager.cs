@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
         //スライダーが満タンになったらプレイヤーのboolを変える
         if (_chargeSlider.value == _chargeSlider.maxValue)
         {
+            _player.InformationReset();
             _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
             _chargeSliderMini.SetActive(false);

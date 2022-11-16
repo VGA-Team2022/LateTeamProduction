@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +12,18 @@ public class FadeController : MonoBehaviour
     public bool _isFadeOut = false;
     public float _alpha = 0.0f;
     public float _fadeSpeed = 0.2f;
+
+    public void FadeIn()
+    {
+        _isFadeIn = true;
+        Debug.Log("フェードインしました");
+    }
+
+    public void FadeOut()
+    {
+        _isFadeOut = true;
+        Debug.Log("フェードアウトしました");
+    }
 
     void Awake()
     {
@@ -30,6 +40,7 @@ public class FadeController : MonoBehaviour
 
     void Update()
     {
+        //フェードインのフラグがtrueの時は徐々に明るくする
         if (_isFadeIn)
         {
             _alpha -= Time.deltaTime / _fadeSpeed;
@@ -40,6 +51,7 @@ public class FadeController : MonoBehaviour
             }
             this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, _alpha);
         }
+        //フェードアウトのフラグがtrueの時は徐々に暗くする
         else if (_isFadeOut)
         {
             _alpha += Time.deltaTime / _fadeSpeed;
@@ -50,17 +62,5 @@ public class FadeController : MonoBehaviour
             }
             this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, _alpha);
         }
-    }
-
-    public void fadeIn()
-    {
-        _isFadeIn = true;
-        Debug.Log("フェードイン");
-    }
-
-    public void fadeOut()
-    {
-        _isFadeOut = true;
-        Debug.Log("フェードアウト");
     }
 }

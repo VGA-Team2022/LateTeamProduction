@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class HouseOnSolt : HouseBase
 {
-    [Tooltip("ドアのオブジェクトのの配列")]
-    GameObject[] _doorObjects = null;
+    [Tooltip("ドアのオブジェクトRendererの配列")]
     Renderer[] _doorRenderers = null;
+    [Tooltip("ドアのオブジェクトのColliderの配列")]
     Collider2D[] _doorColliers = null;
 
     public override void Init()
     {
         base.Init();
         //取得
-        _doorObjects = GetComponentsInChildren<GameObject>().Where(x => x.tag == "Door").ToArray();
-        for(int i = 0; i < _doorObjects.Length; i++)
+        _doorColliers = gameObject.GetComponentsInChildren<Collider2D>().Where(x => x.tag == "Door").ToArray();
+        _doorRenderers = new Renderer[_doorColliers.Length];
+        for (int i = 0; i < _doorColliers.Length; i++)
         {
-            _doorRenderers[i] = _doorObjects[i].GetComponent<Renderer>();
-            _doorColliers[i] = _doorColliers[i].GetComponent<Collider2D>();
+            _doorRenderers[i] = _doorColliers[i].GetComponent<Renderer>();
         }
     }
 

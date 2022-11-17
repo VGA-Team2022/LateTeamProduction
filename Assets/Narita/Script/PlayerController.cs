@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     float toleranceDis = 0.2f;
     Vector2 _moveVelocity;
     /// <summary>止まる直前の速度方向</summary>
-    Vector2 _lastMoveVelocity;
+    Vector2 _lastMovejoyStick;
     /// <summary>レベル</summary>
     int level = 1;
     public VariableJoystick _joyStick;
@@ -44,14 +44,15 @@ public class PlayerController : MonoBehaviour
     /// <summary>大人か子供か</summary>
     [SerializeField, Header("プレイヤーが大人か子供か")]
     bool _adultState = false;
+    /// <summary>プレイヤーの状態確認、外部参照用</summary>
+    public bool AdultState { get => _adultState;}
     /// <summary>枕返し圏内</summary>
     public bool Pillow { get => _pillow; set => _pillow = value; }
-    /// <summary>プレイヤーの状態確認、外部参照用</summary>
-    public bool AdultState { get => _adultState; }
     public int Level { get => level; set => level = value; }
     public float Timerlimit { get => _timerlimit; set => _timerlimit = value; }
     public Returnpillow PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
     public GameObject PillowEnemyObject { get => _pillowEnemyObject; set => _pillowEnemyObject = value; }
+
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -62,11 +63,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float h = Input.GetAxisRaw("Horizontal");
-        //float v = Input.GetAxisRaw("Vertical");
+        //Debug.Log(_pillowEnemy);
         float h = _joyStick.Horizontal;
         float v = _joyStick.Vertical;
-
         if (!_adultState)
         {
             ChildMode(h, v);
@@ -77,19 +76,22 @@ public class PlayerController : MonoBehaviour
         }
 
         _rb.velocity = _moveVelocity;
-        _lastMoveVelocity = _moveVelocity;
+        if (h != 0 && v != 0)
+        {
+            _lastMovejoyStick.x = h;
+            _lastMovejoyStick.y = v;
+        }
 
-        if (Input.GetButton("Jump"))//右長押し
+        if (Input.GetButton("Jump"))//スペース長押し
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 TranslatePlayerPos();
-
                 _timer += Time.deltaTime;
                 _ui.ChargeSlider(_timer);
             }
         }
-        if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う
+        if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回
         {
             PlayerAndEnemyDis();
         }
@@ -100,25 +102,26 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
-    void LateUpdate()
-    {
-        if (_anim)
-        {
-            {//動いている間
-                _anim.SetFloat("floatの名前", _moveVelocity.x);
-                _anim.SetFloat("floatの名前", _moveVelocity.y);
-                //上の場合、＋Y
-                //下の場合、ーY
-                //右上、右下、右の場合、＋X
-                //左上、左下、左の場合、ーX
-            }
-            {//止まっている間
-                _anim.SetFloat("", _lastMoveVelocity.x);
-                _anim.SetFloat("", _lastMoveVelocity.y);
-                //上の条件に加えて、プレイヤーが動いていないこと。
-            }
-        }
-    }
+
+    //void LateUpdate()
+    //{
+    //    if (_anim)
+    //    {
+    //        {//動いている間
+    //            _anim.SetFloat("floatの名前", _moveVelocity.x);
+    //            _anim.SetFloat("floatの名前", _moveVelocity.y);
+    //            //上の場合、＋Y
+    //            //下の場合、ーY
+    //            //右上、右下、右の場合、＋X
+    //            //左上、左下、左の場合、ーX
+    //        }
+    //        {//止まっている間
+    //            _anim.SetFloat("", _lastMoveVelocity.x);
+    //            _anim.SetFloat("", _lastMoveVelocity.y);
+    //            //上の条件に加えて、プレイヤーが動いていないこと。
+    //        }
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
     {
@@ -137,18 +140,142 @@ public class PlayerController : MonoBehaviour
     private void ChildMode(float h, float v)
     {
         _moveVelocity = new Vector2(h, v).normalized * _childMoveSpeed;
+        AnimPlay(h, v);
     }
 
     private void AdultMode(float h, float v)
     {
         _moveVelocity = new Vector2(h, v).normalized * _adultMoveSpeed;
+        AnimPlay(h, v);
     }
 
-    private void ModeChange(bool change)
+    public void ModeChange(bool change)//大人化、子供化するときに呼び出す関数
     {
+
+        if (!_adultState)
+        {
+            _anim.Play("");
+        }
+        else
+        {
+            _anim.Play("");
+        }
         _adultState = change;
     }
-    public void InformationReset()
+    void AnimPlay(float x, float y)//+xが右、+yが上
+    {
+        if (!_anim)
+        {
+            return;
+        }
+        if (!_adultState)
+        {
+            if (x != 0 && y != 0)
+            {
+                if (-0.5 < y && y < 0.5)//左右
+                {
+                    if (0.5 < x && x < 1)//右
+                    {
+                        _anim.Play("ChildRight");
+                    }
+                    else if (-1 < x && x < -0.5)//左
+                    {
+                        _anim.Play("ChildLeft");
+                    }
+                }
+                if (-0.5 < x && x < 0.5)//上下
+                {
+                    if (0.5 < y && y < 1)//上
+                    {
+                        _anim.Play("ChildUp");
+                    }
+                    else if (-1 < y && y < -0.5)//下
+                    {
+                        _anim.Play("ChildDown");
+                    }
+                }
+            }
+            else
+            {
+                if (-0.5 < _lastMovejoyStick.y && _lastMovejoyStick.y < 0.5)//左右
+                {
+                    if (0.5 < _lastMovejoyStick.x && _lastMovejoyStick.x < 1)//右
+                    {
+                        _anim.Play("Player-Idle-right");
+                    }
+                    else if (-1 < _lastMovejoyStick.x && _lastMovejoyStick.x < -0.5)//左
+                    {
+                        _anim.Play("Player-Idle-left");
+                    }
+                }
+                if (-0.5 < _lastMovejoyStick.x && _lastMovejoyStick.x < 0.5)//上下
+                {
+                    if (0.5 < _lastMovejoyStick.y && _lastMovejoyStick.y < 1)//上
+                    {
+                        _anim.Play("Player-Idle-Up");
+                    }
+                    else if (-1 < _lastMovejoyStick.y && _lastMovejoyStick.y < -0.5)//下
+                    {
+                        _anim.Play("Player-Idle-down");
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (x != 0 && y != 0)
+            {
+                if (-0.5 < y && y < 0.5)//左右
+                {
+                    if (0.5 < x && x < 1)//右
+                    {
+                        _anim.Play("");
+                    }
+                    else if (-1 < x && x < -0.5)//左
+                    {
+                        _anim.Play("");
+                    }
+                }
+                if (-0.5 < x && x < 0.5)//上下
+                {
+                    if (0.5 < y && y < 1)//上
+                    {
+                        _anim.Play("");
+                    }
+                    else if (-1 < y && y < -0.5)//下
+                    {
+                        _anim.Play("");
+                    }
+                }
+            }
+            else
+            {
+                if (-0.5 < _lastMovejoyStick.y && _lastMovejoyStick.y < 0.5)//左右
+                {
+                    if (0.5 < _lastMovejoyStick.x && _lastMovejoyStick.x < 1)//右
+                    {
+                        _anim.Play("");
+                    }
+                    else if (-1 < _lastMovejoyStick.x && _lastMovejoyStick.x < -0.5)//左
+                    {
+                        _anim.Play("");
+                    }
+                }
+                if (-0.5 < _lastMovejoyStick.x && _lastMovejoyStick.x < 0.5)//上下
+                {
+                    if (0.5 < _lastMovejoyStick.y && _lastMovejoyStick.y < 1)//上
+                    {
+                        _anim.Play("");
+                    }
+                    else if (-1 < _lastMovejoyStick.y && _lastMovejoyStick.y < -0.5)//下
+                    {
+                        _anim.Play("");
+                    }
+                }
+            }
+        }
+    }
+    public void InformationReset()//全消し用
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;
@@ -171,7 +298,7 @@ public class PlayerController : MonoBehaviour
     }
     private void TranslatePlayerPos()
     {
-        if (!_pillowEnemyObject)//Enemy情報を持っていたら
+        if (_pillowEnemyObject)//Enemy情報を持っていたら
         {
             _returnPillowDisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
             if (_returnPillowDisToPlayer > toleranceDis)//誤差範囲

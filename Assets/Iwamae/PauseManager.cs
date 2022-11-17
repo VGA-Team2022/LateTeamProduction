@@ -17,6 +17,8 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
+        //Cancelボタンを押したらポーズする
+        //もう一度押したら解除
         if(Input.GetButtonDown("Cancel"))
         {
             PauseResume();

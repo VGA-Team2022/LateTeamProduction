@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int _sleepingEnemy = 0;
 
+    PlayerController _player = default;
     public int SleepingEnemy { get => _sleepingEnemy; set => _sleepingEnemy = value; }
+    public PlayerController Player { get => _player; }
 
     MapInstance _mapInstance = default;
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
         //_mapInstance = 
         //_sleepingEnemy = _mapInstance.Entity.SleeperValue;
         _clearTime = _timeLimit;
+        _player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame

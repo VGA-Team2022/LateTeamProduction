@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     bool _adultState = false;
     /// <summary>枕返し圏内</summary>
     public bool Pillow { get => _pillow; set => _pillow = value; }
+    /// <summary>プレイヤーの状態確認、外部参照用</summary>
+    public bool AdultState { get => _adultState; }
     public int Level { get => level; set => level = value; }
     public float Timerlimit { get => _timerlimit; set => _timerlimit = value; }
     public Returnpillow PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
@@ -142,6 +144,10 @@ public class PlayerController : MonoBehaviour
         _moveVelocity = new Vector2(h, v).normalized * _adultMoveSpeed;
     }
 
+    private void ModeChange(bool change)
+    {
+        _adultState = change;
+    }
     public void InformationReset()
     {
         _pillowEnemyObject = null;

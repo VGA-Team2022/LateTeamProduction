@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// シーン遷移時のフェード処理の管理
@@ -9,58 +9,47 @@ using UnityEngine.UI;
 
 public class FadeController : MonoBehaviour
 {
-    public static bool _FadeInstance = false;
-    public bool _isFadeIn = false;
-    public bool _isFadeOut = false;
-    public float _alpha = 0.0f;
-    public float _fadeSpeed = 0.2f;
+    float _fadeSpeed = 0.2f;
+    float _time = 0;
+    Image _image;
 
-    void Awake()
+    void Start()
     {
-        if (!_FadeInstance)
-        {
-            DontDestroyOnLoad(this);
-            _FadeInstance = true;
-        }
-        else
-        {
-            Destroy(this);
-        }
+       _image = GetComponentInChildren<Image>();
     }
 
-    void Update()
+    public IEnumerator Fade(bool isFadeOut)
     {
-        if (_isFadeIn)
+        while(true)
         {
-            _alpha -= Time.deltaTime / _fadeSpeed;
-            if (_alpha <= 0.0f)
+            //徐々に明るくなる
+            if (!isFadeOut)
             {
-                _isFadeIn = false;
-                _alpha = 0.0f;
+                _time -= Time.deltaTime;
+                Color c = _image.color;
+                c.a = _time / _fadeSpeed;
+                _image.color = c;
+                if(_time <= 0.0f)
+                {
+                    yield break;
+                }
             }
-            this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, _alpha);
-        }
-        else if (_isFadeOut)
-        {
-            _alpha += Time.deltaTime / _fadeSpeed;
-            if (_alpha >= 1.0f)
+            //徐々に暗くなる
+            else
             {
-                _isFadeOut = false;
-                _alpha = 1.0f;
+                _time += Time.deltaTime;
+                Color c = _image.color;
+                c.a = _time / _fadeSpeed;
+                _image.color = c;
+                if (_time  >= 1.0f)
+                {
+                    //仮処理
+                    SceneManager.LoadScene("test2");
+                    yield break;
+                }
+                
             }
-            this.GetComponentInChildren<Image>().color = new Color(0.0f, 0.0f, 0.0f, _alpha);
+             yield return null;
         }
-    }
-
-    public void fadeIn()
-    {
-        _isFadeIn = true;
-        Debug.Log("フェードイン");
-    }
-
-    public void fadeOut()
-    {
-        _isFadeOut = true;
-        Debug.Log("フェードアウト");
     }
 }

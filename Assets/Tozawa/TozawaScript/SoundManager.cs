@@ -6,26 +6,29 @@ using CriWare;
 /// <summary>
 /// 音源を管理するコンポーネント
 /// 関数がPublicになってるのはUnityEventで呼ぶためだ
-/// イベント設定時は関数の引数の型がCriAtomSourceになってるのを選べ（ジェネリック）
+/// イベントやボタン設定時は関数は引数の型がCriAtomSourceになってるのを選べ（ジェネリック）
 /// </summary>
 public class SoundManager : MonoBehaviour
 {
     [Header("開始時に呼ばれるべき処理"),  SerializeField] 
-    UnityEvent<CriAtomSource> _onGameStart;
+    UnityEvent _onGameStart;
     [Header("ゲームオーバー時に呼ばれるべき処理"),  SerializeField] 
-    UnityEvent<CriAtomSource> _onGameOver;
+    UnityEvent _onGameOver;
     [Header("クリア時に呼ばれるべき処理"),SerializeField] 
-    UnityEvent<CriAtomSource> _onGameClear;
-    public void GameStart(CriAtomSource source)
+    UnityEvent _onGameClear;
+    public void GameStart()
     {
-        _onGameStart.Invoke(source);
+        _onGameStart.Invoke();
+    }
+    public void GameOver()
+    {
+        _onGameOver.Invoke();
+    }
+    public void GameClear()
+    {
+        _onGameClear.Invoke();
     }
 
-    /// <summary>
-    /// この関数はボタンなどから呼ばない。直接音源を指定して渡せないからだ
-    /// Eventを介して音源指定することでボタンなどからでも再生できる
-    /// </summary>
-    /// <param name="source"></param>
     public void AudioPlay(CriAtomSource source)
     {
         source.Play();

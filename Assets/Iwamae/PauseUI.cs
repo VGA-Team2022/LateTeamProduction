@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// ポーズ時にポーズしているかを確認するUIの表示
 /// </summary>
-public class PauseUIManager : MonoBehaviour
+public class PauseUI : MonoBehaviour
 {
     PauseManager _pm = default;
 
@@ -22,6 +22,8 @@ public class PauseUIManager : MonoBehaviour
         _pm.OnPauseResume -= ShowMessage;
     }
 
+    //ポーズボタンが押されたらポーズ、
+    //もう一度押したら再開のログを表示する
     void ShowMessage(bool isPause)
     {
         if (isPause)

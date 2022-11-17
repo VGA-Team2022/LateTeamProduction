@@ -9,13 +9,14 @@ using UnityEngine.SceneManagement;
 
 public class FadeController : MonoBehaviour
 {
+    [SerializeField]float _time = 0;
     float _fadeSpeed = 0.2f;
-    float _time = 0;
     Image _image;
 
     void Start()
     {
        _image = GetComponentInChildren<Image>();
+        StartCoroutine(Fade(false));
     }
 
     public IEnumerator Fade(bool isFadeOut)

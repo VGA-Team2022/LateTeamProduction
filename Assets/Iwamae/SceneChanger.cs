@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public class SceneChanger : MonoBehaviour
 {
+
+
     GameObject _fadeCanvas;
 
     void Awake()

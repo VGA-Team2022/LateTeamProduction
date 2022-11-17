@@ -27,29 +27,26 @@ public class MapInstance : MonoBehaviour
         }
     }
 
+    void CreateHouse(HouseType type1,int targetHouseValue)
+    {
+        HouseBase housePrefab = _houseBasesPrefab[(int)type1];
+        for(int i = 0; i < targetHouseValue; i++)
+        {
+            Instantiate(housePrefab);
+        }
+    }
+
+    void CreateHouse(HouseType type1,HouseType type2, int targetHouseValue)
+    {
+        
+    }
+
     void SetHouse(HouseBase house)
     {
         SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();
         SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];
         house.transform.position = targetPos.SpawnPos.position;
         targetPos.State = SpawnPosState.SpawnState.used;
-    }
-    void CreateHouse(HouseType type,int targetHouseValue)
-    {
-        for(int i = 0; i < targetHouseValue; i++)
-        {
-            switch(type)
-            {
-                case HouseType.None:
-                    break;
-                case HouseType.Baby:
-                    break;
-                case HouseType.Solt:
-                    break;
-                case HouseType.DemonArrow:
-                    break;
-            }
-        }
     }
 }
 

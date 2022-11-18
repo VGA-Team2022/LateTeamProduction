@@ -16,8 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject _clearUI = null;
     /// <summary>クリアタイムを表示するテキスト</summary>
     [SerializeField] TextMeshProUGUI _clearTimeText = null;
-    /// <summary>ゲームオーバー時に表示するテキスト</summary>
-    [SerializeField] GameObject _gameOverUI = null;
+    
 
     PlayerController _player = null;
     // Start is called before the first frame update
@@ -25,7 +24,6 @@ public class UIManager : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<PlayerController>();
         _clearUI.SetActive(false);
-        _gameOverUI.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -58,9 +56,5 @@ public class UIManager : MonoBehaviour
     {
         _clearTimeText.text = clearTime.ToString("F0");
         _clearUI.SetActive(true);
-    }
-    public void GameOver()
-    {
-        _gameOverUI.SetActive(true);
     }
 }

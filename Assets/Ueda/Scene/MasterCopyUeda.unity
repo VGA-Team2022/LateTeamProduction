@@ -2296,6 +2296,7 @@ MonoBehaviour:
   _timeLimit: 300
   _uIManager: {fileID: 1654339268}
   _sleepingEnemy: 0
+  _gameOverUI: {fileID: 0}
 --- !u!4 &1017574324
 Transform:
   m_ObjectHideFlags: 0
@@ -3249,7 +3250,6 @@ MonoBehaviour:
   _timerText: {fileID: 1696254145}
   _clearUI: {fileID: 573370929}
   _clearTimeText: {fileID: 1509186640}
-  _gameOverUI: {fileID: 433786939}
 --- !u!4 &1654339269
 Transform:
   m_ObjectHideFlags: 0

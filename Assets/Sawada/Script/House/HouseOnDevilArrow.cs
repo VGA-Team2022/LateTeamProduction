@@ -9,13 +9,10 @@ public class HouseOnDevilArrow : HouseBase
     [SerializeField, Tooltip("カウントダウン")]
     float _time = 0;
 
-    public override void OnTriggerStay2D(Collider2D collision)
+    public override void Init()
     {
-        base.OnTriggerStay2D(collision);
-        if (collision.TryGetComponent<PlayerController>(out PlayerController player))
-        {
-            PlayerInHouseMotion(player);
-        }
+        base.Init();
+        _type = HouseType.DevilArrow;
     }
 
     public override void PlayerInHouseMotion(PlayerController player)
@@ -27,11 +24,10 @@ public class HouseOnDevilArrow : HouseBase
             player.ModeChange(false);
         }
     }
-
-    public override void OnTriggerExit2D(Collider2D collision)
+    public override void PlayerExitHouseMotion(PlayerController player)
     {
-        base.OnTriggerExit2D(collision);
-        ResetTimer(); 
+        base.PlayerExitHouseMotion(player);
+        ResetTimer();
     }
 
     //カウントダウン

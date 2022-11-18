@@ -19,7 +19,7 @@ public class MapInstance : MonoBehaviour
         _houseBasesPrefab = Resources.LoadAll<HouseBase>("HousePrefab");
         int[] houseValues = new int[] { _entity.HouseValue, _entity.HouseValueOnSolt, _entity.HouseValueInBaby, _entity.HouseValueInArrow };
         int houseValueSum = houseValues.Sum();
-        _instansTransform = GetComponentsInChildren<Transform>();
+        _instansTransform = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").ToArray();
 
         for (int i = 0; i < houseValueSum; i++)
         {

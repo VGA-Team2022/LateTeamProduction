@@ -1,57 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    public VariableJoystick _joyStick;
     /// <summary>動く速度（子供）</summary>
     [SerializeField, Header("子供状態の動くスピード")]
     float _childMoveSpeed = 10f;
     /// <summary>動く速度（大人）</summary>
     [SerializeField, Header("大人状態の動くスピード")]
     float _adultMoveSpeed = 15f;
-    /// <summary>時計</summary>
-    float _timer = 0f;
-    /// <summary>枕を返すまでにかかる時間</summary>//atai
-    [SerializeField, Header("枕を返すまでにかかる時間")]
-    float _timerlimit = 0.5f;
+    /// <summary>枕を返すまでにかかる時間</summary>
     [SerializeField, Header("誤差の許容範囲")]
     float toleranceDis = 0.2f;
-    Vector2 _moveVelocity;
-    /// <summary>止まる直前の速度方向</summary>
-    Vector2 _lastMovejoyStick;
-    /// <summary>レベル</summary>
-    int level = 1;
-    public VariableJoystick _joyStick;
-    Animator _anim;
-    Rigidbody2D _rb;
-    /// <summary>枕を返す標的のscriptを保持する</summary>
-    Returnpillow _pillowEnemy = null;
-    /// <summary>枕を返す標的のgameobjectを保持する</summary>
-    GameObject _pillowEnemyObject = null;
-    /// <summary>敵の位置情報</summary>
-    Vector2 _enemyPos = default;
-    /// <summary>プレイヤーが枕を返せる位置</summary>
-    Vector2 _returnPillowPos = default;
+    /// <summary>時計</summary>
+    float _timer = 0f;
     /// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
     float _returnPillowDisToEnemy = 1f;
     /// <summary>プレイヤーと_returnPillowPosの距離</summary>
     float _returnPillowDisToPlayer;
-    UIManager _ui;
-    /// <summary>枕返し圏内</summary>
-    bool _pillow = false;
+    /// <summary>移動速度計算結果</summary>
+    Vector2 _moveVelocity;
+    /// <summary>止まる直前の速度方向</summary>
+    Vector2 _lastMovejoyStick;
+    /// <summary>敵の位置情報</summary>
+    Vector2 _enemyPos = default;
+    /// <summary>プレイヤーが枕を返せる位置</summary>
+    Vector2 _returnPillowPos = default;
+    /// <summary>枕を返す標的のscriptを保持する</summary>
+    Returnpillow _pillowEnemy = null;
+    /// <summary>枕を返す標的のgameobjectを保持する</summary>
+    GameObject _pillowEnemyObject = null;
     /// <summary>大人か子供か</summary>
     [SerializeField, Header("プレイヤーが大人か子供か")]
     bool _adultState = false;
+    Animator _anim = null;
+    Rigidbody2D _rb;
+    UIManager _ui;
+    GameManager _gm;
     /// <summary>プレイヤーの状態確認、外部参照用</summary>
-    public bool AdultState { get => _adultState;}
-    /// <summary>枕返し圏内</summary>
-    public bool Pillow { get => _pillow; set => _pillow = value; }
-    public int Level { get => level; set => level = value; }
-    public float Timerlimit { get => _timerlimit; set => _timerlimit = value; }
+    public bool AdultState { get => _adultState; }
+    /// <summary>枕を返す標的のscript</summary>
     public Returnpillow PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
+    /// <summary>枕を返す標的のgameobject</summary>
     public GameObject PillowEnemyObject { get => _pillowEnemyObject; set => _pillowEnemyObject = value; }
+    public Animator Anim { get => _anim; set => _anim = value; }
 
     void Start()
     {
@@ -66,16 +60,10 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(_pillowEnemy);
         float h = _joyStick.Horizontal;
         float v = _joyStick.Vertical;
-        if (!_adultState)
-        {
-            ChildMode(h, v);
-        }
-        else
-        {
-            AdultMode(h, v);
-        }
-
+        ModeCheck(h, v);
+        //↑ここで計算された_moveVelocityを代入
         _rb.velocity = _moveVelocity;
+
         if (h != 0 && v != 0)
         {
             _lastMovejoyStick.x = h;
@@ -137,21 +125,20 @@ public class PlayerController : MonoBehaviour
         InformationReset();
     }
 
-    private void ChildMode(float h, float v)
+    private void ModeCheck(float h, float v)
     {
-        _moveVelocity = new Vector2(h, v).normalized * _childMoveSpeed;
+        if (!_adultState)
+        {
+            _moveVelocity = new Vector2(h, v).normalized * _childMoveSpeed;
+        }
+        else
+        {
+            _moveVelocity = new Vector2(h, v).normalized * _adultMoveSpeed;
+        }
         AnimPlay(h, v);
     }
-
-    private void AdultMode(float h, float v)
-    {
-        _moveVelocity = new Vector2(h, v).normalized * _adultMoveSpeed;
-        AnimPlay(h, v);
-    }
-
     public void ModeChange(bool change)//大人化、子供化するときに呼び出す関数
     {
-
         if (!_adultState)
         {
             _anim.Play("");
@@ -286,14 +273,21 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerAndEnemyDis()//距離計算
     {
-        if (Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y))
-        >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y)))
+        if (_enemyPos != default)
         {
-            _returnPillowPos = new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y);
+            if (Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y))
+            >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y)))
+            {
+                _returnPillowPos = new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y);
+            }
+            else
+            {
+                _returnPillowPos = new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y);
+            }
         }
         else
         {
-            _returnPillowPos = new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y);
+            Debug.Log("敵の位置情報を取得出来ていません");
         }
     }
     private void TranslatePlayerPos()
@@ -327,5 +321,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+    /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
+    public void PlayerFind()
+    {
+        _gm.GameOver();
     }
 }

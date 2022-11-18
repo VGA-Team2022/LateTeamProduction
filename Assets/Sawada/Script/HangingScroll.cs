@@ -12,8 +12,8 @@ public class HangingScroll : MonoBehaviour
         if (collision.TryGetComponent<PlayerController>(out PlayerController player) && Input.GetButtonDown("Diside"))
         {
             bool playerMode = !player.AdultState;
-            player.ModeChange(!player.AdultState);
-            if
+            player.ModeChange(player);
+            //if
         }
     }
 }

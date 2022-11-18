@@ -87,7 +87,7 @@ public class Returnpillow : MonoBehaviour
     }
 
     private void GetUp(PlayerController player)
-    {//ここで再生するアニメーションにアニメーションイベントでゲームオーバー関数を呼ぶようにする。
-        player.Anim.Play("");
+    {
+        player.PlayerFind();
     }
 }

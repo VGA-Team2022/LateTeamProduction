@@ -64,15 +64,13 @@ public class Returnpillow : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)//プレイヤーが当たり判定の中にとどまったら
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
-            collision.GetComponent<PlayerController>().Pillow = true;
-            _timer += Time.deltaTime;
-            //数値の幅は後で変更予定
-
-            if (_getupTime <= _timer && _returnPillow)//制限時間を超えた　＋　枕を返されていなかったら
+            _timer += Time.deltaTime;  
+            if (_getupTime <= _timer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら + プレイヤーがまだ範囲内にいたら
             {
-
+                //見つかった時、ゲームオーバーの関数を書く
+                GetUp(player);
             }
         }
     }
@@ -86,5 +84,10 @@ public class Returnpillow : MonoBehaviour
     public void GetUpTime(float time)
     {
         _getupTime = time;
+    }
+
+    private void GetUp(PlayerController player)
+    {//ここで再生するアニメーションにアニメーションイベントでゲームオーバー関数を呼ぶようにする。
+        player.Anim.Play("");
     }
 }

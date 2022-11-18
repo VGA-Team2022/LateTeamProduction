@@ -614,6 +614,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 481148580201509181, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 709524754973865897, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -806,6 +810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 4128073503254421010, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4856020925474385553, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -848,6 +856,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5876158568759874070, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056884784774128568, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639098490178600187, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691661926059206047, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
@@ -896,6 +912,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7909908694919788480, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929947590229704935, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160741919108218174, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829762670014908740, guid: c84877f42c321634fa740a764e9b84c7, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3217,7 +3245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chargeSlider: {fileID: 487162170}
-  _chargeSliderMini: {fileID: 0}
+  _chargeSliderMini: {fileID: 1560285477}
   _timerText: {fileID: 1696254145}
   _clearUI: {fileID: 573370929}
   _clearTimeText: {fileID: 1509186640}

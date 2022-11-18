@@ -1,35 +1,23 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
 
 /// <summary>
 /// シーン遷移
 /// </summary>
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] GameObject fade;
-    GameObject fadeCanvas;
+
+
+    GameObject _fadeCanvas;
 
     void Awake()
     {
-        if (!FadeController._FadeInstance)
-        {
-            Instantiate(fade);
-        }
-        Invoke("findFadeObject", 0.2f);
+        _fadeCanvas = GameObject.FindGameObjectWithTag("Fade");
     }
 
-    void findFadeObject()
+    //ボタンを押したときに実行する処理(仮処理)
+    public void ChangeScene(string name)
     {
-        fadeCanvas = GameObject.FindGameObjectWithTag("Fade");
-        fadeCanvas.GetComponent<FadeController>().fadeIn();
-    }
-
-    public async void ChangeScene(string name)
-    {
-        fadeCanvas.GetComponent<FadeController>().fadeOut();
-        await Task.Delay(200);
-        SceneManager.LoadScene(name);
-        fadeCanvas.GetComponent<FadeController>().fadeIn();
+        var fadeIn = _fadeCanvas.GetComponent<FadeController>().Fade(true);
+        StartCoroutine(fadeIn);
     }
 }

@@ -1,33 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MapInstance : MonoBehaviour
 {
-    MapElemantEntity _entity = null;
+    System.Random _random = new System.Random();
     Transform[] _instansTransform = null;
+    List<SpawnPosState> _insPos = new();
+    MapElemantEntity _entity = null;
+    HouseBase[] _houseBasesPrefab = null;
 
     public MapElemantEntity Entity => _entity;
 
-    void GenerateMap()
+    public void GenerateMap()
     {
-        SpawnPosState[] insPos = null;
+        
+        _houseBasesPrefab = Resources.LoadAll<HouseBase>("HousePrefab");
         int[] houseValues = new int[] { _entity.HouseValue, _entity.HouseValueOnSolt, _entity.HouseValueInBaby, _entity.HouseValueInArrow };
-        int houseValueSum = 0;
-
+        int houseValueSum = houseValues.Sum();
         _instansTransform = GetComponentsInChildren<Transform>();
-        foreach(int v in houseValues)
-        {
-            houseValueSum += v;
-        }
+
         for (int i = 0; i < houseValueSum; i++)
         {
-            insPos[i] = new SpawnPosState(_instansTransform[i]);
+            _insPos[i] = new SpawnPosState(_instansTransform[i]);
         }
+    }
+
+    void CreateHouse(HouseType type1,int targetHouseValue)
+    {
+        HouseBase housePrefab = _houseBasesPrefab[(int)type1];
+        for(int i = 0; i < targetHouseValue; i++)
+        {
+            Instantiate(housePrefab);
+        }
+    }
+
+    void CreateHouse(HouseType type1,HouseType type2, int targetHouseValue)
+    {
+        
+    }
+
+    void SetHouse(HouseBase house)
+    {
+        SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();
+        SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];
+        house.transform.position = targetPos.SpawnPos.position;
+        targetPos.State = SpawnPosState.SpawnState.used;
     }
 }
 
-public struct SpawnPosState
+public class SpawnPosState
 {
     public Transform SpawnPos;
     public SpawnState State;

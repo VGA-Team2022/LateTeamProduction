@@ -21,15 +21,15 @@ public class Returnpillow : MonoBehaviour
     float _timeInBaby = 0f;
     Collider2D[] collider = null;
     /// <summary>時計</summary>
-    float timer;
-    Animator anim = null;
+    float _timer;
+    Animator _anim = null;
     public bool ReturnPillow { get => _returnPillow; set => _returnPillow = value; }
     // Start is called before the first frame update
     void Start()
     {
 
         _returnPillow = false;
-        anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
         //image = GetComponent<Image>();
         image = GetComponent<SpriteRenderer>();
         collider = GetComponents<Collider2D>();
@@ -58,8 +58,8 @@ public class Returnpillow : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (anim)
-            anim.SetBool("boolの名前", _returnPillow);
+        if (_anim)
+            _anim.SetBool("boolの名前", _returnPillow);
     }
 
     private void OnTriggerStay2D(Collider2D collision)//プレイヤーが当たり判定の中にとどまったら
@@ -67,10 +67,10 @@ public class Returnpillow : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>().Pillow = true;
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
             //数値の幅は後で変更予定
 
-            if (_getupTime <= timer && _returnPillow)//制限時間を超えた　＋　枕を返されていなかったら
+            if (_getupTime <= _timer && _returnPillow)//制限時間を超えた　＋　枕を返されていなかったら
             {
 
             }
@@ -79,11 +79,12 @@ public class Returnpillow : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        timer -= timer;
+        _timer -= _timer;
     }
-
-    private void GetUpTime()
+    /// <summary>起きる時間を決める関数</summary>
+    /// <param name="time"></param>
+    public void GetUpTime(float time)
     {
-
+        _getupTime = time;
     }
 }

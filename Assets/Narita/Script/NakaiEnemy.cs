@@ -55,7 +55,7 @@ public class NakaiEnemy : MonoBehaviour
     {
         //自分自身とポイントの距離を求める
         float distance = Vector2.Distance(transform.position, pointsArray[number % pointsArray.Length].position);
-        if (distance >= 0)//距離がなくなる、到達するまで
+        if (distance >= 0.5f)//距離がなくなる、到達するまで,0.5fはマジックナンバーになっているためのち変更
         {
             //方向を定める
             Vector2 dir = (pointsArray[number].position - transform.position).normalized * _moveSpeed;

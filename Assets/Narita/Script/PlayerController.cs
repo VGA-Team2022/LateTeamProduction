@@ -381,7 +381,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-}
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()
     {

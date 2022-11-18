@@ -2154,11 +2154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7521a9bdddb7aef48ab06e13986f9ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _joyStick: {fileID: 1900669463}
   _childMoveSpeed: 10
   _adultMoveSpeed: 15
-  _timerlimit: 0.5
   toleranceDis: 0.2
-  _joyStick: {fileID: 1900669463}
   _adultState: 0
 --- !u!50 &861103306
 Rigidbody2D:
@@ -2296,7 +2295,7 @@ MonoBehaviour:
   _timeLimit: 300
   _uIManager: {fileID: 1654339268}
   _sleepingEnemy: 0
-  _gameOverUI: {fileID: 0}
+  _gameOverUI: {fileID: 433786939}
 --- !u!4 &1017574324
 Transform:
   m_ObjectHideFlags: 0

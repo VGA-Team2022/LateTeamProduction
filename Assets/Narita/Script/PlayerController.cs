@@ -302,10 +302,26 @@ public class PlayerController : MonoBehaviour
                     if (transform.position.x > _returnPillowPos.x)
                     {
                         transform.Translate(Vector2.left * Time.deltaTime * _childMoveSpeed);
+                        if (!_adultState)
+                        {
+                            _anim.Play("ChildLeft");
+                        }
+                        else
+                        {
+                            _anim.Play("ChildLeft");
+                        }
                     }
                     else if (transform.position.x < _returnPillowPos.x)
                     {
                         transform.Translate(Vector2.right * Time.deltaTime * _childMoveSpeed);
+                        if (!_adultState)
+                        {
+                            _anim.Play("ChildRight");
+                        }
+                        else
+                        {
+                            _anim.Play("ChildLeft");
+                        }
                     }
                 }
                 else
@@ -313,15 +329,59 @@ public class PlayerController : MonoBehaviour
                     if (transform.position.y > _returnPillowPos.y)
                     {
                         transform.Translate(Vector2.down * Time.deltaTime * _childMoveSpeed);
+                        if (!_adultState)
+                        {
+                            _anim.Play("ChildDown");
+                        }
+                        else
+                        {
+                            _anim.Play("ChildLeft");
+                        }
                     }
                     else if (transform.position.y < _returnPillowPos.y)
                     {
                         transform.Translate(Vector2.up * Time.deltaTime * _childMoveSpeed);
+                        if (!_adultState)
+                        {
+                            _anim.Play("ChildUp");
+                        }
+                        else
+                        {
+                            _anim.Play("ChildLeft");
+                        }
                     }
                 }
             }
+            else
+            {
+                if (_returnPillowPos == new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y))
+                {
+                    if (!_adultState)
+                    {
+                        _anim.Play("Player-Idle-left");//子供
+                    }
+                    else
+                    {
+                        _anim.Play("Player-Idle-left");
+                    }
+                }
+                else
+                {
+                    if (!_adultState)
+                    {
+                        _anim.Play("Player-Idle-right");//子供
+                    }
+                    else
+                    {
+                        _anim.Play("Player-Idle-left");
+                    }
+                }
+                _timer += Time.deltaTime;
+                _ui.ChargeSlider(_timer);
+            }
         }
     }
+}
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()
     {

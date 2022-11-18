@@ -23,18 +23,27 @@ public class HouseOnSolt : HouseBase
         }
     }
 
-    public override void HouseEntryMotion(PlayerController player)
+    public override void PlayerEntryHouseMotion(PlayerController player)
     {
-        base.HouseEntryMotion(player);
+        base.PlayerEntryHouseMotion(player);
         //プレイヤーの状況に応じてドアを開ける
         //ToDo:プレイヤーの大人判定をプロパティで公開してもらう。
-        //foreach (Collider2D col in _doorColliers)
+        foreach (Collider2D col in _doorColliers)
+        {
+            col.enabled = player.AdultState;
+        }
+        foreach (Renderer ren in _doorRenderers)
+        {
+            ren.enabled = player.AdultState;
+        }
+    }
+
+    public override void PlayerInHouseMotion(PlayerController player)
+    {
+        base.PlayerInHouseMotion(player);
+        //if(!player.AdultState)
         //{
-        //    col.enabled = player.AdaltState;
-        //}
-        //foreach (Renderer ren in _doorRenderers)
-        //{
-        //    ren.enabled = player.AdaltState;
+        //    ここにゲームオーバーの処理を書く
         //}
     }
 }

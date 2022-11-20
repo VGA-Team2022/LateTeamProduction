@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class HouseOnSolt : HouseBase
 {
+    //[Tooltip("")]
+
     [Tooltip("ドアのオブジェクトRendererの配列")]
     Renderer[] _doorRenderers = null;
     [Tooltip("ドアのオブジェクトのColliderの配列")]
@@ -14,7 +16,8 @@ public class HouseOnSolt : HouseBase
     public override void Init()
     {
         base.Init();
-        //取得
+        _type = HouseType.Solt;
+        //取得(ドアのオブジェクトには”Door”というタグを付けてください)
         _doorColliers = gameObject.GetComponentsInChildren<Collider2D>().Where(x => x.tag == "Door").ToArray();
         _doorRenderers = new Renderer[_doorColliers.Length];
         for (int i = 0; i < _doorColliers.Length; i++)
@@ -27,7 +30,6 @@ public class HouseOnSolt : HouseBase
     {
         base.PlayerEntryHouseMotion(player);
         //プレイヤーの状況に応じてドアを開ける
-        //ToDo:プレイヤーの大人判定をプロパティで公開してもらう。
         foreach (Collider2D col in _doorColliers)
         {
             col.enabled = player.AdultState;

@@ -20,11 +20,16 @@ public class UIManager : MonoBehaviour
 
     PlayerController _player = null;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        _chargeSliderMini.SetActive(false);
+    }
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<PlayerController>();
         _clearUI.SetActive(false);
     }
+    
     // Update is called once per frame
     void Update()
     {
@@ -32,7 +37,12 @@ public class UIManager : MonoBehaviour
     }
     public void ChargeSlider(float charge)
     {
-        if(charge >= 1) charge = 1; 
+        if (charge == 0)
+        {
+            _chargeSliderMini.SetActive(false);
+            return;
+        }
+            if(charge >= 1) charge = 1; 
         _chargeSlider.value = charge;
         _chargeSliderMini.GetComponent<Slider>().value = charge;
 
@@ -40,12 +50,13 @@ public class UIManager : MonoBehaviour
         _chargeSliderMini.SetActive(true);
 
         //スライダーが満タンになったらプレイヤーのboolを変える
-        if (_chargeSlider.value == _chargeSlider.maxValue)
+        if (charge == 1)
         {
-            _player.InformationReset();
+            
             _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
-            _chargeSliderMini.SetActive(false);
+            
+            _player.InformationReset();
         }
     }
     public void TimerText(float time)

@@ -41,6 +41,10 @@ public class MapInstance : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// ゲーム上の座標からランダムに選択し家をセットする関数
+    /// </summary>
+    /// <param name="house">セットする家のプレハブ</param>
     void SetHouse(HouseBase house)
     {
         SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();

@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HouseBase : MonoBehaviour
 {
-    //[Tooltip("Š|‚¯Ž²‚ª‘¶Ý‚·‚é‚©")]
-    //bool _
+    [SerializeField,Tooltip("Š|‚¯Ž²")]
+    HangingScroll _hangingScroll = null;
     [Tooltip("GameManager‚ðŠi”[‚·‚é•Ï”")]
     GameManager _gameManager = null;
     [Tooltip("‰Æ‚Ì’†‚É‚¢‚é–‚Ì”")]
@@ -17,6 +17,13 @@ public class HouseBase : MonoBehaviour
 
     public HouseType Type => _type;
 
+    public void SetValue(bool isHangingScroll,GameManager gameManager)
+    {
+        _gameManager = gameManager;
+        _hangingScroll.IsActive(isHangingScroll);
+        _returnPillows = GetComponentsInChildren<Returnpillow>();
+        Init();
+    }
     public virtual void Init() { }
     public virtual void PlayerEntryHouseMotion(PlayerController player) { }
     public virtual void PlayerInHouseMotion(PlayerController player) { }

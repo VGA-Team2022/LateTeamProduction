@@ -122,6 +122,108 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onMakuraReverse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38677944407395875}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7862445412634823013}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCanceled:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38677944407395875}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4654336317550116347}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPaused:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38677944407395875}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4557145293756669347}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 38677944867937736}
+        m_TargetAssemblyTypeName: CriWare.CriAtomSourceBase, CriMw.CriWare.Runtime
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onDecited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38677944407395875}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6697213686732544308}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onKakejikued:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38677944407395875}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6393447055803980951}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCutined:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 38677944407395875}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8530244589443208592}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &38677944867937737
 GameObject:
   m_ObjectHideFlags: 0

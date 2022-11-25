@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D),typeof(PlayerAnimController))]
 public class PlayerController : MonoBehaviour
 {
     public VariableJoystick _joyStick;

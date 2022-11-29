@@ -5,8 +5,7 @@ using UnityEngine.Events;
 using CriWare;
 /// <summary>
 /// シーン上のサウンドマネージャーを参照して！
-/// 音源を管理するコンポーネント
-/// 関数がPublicになってるのはUnityEventで呼ぶためだ
+/// 関数がPublicになってるのはUnityEventで呼ぶため
 /// イベント設定時は関数は引数の型がCriAtomSourceになってるのを選べ（ジェネリック）
 /// </summary>
 public class SoundManager : MonoBehaviour

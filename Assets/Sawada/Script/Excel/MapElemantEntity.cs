@@ -5,22 +5,20 @@ using UnityEngine;
 [System.Serializable]
 public class MapElemantEntity
 {
-    [Tooltip("ステージレベル")]
-    public int StageLevel = 0;
     [Tooltip("敵「寝てる敵」の総数")]
-    public int SleeperValue = 0;
+    public int sleeperValue = 0;
     [Tooltip("敵「仲居さん」の総数")]
-    public int NakaiValue = 0;
+    public int nakaiValue = 0;
     [Tooltip("合成している家を用意するか")]
-    public bool IsSynthesisHouse;
+    public bool isSynthesisHouse;
     [Tooltip("通常の家の数")]
-    public int HouseValue;
+    public int houseValue;
     [Tooltip("盛り塩がある家の数")]
-    public int HouseValueOnSolt;
+    public int houseValueOnSolt;
     [Tooltip("赤ちゃんがいる家の数")]
-    public int HouseValueInBaby;
+    public int houseValueInBaby;
     [Tooltip("破魔矢がある家の数")]
-    public int HouseValueInArrow;
+    public int houseValueInArrow;
 }
 
 

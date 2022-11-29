@@ -6,7 +6,7 @@ public class HouseOnDevilArrow : HouseBase
 {
     [SerializeField, Tooltip("プレイヤーが子供に戻る時間")]
     float _cancellationTime = 0f;
-    [SerializeField, Tooltip("カウントダウン")]
+    [Tooltip("カウントダウン")]
     float _time = 0;
 
     public override void Init()

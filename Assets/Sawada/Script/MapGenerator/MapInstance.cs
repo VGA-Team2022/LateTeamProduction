@@ -6,37 +6,51 @@ using UnityEngine;
 
 public class MapInstance : MonoBehaviour
 {
+    [SerializeField, Tooltip("マップデータ")]
+    MapElemant _entity = null;
+    [SerializeField, Tooltip("現在のレベル")]
+    int _currentMapLevel = 0;
+
     [Tooltip("Transformをランダムで指定する為の変数")]
     System.Random _random = new System.Random();
     [Tooltip("生成するTransform")]
-    Transform[] _instansTransform = null;
-    List<SpawnPosState> _insPos = new();
-    [SerializeField,Tooltip("マップデータ")]
-    MapData _entity = null;
+    SpawnPosState[] _insPos = null;
+    [Tooltip("家のプレハブ")]
     HouseBase[] _houseBases = null;
 
-    public MapData Entity => _entity;
+    public MapElemant Entity => _entity;
 
     void Start()
     {
-        GenerateMap();
+        if (_entity != null)
+        {
+            SetValue();
+            
+        }
     }
 
-    public void GenerateMap()
+    public void SetValue()
     {
+        //プレハブデータを取得
         _houseBases = Resources.LoadAll<HouseBase>("HousePrefab");
 
-        int mapLevel = 0;
-        int[] houseValues = new int[4] { _entity.MapEntity[mapLevel].HouseValue
-                                       , _entity.MapEntity[mapLevel].HouseValueOnSolt
-                                       , _entity.MapEntity[mapLevel].HouseValueInBaby
-                                       , _entity.MapEntity[mapLevel].HouseValueInArrow };
+        int[] houseValues = new int[4] { _entity.MapTable[_currentMapLevel].houseValue
+                                       , _entity.MapTable[_currentMapLevel].houseValueOnSolt
+                                       , _entity.MapTable[_currentMapLevel].houseValueInBaby
+                                       , _entity.MapTable[_currentMapLevel].houseValueInArrow };
         int houseValueSum = houseValues.Sum();
-        _instansTransform = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").ToArray();
 
+        _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
         for (int i = 0; i < houseValueSum; i++)
         {
-            _insPos[i] = new SpawnPosState(_instansTransform[i]);
+            if (_entity.MapTable[_currentMapLevel].isSynthesisHouse)
+            {
+                
+            }
+            else
+            {
+
+            }
         }
     }
 
@@ -45,23 +59,15 @@ public class MapInstance : MonoBehaviour
         HouseBase[] houses = new HouseBase[targetHouseValue];
         HouseBase housePrefab = _houseBases[(int)type1];
         houses.ToList().ForEach(x => x = Instantiate(housePrefab));
-        //for(int i = 0; i < targetHouseValue; i++)
-        //{
-        //    var obj = Instantiate(housePrefab);
-        //}
         return houses;
     }
 
-    void CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
+    HouseBase[] CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
     {
         HouseBase[] houses = new HouseBase[targetHouseValue];
         HouseBase insHouse = (HouseBase)_houseBases.Where(x => x.Type == type1 && x.Type == type2);
         houses.ToList().ForEach(x => Instantiate(insHouse));
-        //for(int i = 0; i < targetHouseValue; i++)
-        //{
-        //    var obj = Instantiate(housePrefab);
-        //}
-        //return houses;
+        return houses;
     }
 
     /// <summary>

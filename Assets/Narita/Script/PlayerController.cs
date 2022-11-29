@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         _animController.ModeChangeAnim();
         _adultState = change;
     }
-    public void InformationReset()//全消し用
+    public void InformationReset()//取得したデータ全消し、スライダーの初期化
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;

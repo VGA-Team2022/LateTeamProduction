@@ -10,6 +10,8 @@ public class MapInstance : MonoBehaviour
     MapElemant _entity = null;
     [SerializeField, Tooltip("現在のレベル")]
     int _currentMapLevel = 0;
+    [SerializeField, Tooltip("生成するTransform")]
+    GameObject _insPosParent = null;
 
     [Tooltip("Transformをランダムで指定する為の変数")]
     System.Random _random = new System.Random();
@@ -34,22 +36,25 @@ public class MapInstance : MonoBehaviour
         //プレハブデータを取得
         _houseBases = Resources.LoadAll<HouseBase>("HousePrefab");
 
-        int[] houseValues = new int[4] { _entity.MapTable[_currentMapLevel].houseValue
+        int[] houseTypeValue = new int[4] { _entity.MapTable[_currentMapLevel].houseValue
                                        , _entity.MapTable[_currentMapLevel].houseValueOnSolt
                                        , _entity.MapTable[_currentMapLevel].houseValueInBaby
                                        , _entity.MapTable[_currentMapLevel].houseValueInArrow };
-        int houseValueSum = houseValues.Sum();
+        int houseValueSum = houseTypeValue.Sum();
 
         _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
-        for (int i = 0; i < houseValueSum; i++)
+        for(int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
         {
-            if (_entity.MapTable[_currentMapLevel].isSynthesisHouse)
+            for (int i = 0; i < houseValueSum; i++)
             {
-                
-            }
-            else
-            {
+                if (_entity.MapTable[_currentMapLevel].isSynthesisHouse)
+                {
 
+                }
+                else
+                {
+                    CreateHouse((HouseType)i, houseTypeValue[i]);
+                }
             }
         }
     }

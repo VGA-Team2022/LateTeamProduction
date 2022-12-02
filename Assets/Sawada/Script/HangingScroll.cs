@@ -19,7 +19,7 @@ public class HangingScroll : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerController>(out PlayerController player) && Input.GetButtonDown("Diside"))
+        if (collision.TryGetComponent<PlayerController>(out PlayerController player) && Input.GetButtonDown("Fire2"))
         {
             bool isAdultMode = !player.AdultState;
             if (isAdultMode)

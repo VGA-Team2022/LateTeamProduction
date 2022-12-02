@@ -51,14 +51,14 @@ public class PlayerAnimController : MonoBehaviour
         _anim = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        if (_player.JoyX != 0 && _player.JoyY != 0)
-        {
-            _lastMovejoyStick.x = _player.JoyX;
-            _lastMovejoyStick.y = _player.JoyY;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (_player.JoyX != 0 && _player.JoyY != 0)
+    //    {
+    //        _lastMovejoyStick.x = _player.JoyX;
+    //        _lastMovejoyStick.y = _player.JoyY;
+    //    }
+    //}
     /// <summary>ModeChange()ä÷êîÇ≈égóp</summary>
     public void ModeChangeAnim()//DownÇÃï˚å¸ÇÃë“ã@èÛë‘Ç…Ç∑ÇÈ
     {
@@ -106,7 +106,7 @@ public class PlayerAnimController : MonoBehaviour
                         _anim.Play(_adultActionLeft);
                 }
             }
-            if (-0.5 < x && x < 0.5)//è„â∫
+            if (-0.5 < x && x < 0.5)//è„â∫ã§í ÇÃèåè
             {
                 if (0.5 < y && y < 1)//è„
                 {

@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class MapInstance : MonoBehaviour
 {
-    [SerializeField, Tooltip("マップデータ")]
-    MapElemant _entity = null;
+    //[SerializeField, Tooltip("マップデータ")]
+    //MapData _entity = null;
     [SerializeField, Tooltip("現在のレベル")]
     int _currentMapLevel = 0;
     [SerializeField, Tooltip("生成するTransform")]
@@ -20,50 +20,43 @@ public class MapInstance : MonoBehaviour
     [Tooltip("家のプレハブ")]
     HouseBase[] _houseBases = null;
 
-    public MapElemant Entity => _entity;
 
     void Start()
     {
-        if (_entity != null)
+        //if (_entity != null)
         {
-            SetValue();
-            
+            SetStage();
+
         }
     }
 
-    public void SetValue()
+    public void SetStage()
     {
         //プレハブデータを取得
         _houseBases = Resources.LoadAll<HouseBase>("HousePrefab");
 
-        int[] houseTypeValue = new int[4] { _entity.MapTable[_currentMapLevel].houseValue
-                                       , _entity.MapTable[_currentMapLevel].houseValueOnSolt
-                                       , _entity.MapTable[_currentMapLevel].houseValueInBaby
-                                       , _entity.MapTable[_currentMapLevel].houseValueInArrow };
-        int houseValueSum = houseTypeValue.Sum();
+        //int[] houseTypeValue = new int[4] { _entity.MapTable[_currentMapLevel].houseValue
+        //                               , _entity.MapTable[_currentMapLevel].houseValueOnSolt
+        //                               , _entity.MapTable[_currentMapLevel].houseValueInBaby
+        //                               , _entity.MapTable[_currentMapLevel].houseValueInArrow };
+        //int houseValueSum = houseTypeValue.Sum();
 
-        _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
-        for(int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
-        {
-            for (int i = 0; i < houseValueSum; i++)
-            {
-                if (_entity.MapTable[_currentMapLevel].isSynthesisHouse)
-                {
-
-                }
-                else
-                {
-                    CreateHouse((HouseType)i, houseTypeValue[i]);
-                }
-            }
-        }
+        _insPos = _insPosParent.GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
+        //for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
+        //{
+        //    HouseBase[] houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);
+        //    SetHouse(houses);
+        //}
     }
 
     HouseBase[] CreateHouse(HouseType type1, int targetHouseValue)
     {
-        HouseBase[] houses = new HouseBase[targetHouseValue];
         HouseBase housePrefab = _houseBases[(int)type1];
-        houses.ToList().ForEach(x => x = Instantiate(housePrefab));
+        HouseBase[] houses = new HouseBase[targetHouseValue];
+        for(int i = 0;i < targetHouseValue;i++)
+        {
+            houses[i] = Instantiate(housePrefab);
+        }
         return houses;
     }
 
@@ -79,22 +72,26 @@ public class MapInstance : MonoBehaviour
     /// ゲーム上の座標からランダムに選択し家をセットする関数
     /// </summary>
     /// <param name="house">セットする家のプレハブ</param>
-    void SetHouse(HouseBase house)
+    void SetHouse(HouseBase[] houses)
     {
-        SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();
-        SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];
-        house.transform.position = targetPos.SpawnPos.position;
-        targetPos.State = SpawnPosState.SpawnState.used;
+        for(int i = 0;i < houses.Length;i++)
+        {
+            SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();
+            SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];
+            houses[i].transform.position = targetPos.spawnPos.position;
+            houses[i].transform.rotation = targetPos.spawnPos.rotation;
+            targetPos.State = SpawnPosState.SpawnState.used;
+        }
     }
 }
 
 public class SpawnPosState
 {
-    public Transform SpawnPos;
+    public Transform spawnPos;
     public SpawnState State;
-    public SpawnPosState(Transform spawnPos)
+    public SpawnPosState(Transform position)
     {
-        SpawnPos = spawnPos;
+        this.spawnPos = position;
         State = SpawnState.none;
     }
     public enum SpawnState

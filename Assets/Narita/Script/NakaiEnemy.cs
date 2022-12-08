@@ -35,6 +35,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     // Update is called once per frame
     void Update()
     {
+        VelocitySave(_rb.velocity);
         if (points != null)//ƒ|ƒCƒ“ƒg‚ğó‚¯æ‚Á‚Ä‚¢‚é
         {
             if (!_playerFind)//ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ä‚¢‚È‚¢

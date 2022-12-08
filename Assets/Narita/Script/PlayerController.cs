@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Header("大人状態の動くスピード")]
     float _adultMoveSpeed = 15f;
     [SerializeField, Header("誤差の許容範囲")]
-    float toleranceDis = 0.2f;
+    float _toleranceDis = 0.2f;
     /// <summary>時計</summary>
     float _timer = 0f;
     /// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     /// <summary>大人か子供か</summary>
     [SerializeField, Header("プレイヤーが大人か子供か")]
     bool _adultState = false;
+    [SerializeField, Header("枕を返せる場所にいるかどうか")]
+    bool _returnPillowInPos = false;
     bool _autoAnim = false;
     Rigidbody2D _rb;
     UIManager _ui;
@@ -74,6 +76,10 @@ public class PlayerController : MonoBehaviour
                     TranslatePlayerPos(_adultMoveSpeed);
             }
         }
+        else
+        {
+            _returnPillowInPos = false;
+        }
         if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回
         {
             PlayerAndEnemyDis();
@@ -88,6 +94,7 @@ public class PlayerController : MonoBehaviour
         _anim.SetFloat("LastVeloX", _lastMoveVelocity.x);
         _anim.SetFloat("LastVeloY", _lastMoveVelocity.y);
         _anim.SetBool("_adultState", _adultState);
+        _anim.SetBool("_returnPillowInPos", _returnPillowInPos);
         _anim.SetBool("_autoMode", _autoAnim);
     }
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
@@ -146,9 +153,9 @@ public class PlayerController : MonoBehaviour
         {
             _autoAnim = true;
             _returnPillowDisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
-            if (_returnPillowDisToPlayer > toleranceDis)//誤差範囲
+            if (_returnPillowDisToPlayer > _toleranceDis)//誤差範囲
             {
-                if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > toleranceDis)
+                if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > _toleranceDis)
                 {
                     if (transform.position.x > _returnPillowPos.x)
                     {
@@ -176,8 +183,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
             else
+                _returnPillowInPos = true;
                 _timer += Time.deltaTime;
-            _ui.ChargeSlider(_timer);
+                _ui.ChargeSlider(_timer);
         }
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>

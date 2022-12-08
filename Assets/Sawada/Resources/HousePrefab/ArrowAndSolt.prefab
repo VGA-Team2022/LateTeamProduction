@@ -1029,6 +1029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380e8ee0e0a6c50478ad228cd761607b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _getUpTime: 10
+  _type: 4
 --- !u!114 &4523836600450788286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,6 +1043,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60022cc92a1c7aa45817b9d1070fc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _getUpTime: 10
+  _type: 4
   _cancellationTime: 10
 --- !u!1 &6305736512672641148
 GameObject:

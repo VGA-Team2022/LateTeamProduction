@@ -7,5 +7,5 @@ public interface IHousePool
     public void Activate();
     public void Desactivate();
 
-    public void CreateHouseObject(HouseBase house, HouseBase house2);
+    public void CreateHouseObject(HouseBase house);
 }

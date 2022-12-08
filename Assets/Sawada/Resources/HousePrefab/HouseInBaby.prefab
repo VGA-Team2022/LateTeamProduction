@@ -1029,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _getUpTime: 5
+  _type: 1
 --- !u!1 &6305736512672641148
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     [Tooltip("GameManager‚ðŠi”[‚·‚é•Ï”")]
     protected GameManager _gameManager = null;
     [Tooltip("‰Æ‚Ìƒf[ƒ^1")]
-    HouseBase _data1 = null;
+    protected HouseBase _data1 = null;
     [Tooltip("Š|‚¯Ž²")]
     protected HangingScroll _hangingScroll = null;
     [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚ÌRenderer")]
@@ -58,7 +58,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         Array.ForEach(_returnPillows, x => x.enabled = false);
     }
 
-    public virtual void CreateHouseObject(HouseBase house1,HouseBase house2)
+    public virtual void CreateHouseObject(HouseBase house1)
     {
         _renderersInHouse = GetComponentsInChildren<Renderer>();
         _colliders = GetComponentsInChildren<Collider2D>();

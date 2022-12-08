@@ -16,16 +16,14 @@ public class HouseOnSolt : HouseBase
     public override void Init()
     {
         base.Init();
-        _type = HouseType.Solt;
         //取得(ドアのオブジェクトには”Door”というタグを付けてください)
-        _doorColliers = gameObject.GetComponentsInChildren<Collider2D>().Where(x => x.tag == "Door").ToArray();
+        _doorColliers = _colliders.Where(x => x.tag == "Door").ToArray();
         _doorRenderers = new Renderer[_doorColliers.Length];
         for (int i = 0; i < _doorColliers.Length; i++)
         {
             _doorRenderers[i] = _doorColliers[i].GetComponent<Renderer>();
         }
     }
-
     public override void PlayerEntryHouseMotion(PlayerController player)
     {
         base.PlayerEntryHouseMotion(player);
@@ -39,7 +37,6 @@ public class HouseOnSolt : HouseBase
             ren.enabled = player.AdultState;
         }
     }
-
     public override void PlayerInHouseMotion(PlayerController player)
     {
         base.PlayerInHouseMotion(player);

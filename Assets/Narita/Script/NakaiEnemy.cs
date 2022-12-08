@@ -10,7 +10,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     float _moveSpeed = 5f;
     [Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
     float _pointDis = 0.5f;
-    float timer = 0f;
     [Tooltip("ƒiƒJƒC‚Ì“®‚«‚ª•Ï‚í‚é‚ÌƒvƒŒƒCƒ„[‚ÌƒŒƒxƒ‹")]
     int _stageLevelBorder = 0;
     /// <summary>”z—ñ”Ô†</summary>

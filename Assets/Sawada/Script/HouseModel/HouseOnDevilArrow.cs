@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HouseOnDevilArrow : HouseBase
 {
-    [SerializeField, Tooltip("プレイヤーが子供に戻る時間")]
+    [Tooltip("プレイヤーが子供に戻る時間")]
     float _cancellationTime = 0f;
     [Tooltip("カウントダウン")]
     float _time = 0;
@@ -12,7 +12,6 @@ public class HouseOnDevilArrow : HouseBase
     public override void Init()
     {
         base.Init();
-        _type = HouseType.DevilArrow;
     }
 
     public override void PlayerInHouseMotion(PlayerController player)

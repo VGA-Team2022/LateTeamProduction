@@ -29,10 +29,9 @@ public class DoubleHouseBehaviour : HouseBehaviour
         }
     }
 
-    public override void CreateHouseObject(HouseBase house1, HouseBase house2)
+    public  void CreateHouseObject(HouseBase house1, HouseBase house2)
     {
-        base.CreateHouseObject(house1, house2);
-        if (house2 == null) return;
+        _data1 = house1;
         _data2 = house2;
     }
 }

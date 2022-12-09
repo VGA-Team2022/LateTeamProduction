@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
 {
     /// <summary>タメ時間を表すスライダー</summary>
     [SerializeField] Slider _chargeSlider = null;
-    /// <summary>枕の上に表示するスライダー</summary>
-    [SerializeField] GameObject _chargeSliderMini = null;
+    /// <summary>タメの完了度合いを表すオブジェクト</summary>
+    [SerializeField] GameObject _returnSign = null;
     /// <summary>残り時間を表示するテキスト</summary>
     [SerializeField] TextMeshProUGUI _timerText = null;
     /// <summary>クリア時に表示するUI</summary>
@@ -18,16 +18,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _clearTimeText = null;
     /// <summary>カットイン用のアニメーター</summary>
     [SerializeField] Animator _cutIn = null;
-
+    bool _isRange = false;
     PlayerController _player = null;
+    Animator _returnSignAnim = null;
     // Start is called before the first frame update
     private void Awake()
     {
-        _chargeSliderMini.SetActive(false);
+        _returnSign.SetActive(false);
     }
     void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<PlayerController>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _returnSignAnim = _returnSign.GetComponent<Animator>();
         _clearUI.SetActive(false);
     }
     
@@ -38,17 +40,32 @@ public class UIManager : MonoBehaviour
     }
     public void ChargeSlider(float charge)
     {
+        
+        if(_player._returnPillowInPos)
+        {
+            _returnSignAnim.speed = 1;
+        }
+        else
+        {
+            _returnSignAnim.speed = 0;
+        }
         if (charge == 0)
         {
-            _chargeSliderMini.SetActive(false);
+            _returnSign.SetActive(false);
+            _isRange = true;
             return;
         }
-            if(charge >= 1) charge = 1; 
+        if(charge >= 1) charge = 1; 
+        if(_isRange)
+        {
+            _returnSignAnim.Play("",0,0);
+            _isRange = false;
+        }
         _chargeSlider.value = charge;
-        _chargeSliderMini.GetComponent<Slider>().value = charge;
+        _returnSign.GetComponent<Slider>().value = charge;
 
-        if(_player.PillowEnemyObject != null) _chargeSliderMini.transform.position = _player.PillowEnemyObject.transform.position + new Vector3(0, 1, 0);
-        _chargeSliderMini.SetActive(true);
+        if(_player.PillowEnemyObject != null) _returnSign.transform.position = _player.PillowEnemyObject.transform.position + new Vector3(0, 1, 0);
+        _returnSign.SetActive(true);
 
         //スライダーが満タンになったらプレイヤーのboolを変える
         if (charge == 1)
@@ -58,6 +75,7 @@ public class UIManager : MonoBehaviour
             _chargeSlider.value = 0;
             
             _player.InformationReset();
+            _isRange = true;
         }
     }
     public void TimerText(float time)

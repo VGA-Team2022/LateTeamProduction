@@ -1,23 +1,28 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// シーン遷移
 /// </summary>
 public class SceneChanger : MonoBehaviour
 {
+    [Tooltip("遷移先のシーン名")]
+    [SerializeField] string _sceneName = "test2";
+    [Tooltip("フェードキャンバスのプレハブ")]
+    [SerializeField] GameObject _fadeImage;
+    [Tooltip("シーン遷移するまで待つ時間")]
+    [SerializeField ]float _waitTime = 0.8f;
 
-
-    GameObject _fadeCanvas;
-
-    void Awake()
+    public void ChangeScene()
     {
-        _fadeCanvas = GameObject.FindGameObjectWithTag("Fade");
+        StartCoroutine(LoadScene());
     }
 
-    //ボタンを押したときに実行する処理(仮処理)
-    public void ChangeScene(string name)
+    IEnumerator LoadScene()
     {
-        var fadeIn = _fadeCanvas.GetComponent<FadeController>().Fade(true);
-        StartCoroutine(fadeIn);
+        Instantiate(_fadeImage);
+        yield return new WaitForSeconds(_waitTime);
+        SceneManager.LoadScene(_sceneName);
     }
 }

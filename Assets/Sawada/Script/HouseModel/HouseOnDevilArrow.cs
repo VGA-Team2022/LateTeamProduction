@@ -9,11 +9,6 @@ public class HouseOnDevilArrow : HouseBase
     [Tooltip("カウントダウン")]
     float _time = 0;
 
-    public override void Init()
-    {
-        base.Init();
-    }
-
     public override void PlayerInHouseMotion(PlayerController player)
     {
         base.PlayerInHouseMotion(player);

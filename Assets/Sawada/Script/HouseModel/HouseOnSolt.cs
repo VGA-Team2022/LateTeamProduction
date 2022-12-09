@@ -1,3 +1,5 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,11 @@ public class HouseOnSolt : HouseBase
     [Tooltip("ドアのオブジェクトのColliderの配列")]
     Collider2D[] _doorColliers = null;
 
-    public override void Init()
+    public override void Init<T>(T house)
     {
-        base.Init();
+        base.Init(house);
         //取得(ドアのオブジェクトには”Door”というタグを付けてください)
-        _doorColliers = _colliders.Where(x => x.tag == "Door").ToArray();
+        _doorColliers = house.ColidersInHouse.Where(x => x.tag == "Door").ToArray();
         _doorRenderers = new Renderer[_doorColliers.Length];
         for (int i = 0; i < _doorColliers.Length; i++)
         {
@@ -28,14 +30,8 @@ public class HouseOnSolt : HouseBase
     {
         base.PlayerEntryHouseMotion(player);
         //プレイヤーの状況に応じてドアを開ける
-        foreach (Collider2D col in _doorColliers)
-        {
-            col.enabled = player.AdultState;
-        }
-        foreach (Renderer ren in _doorRenderers)
-        {
-            ren.enabled = player.AdultState;
-        }
+        Array.ForEach(_doorColliers, x => x.enabled = player.AdultState);
+        Array.ForEach(_doorRenderers, x => x.enabled = player.AdultState);
     }
     public override void PlayerInHouseMotion(PlayerController player)
     {

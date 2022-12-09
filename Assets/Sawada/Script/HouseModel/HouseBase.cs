@@ -10,39 +10,24 @@ public class HouseBase
     [SerializeField, Tooltip("‹N‚«‚éŠÔ")]
     protected float _getUpTime = 10f;
 
-    [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚ÌRenderer")]
-    protected Renderer[] _renderersInHouse = null;
-    [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚Ìcollider")]
-    protected Collider2D[] _colliders = null;
-    [Tooltip("GameManager‚ğŠi”[‚·‚é•Ï”")]
-    protected GameManager _gameManager = null;
-    [Tooltip("‰Æ‚Ì’†‚É‚¢‚é–‚Ì”")]
-    protected Returnpillow[] _returnPillows = null;
-    [Tooltip("Š|‚¯²")]
-    protected HangingScroll _hangingScroll = null;
+    
 
 
-    public virtual void Init() { }
+    public virtual void Init<T>(T house)where T : HouseBehaviour{ }
     public virtual void PlayerEntryHouseMotion(PlayerController player) { }
     public virtual void PlayerInHouseMotion(PlayerController player) { }
     public virtual void PlayerExitHouseMotion(PlayerController player) { }
 
-
-    public void SetValue(GameManager gameManager)
-    {
-        _gameManager = gameManager;
-        Init();
-    }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="allPillowValue"></param>
     /// <returns></returns>
-    public int SetPillow(int allPillowValue)
+    public int SetPillow(Returnpillow[] returnPillows,int allPillowValue)
     {
         int pillowValue = 0;
-        if (allPillowValue >= _returnPillows.Length)
+        if (allPillowValue >= returnPillows.Length)
         {
             pillowValue = UnityEngine.Random.Range(1, 4);
         }
@@ -52,9 +37,9 @@ public class HouseBase
         }
         for (int i = 0; i < pillowValue; i++)
         {
-            _returnPillows[i].enabled = true;
+            returnPillows[i].enabled = true;
         }
-        Array.ForEach(_returnPillows, x => x.GetUpTime(_getUpTime));
+        Array.ForEach(returnPillows, x => x.GetUpTime(_getUpTime));
         allPillowValue -= pillowValue;
         return allPillowValue;
     }

@@ -30,6 +30,13 @@ public class MapInstance : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager>();
         _mapData = new MapData(_filePath);
         _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").ToArray();
+        _houseDatas = new HouseBase[]
+        {
+            new HouseBase(),
+            new HouseInBaby(),
+            new HouseOnSolt(),
+            new HouseOnDevilArrow()
+        };
     }
 
     public void SetStage()
@@ -65,8 +72,7 @@ public class MapInstance : MonoBehaviour
         for (int i = 0; i < targetHouseValue; i++)
         {
             houses[i] = Instantiate(housePrefab);
-            //houses[i].CreateHouseObject()
-            houses[i].HouseData.SetValue(_gameManager);
+            houses[i].CreateHouseObject(_houseDatas[(int)type1], _gameManager);
         }
         return houses;
     }

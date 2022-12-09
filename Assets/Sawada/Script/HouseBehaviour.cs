@@ -14,11 +14,13 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚ÌRenderer")]
     protected Renderer[] _renderersInHouse = null;
     [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚Ìcollider")]
-    protected Collider2D[] _colliders = null;
+    protected Collider2D[] _collidersInHouse = null;
     [Tooltip("‰Æ‚Ì’†‚É‚¢‚é–‚Ì”")]
     protected Returnpillow[] _returnPillows = null;
-
-    public HouseBase HouseData => _data1;    
+    
+    public Renderer[] RenderersInHouse => _renderersInHouse;
+    public Collider2D[] ColidersInHouse => _collidersInHouse;
+    public Returnpillow[] ReturnPillows => _returnPillows;
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,7 +46,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
 
     public void Activate()
     {
-        Array.ForEach(_colliders, x => x.enabled = true);
+        Array.ForEach(_collidersInHouse, x => x.enabled = true);
         Array.ForEach(_renderersInHouse, x => x.enabled = true);
         Array.ForEach(_returnPillows, x => x.enabled = true);
     }
@@ -53,17 +55,19 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     /// </summary>
     public void Desactivate()
     {
-        Array.ForEach(_colliders, x => x.enabled = false);
+        Array.ForEach(_collidersInHouse, x => x.enabled = false);
         Array.ForEach(_renderersInHouse, x => x.enabled = false);
         Array.ForEach(_returnPillows, x => x.enabled = false);
     }
 
-    public virtual void CreateHouseObject(HouseBase house1)
+    public virtual void CreateHouseObject(HouseBase house1,GameManager gameManager)
     {
+        _gameManager = gameManager;
         _renderersInHouse = GetComponentsInChildren<Renderer>();
-        _colliders = GetComponentsInChildren<Collider2D>();
+        _collidersInHouse = GetComponentsInChildren<Collider2D>();
         _returnPillows = GetComponentsInChildren<Returnpillow>();
         _hangingScroll = GetComponentInChildren<HangingScroll>();
         _data1 = house1;
+        _data1.Init(this);
     }
 }

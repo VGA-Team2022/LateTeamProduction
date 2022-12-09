@@ -6,75 +6,95 @@ using UnityEngine;
 
 public class MapInstance : MonoBehaviour
 {
-    //[SerializeField, Tooltip("マップデータ")]
-    //MapData _entity = null;
+    [SerializeField, Tooltip("現在のレベル")]
+    string _filePath = null;
     [SerializeField, Tooltip("現在のレベル")]
     int _currentMapLevel = 0;
-    [SerializeField, Tooltip("生成するTransform")]
-    GameObject _insPosParent = null;
 
     [Tooltip("Transformをランダムで指定する為の変数")]
     System.Random _random = new System.Random();
+    [Tooltip("マップデータ")]
+    MapData _mapData = null;
+    [Tooltip("GameManagerを格納する変数")]
+    GameManager _gameManager = null;
     [Tooltip("生成するTransform")]
     SpawnPosState[] _insPos = null;
     [Tooltip("家のプレハブ")]
-    HouseBase[] _houseBases = null;
+    HouseBehaviour[] _houseBases = null;
+    [Tooltip("家のデータの配列")]
+    HouseBase[] _houseDatas = null;
 
 
     void Start()
     {
-        //if (_entity != null)
-        {
-            SetStage();
-
-        }
+        _gameManager = FindObjectOfType<GameManager>();
+        _mapData = new MapData(_filePath);
+        _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").ToArray();
     }
 
     public void SetStage()
     {
-        //プレハブデータを取得
-        _houseBases = Resources.LoadAll<HouseBase>("HousePrefab");
+        int[] houseTypeValue = null;
+        //用意する家の総数をカウント
+        houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.Baby]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.Solt]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.DevilArrow]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.DoubleType]};
+        int houseValueSum = houseTypeValue.Sum();
 
-        //int[] houseTypeValue = new int[4] { _entity.MapTable[_currentMapLevel].houseValue
-        //                               , _entity.MapTable[_currentMapLevel].houseValueOnSolt
-        //                               , _entity.MapTable[_currentMapLevel].houseValueInBaby
-        //                               , _entity.MapTable[_currentMapLevel].houseValueInArrow };
-        //int houseValueSum = houseTypeValue.Sum();
-
-        _insPos = _insPosParent.GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
-        //for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
-        //{
-        //    HouseBase[] houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);
-        //    SetHouse(houses);
-        //}
+        _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
+        for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
+        {
+            if((houseTypeValue[houseTypes]) <= 0) return;
+            HouseBehaviour[] houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);
+            SetHouse(houses);
+        }
+        _currentMapLevel++;
     }
-
-    HouseBase[] CreateHouse(HouseType type1, int targetHouseValue)
+    /// <summary>
+    /// 属性が一つの家オブジェクトを生成するための関数
+    /// </summary>
+    /// <param name="type1">家の属性</param>
+    /// <param name="targetHouseValue">用意する家の数</param>
+    /// <returns></returns>
+    HouseBehaviour[] CreateHouse(HouseType type1, int targetHouseValue)
     {
-        HouseBase housePrefab = _houseBases[(int)type1];
-        HouseBase[] houses = new HouseBase[targetHouseValue];
-        for(int i = 0;i < targetHouseValue;i++)
+        HouseBehaviour[] houses = new HouseBehaviour[targetHouseValue];
+        HouseBehaviour housePrefab = _houseBases[(int)type1];
+        for (int i = 0; i < targetHouseValue; i++)
         {
             houses[i] = Instantiate(housePrefab);
+            //houses[i].CreateHouseObject()
+            houses[i].HouseData.SetValue(_gameManager);
         }
         return houses;
     }
-
-    HouseBase[] CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
+    /// <summary>
+    /// 属性が二つの家オブジェクトを生成するための関数
+    /// </summary>
+    /// <param name="type1">家の属性1</param>
+    /// <param name="type2">家の属性2</param>
+    /// <param name="targetHouseValue">用意する家の数</param>
+    /// <returns></returns>
+    HouseBehaviour[] CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
     {
-        HouseBase[] houses = new HouseBase[targetHouseValue];
-        HouseBase insHouse = (HouseBase)_houseBases.Where(x => x.Type == type1 && x.Type == type2);
-        houses.ToList().ForEach(x => Instantiate(insHouse));
+        DoubleHouseBehaviour[] houses = new DoubleHouseBehaviour[targetHouseValue];
+        //DoubleHouseBehaviour housePrefab = 
+        //if (housePrefab == null) return null;
+        //for (int i = 0; i < targetHouseValue; i++)
+        //{
+        //    houses[i] = Instantiate(housePrefab);
+        //}
         return houses;
     }
-
     /// <summary>
     /// ゲーム上の座標からランダムに選択し家をセットする関数
     /// </summary>
     /// <param name="house">セットする家のプレハブ</param>
-    void SetHouse(HouseBase[] houses)
+    void SetHouse(HouseBehaviour[] houses)
     {
-        for(int i = 0;i < houses.Length;i++)
+        for (int i = 0; i < houses.Length; i++)
         {
             SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();
             SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];
@@ -85,6 +105,7 @@ public class MapInstance : MonoBehaviour
     }
 }
 
+//家をセットする座標の状態
 public class SpawnPosState
 {
     public Transform spawnPos;

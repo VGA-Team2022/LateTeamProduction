@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     bool _adultState = false;
     [SerializeField, Header("枕を返せる場所にいるかどうか")]
     bool _returnPillowInPos = false;
+    [SerializeField,Header("枕の横に自動的に移動しているときにtrue")]
     bool _autoAnim = false;
     Rigidbody2D _rb;
     UIManager _ui;
@@ -91,9 +92,9 @@ public class PlayerController : MonoBehaviour
         _anim.SetFloat("veloY", _rb.velocity.y);
         _anim.SetFloat("LastVeloX", _lastMoveVelocity.x);
         _anim.SetFloat("LastVeloY", _lastMoveVelocity.y);
-        _anim.SetBool("_adultState", _adultState);
-        _anim.SetBool("_returnPillowInPos", _returnPillowInPos);
-        _anim.SetBool("_autoMode", _autoAnim);
+        _anim.SetBool("adultState", _adultState);
+        _anim.SetBool("returnPillowInPos", _returnPillowInPos);
+        _anim.SetBool("autoMode", _autoAnim);
     }
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
     {
@@ -120,8 +121,14 @@ public class PlayerController : MonoBehaviour
     }
     private void VelocitySave(Vector2 velo)
     {
-        if (velo != Vector2.zero)
-            _lastMoveVelocity = velo;
+        if (velo.x != 0)
+        {
+            _lastMoveVelocity.x = velo.x;
+        }
+        if(velo.y != 0)
+        {
+            _lastMoveVelocity.y = velo.y;
+        }
     }
     public void ModeChange(bool change)//大人化、子供化するときに呼び出す関数
     {

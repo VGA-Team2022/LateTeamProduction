@@ -44,7 +44,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
                 {
                     GotoPoint(points);
                 }
-                else if(_levelBorder && !_lookAround)//Œ©“n‚·ˆ—‚ğ‚·‚é•K—v‚ª‚È‚¢ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚¾‚ªA•à‚¢‚Ä‚¢‚é
+                else if(_levelBorder && !_lookAround)//Œ©“n‚·ˆ—‚ğ‚·‚é•K—v‚ª‚ ‚éƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚¾‚ªA•à‚¢‚Ä‚¢‚é
                 {
                     GotoPoint(points);
                 }
@@ -57,8 +57,8 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             return;
         _anim.SetFloat("lastVeloX", Mathf.Abs(_lastMoveVelocity.x));//‚Ì‚¿‚É–¼‘O‚ğŒˆ‚ß‚é
         _anim.SetFloat("lastVeloY", Mathf.Abs(_lastMoveVelocity.y));
-        _anim.SetBool("_levelBorder", _levelBorder);
-        _anim.SetBool("_lookAround", _lookAround);
+        _anim.SetBool("levelBorder", _levelBorder);
+        _anim.SetBool("lookAround", _lookAround);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

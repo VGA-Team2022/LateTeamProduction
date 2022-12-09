@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     UIManager _ui;
     GameManager _gm;
-    PlayerAnimController _animController;
     Animator _anim = null;
     /// <summary>プレイヤーの状態確認、外部参照用</summary>
     public bool AdultState { get => _adultState; }
@@ -53,7 +52,6 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _ui = FindObjectOfType<UIManager>();
-        _animController = GetComponent<PlayerAnimController>();
         _anim = GetComponent<Animator>();
     }
     // Update is called once per frame

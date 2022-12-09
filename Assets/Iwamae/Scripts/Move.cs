@@ -45,6 +45,7 @@ public class Move : MonoBehaviour
         isStop = false;
     }
 
+    //Cancelボタンが押されたらポーズする
     void Update()
     {
         if (isStop)

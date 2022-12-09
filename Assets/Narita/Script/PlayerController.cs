@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             _returnPillowInPos = false;
+            if(_pillowEnemyObject)
+            {
+
+            }
         }
         if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回
         {

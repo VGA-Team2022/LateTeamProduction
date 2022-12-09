@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
     /// <summary>大人か子供か</summary>
     [SerializeField, Header("プレイヤーが大人か子供か")]
     bool _adultState = false;
-    [SerializeField, Header("枕を返せる場所にいるかどうか")]
-    bool _returnPillowInPos = false;
+    [SerializeField, Header("枕を返せる場所にいるかどうか,返しているときのみTrue")]
+    public bool _returnPillowInPos = false;
     [SerializeField,Header("枕の横に自動的に移動しているときにtrue")]
     bool _autoAnim = false;
     Rigidbody2D _rb;
@@ -78,10 +78,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             _returnPillowInPos = false;
-            if(_pillowEnemyObject)
-            {
-
-            }
         }
         if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回
         {

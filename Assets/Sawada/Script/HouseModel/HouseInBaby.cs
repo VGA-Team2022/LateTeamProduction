@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class HouseInBaby : HouseBase
 {
-    public override void Init()
+    public override void Init<T>(T house)
     {
-        base.Init();
-        //Ž©g‚Ì‰Æ‚Ì’†‚¢‚é‚É–‚Ì‹N‚«‚éŽžŠÔ‚ÌÝ’è
-        _returnPillows.ToList().ForEach(x => x.GetUpTime(_getUpTime));
+        base.Init(house);
+        house.ReturnPillows.ToList().ForEach(x => x.GetUpTime(_getUpTime));
     }
 }

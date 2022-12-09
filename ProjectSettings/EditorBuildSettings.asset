@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Iwamae/IwamaeScene.unity
+    path: Assets/Iwamae/Scenes/IwamaeScene.unity
     guid: 095ce838d0d547d429967c4e8e09af4b
   - enabled: 1
-    path: Assets/Iwamae/test2.unity
+    path: Assets/Iwamae/Scenes/test2.unity
     guid: 1845a4c7eafef374fb760e4ce0a00908
   m_configObjects: {}

@@ -1028,9 +1028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60022cc92a1c7aa45817b9d1070fc648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hangingScroll: {fileID: 0}
-  _cancellationTime: 0
-  _time: 0
+  _getUpTime: 10
+  _type: 3
+  _cancellationTime: 20
 --- !u!1 &6305736512672641148
 GameObject:
   m_ObjectHideFlags: 0

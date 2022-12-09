@@ -29,7 +29,7 @@ public class MapInstance : MonoBehaviour
     {
         _gameManager = FindObjectOfType<GameManager>();
         _mapData = new MapData(_filePath);
-        _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").OrderBy(x => x.Type).ToArray();
+        _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").ToArray();
     }
 
     public void SetStage()
@@ -65,7 +65,7 @@ public class MapInstance : MonoBehaviour
         for (int i = 0; i < targetHouseValue; i++)
         {
             houses[i] = Instantiate(housePrefab);
-            houses[i].CreateObject();
+            //houses[i].CreateHouseObject()
             houses[i].HouseData.SetValue(_gameManager);
         }
         return houses;
@@ -79,13 +79,13 @@ public class MapInstance : MonoBehaviour
     /// <returns></returns>
     HouseBehaviour[] CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
     {
-        HouseBehaviour[] houses = new HouseBehaviour[targetHouseValue];
-        HouseBehaviour housePrefab = (HouseBehaviour)_houseBases.Where(x => x.Type == type1 && x.Type == type2);
-        if (housePrefab == null) return null;
-        for (int i = 0; i < targetHouseValue; i++)
-        {
-            houses[i] = Instantiate(housePrefab);
-        }
+        DoubleHouseBehaviour[] houses = new DoubleHouseBehaviour[targetHouseValue];
+        //DoubleHouseBehaviour housePrefab = 
+        //if (housePrefab == null) return null;
+        //for (int i = 0; i < targetHouseValue; i++)
+        //{
+        //    houses[i] = Instantiate(housePrefab);
+        //}
         return houses;
     }
     /// <summary>

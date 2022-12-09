@@ -16,7 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject _clearUI = null;
     /// <summary>クリアタイムを表示するテキスト</summary>
     [SerializeField] TextMeshProUGUI _clearTimeText = null;
-    
+    /// <summary>カットイン用のアニメーター</summary>
+    [SerializeField] Animator _cutIn = null;
 
     PlayerController _player = null;
     // Start is called before the first frame update
@@ -67,5 +68,9 @@ public class UIManager : MonoBehaviour
     {
         _clearTimeText.text = clearTime.ToString("F0");
         _clearUI.SetActive(true);
+    }
+    public void CutIn(bool before)
+    {
+        _cutIn.SetBool("isChild",before);
     }
 }

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Header("大人状態の動くスピード")]
     float _adultMoveSpeed = 15f;
     [SerializeField, Header("誤差の許容範囲")]
-    float _toleranceDis = 0.2f;
+    float _toleranceDis = 0.5f;
     /// <summary>時計</summary>
     float _timer = 0f;
     /// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour
         {
             _pillowEnemyObject = collision.gameObject;
             _pillowEnemy = _pillowEnemyObject.GetComponent<Returnpillow>();
-            _enemyPos = _pillowEnemyObject.transform.position;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -138,17 +137,16 @@ public class PlayerController : MonoBehaviour
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;
-        _enemyPos = default;
         _timer = 0;
         _ui.ChargeSlider(_timer);
     }
 
     private void PlayerAndEnemyDis()//距離計算
     {
-        if (_enemyPos != default)
-            _returnPillowPos = Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y))
-            >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y)) ?
-            new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y) : new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y);
+        if(_pillowEnemyObject)
+            _returnPillowPos = Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPos[1].transform.position)
+            >= Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPos[2].transform.position) ?
+            _pillowEnemy.ReturnPillouPos[2].transform.position : _pillowEnemy.ReturnPillouPos[1].transform.position;
         else
             Debug.Log("敵の位置情報を取得出来ていません");
     }

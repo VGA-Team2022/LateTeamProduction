@@ -10,8 +10,6 @@ public class HouseBase
     [SerializeField, Tooltip("‹N‚«‚éŽžŠÔ")]
     protected float _getUpTime = 10f;
 
-    
-
 
     public virtual void Init<T>(T house)where T : HouseBehaviour{ }
     public virtual void PlayerEntryHouseMotion(PlayerController player) { }
@@ -26,15 +24,7 @@ public class HouseBase
     /// <returns></returns>
     public int SetPillow(Returnpillow[] returnPillows,int allPillowValue)
     {
-        int pillowValue = 0;
-        if (allPillowValue >= returnPillows.Length)
-        {
-            pillowValue = UnityEngine.Random.Range(1, 4);
-        }
-        else
-        {
-            pillowValue = allPillowValue;
-        }
+        int pillowValue = allPillowValue >= returnPillows.Length ? pillowValue = UnityEngine.Random.Range(1, 4): pillowValue = allPillowValue;
         for (int i = 0; i < pillowValue; i++)
         {
             returnPillows[i].enabled = true;

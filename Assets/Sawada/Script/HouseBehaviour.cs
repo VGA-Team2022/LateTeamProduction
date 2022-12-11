@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class HouseBehaviour : MonoBehaviour,IHousePool
 {
@@ -12,14 +13,14 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     [Tooltip("Š|‚¯Ž²")]
     protected HangingScroll _hangingScroll = null;
     [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚ÌRenderer")]
-    protected Renderer[] _renderersInHouse = null;
+    protected TilemapRenderer[] _renderersInHouse = null;
     [Tooltip("‰Æ‚Ì‰®“à‘S‚Ä‚Ìcollider")]
     protected Collider2D[] _collidersInHouse = null;
     [Tooltip("‰Æ‚Ì’†‚É‚¢‚é–‚Ì”")]
     protected Returnpillow[] _returnPillows = null;
     
-    public Renderer[] RenderersInHouse => _renderersInHouse;
     public Collider2D[] ColidersInHouse => _collidersInHouse;
+    public GameManager GameManager => _gameManager;
     public Returnpillow[] ReturnPillows => _returnPillows;
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -63,7 +64,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     public virtual void CreateHouseObject(HouseBase house1,GameManager gameManager)
     {
         _gameManager = gameManager;
-        _renderersInHouse = GetComponentsInChildren<Renderer>();
+        _renderersInHouse = GetComponentsInChildren<TilemapRenderer>();
         _collidersInHouse = GetComponentsInChildren<Collider2D>();
         _returnPillows = GetComponentsInChildren<Returnpillow>();
         _hangingScroll = GetComponentInChildren<HangingScroll>();

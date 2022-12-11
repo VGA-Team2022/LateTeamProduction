@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Returnpillow : MonoBehaviour
 {
+    [SerializeField,Header("枕を返す時のプレイヤーの位置")]
+    Transform[] _returnPillouPos = new Transform[2];
     /// <summary>枕返しを行ったかどうか</summary>
     [SerializeField, Header("枕を返されたかどうか")]
     bool _returnPillow;
@@ -24,10 +26,11 @@ public class Returnpillow : MonoBehaviour
     float _timer;
     Animator _anim = null;
     public bool ReturnPillow { get => _returnPillow; set => _returnPillow = value; }
+    public Transform[] ReturnPillouPos { get => _returnPillouPos;}
+
     // Start is called before the first frame update
     void Start()
-    {
-
+    {;
         _returnPillow = false;
         _anim = GetComponent<Animator>();
         //image = GetComponent<Image>();
@@ -56,12 +59,17 @@ public class Returnpillow : MonoBehaviour
             }
         }
     }
+    private void LateUpdate()
+    {
+        if (_anim)
+            _anim.SetBool("boolの名前", _returnPillow);
+    }
 
     private void OnTriggerStay2D(Collider2D collision)//プレイヤーが当たり判定の中にとどまったら
     {
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
-            _timer += Time.deltaTime;  
+            _timer += Time.deltaTime;
             if (_getupTime <= _timer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら + プレイヤーがまだ範囲内にいたら
             {
                 //見つかった時、ゲームオーバーの関数を書く

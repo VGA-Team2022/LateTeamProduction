@@ -36,9 +36,9 @@ public class HouseOnSolt : HouseBase
     public override void PlayerInHouseMotion(PlayerController player)
     {
         base.PlayerInHouseMotion(player);
-        //if(!player.AdultState)
-        //{
-        //    ここにゲームオーバーの処理を書く
-        //}
+        if (!player.AdultState)
+        {
+            
+        }
     }
 }

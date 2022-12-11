@@ -11,20 +11,21 @@ public class PlayerController : MonoBehaviour
     /// <summary>動く速度（大人）</summary>
     [SerializeField, Header("大人状態の動くスピード")]
     float _adultMoveSpeed = 15f;
+    /// <summary>誤差の許容範囲</summary>
     [SerializeField, Header("誤差の許容範囲")]
-    float _toleranceDis = 0.2f;
+    float _toleranceDis = 0.5f;
     /// <summary>時計</summary>
     float _timer = 0f;
-    /// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
-    float _returnPillowDisToEnemy = 0.5f;
+    ///// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
+    //float _returnPillowDisToEnemy = 0.5f;
     /// <summary>プレイヤーと_returnPillowPosの距離</summary>
     float _returnPillowDisToPlayer;
     /// <summary>移動速度計算結果</summary>
     Vector2 _moveVelocity;
     /// <summary>最後に移動していた方向</summary>
     Vector2 _lastMoveVelocity;
-    /// <summary>敵の位置情報</summary>
-    Vector2 _enemyPos = default;
+    ///// <summary>敵の位置情報</summary>
+    //Vector2 _enemyPos = default;
     /// <summary>プレイヤーが枕を返せる位置</summary>
     Vector2 _returnPillowPos = default;
     /// <summary>枕を返す標的のscriptを保持する</summary>
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _ui = FindObjectOfType<UIManager>();
+        _gm = FindObjectOfType<GameManager>();
         _anim = GetComponent<Animator>();
     }
     // Update is called once per frame
@@ -60,10 +62,12 @@ public class PlayerController : MonoBehaviour
     {
         float _joyX = _joyStick.Horizontal;
         float _joyY = _joyStick.Vertical;
-        Debug.Log(_rb.velocity);
+        //Debug.Log(_rb.velocity);
         ModeCheck(_joyX, _joyY);
-        //↑ここで計算された_moveVelocityを代入
-        _rb.velocity = _moveVelocity;
+        if(!_autoAnim)
+        {
+            _rb.velocity = _moveVelocity;
+        }
         VelocitySave(_rb.velocity);
         if (Input.GetButton("Jump"))//スペース長押し
         {
@@ -81,7 +85,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回
         {
-            PlayerAndEnemyDis();
+            if (_pillowEnemy)//枕返し圏内にいたら
+            {
+                PlayerAndEnemyDis();
+            }
+           
         }
     }
     private void LateUpdate()
@@ -102,7 +110,6 @@ public class PlayerController : MonoBehaviour
         {
             _pillowEnemyObject = collision.gameObject;
             _pillowEnemy = _pillowEnemyObject.GetComponent<Returnpillow>();
-            _enemyPos = _pillowEnemyObject.transform.position;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -117,7 +124,7 @@ public class PlayerController : MonoBehaviour
             _autoAnim = false;
         }
         _moveVelocity = !_adultState ?
-            new Vector2(h, v).normalized * _childMoveSpeed : new Vector2(h, v).normalized * _adultMoveSpeed;
+           new Vector2(h, v).normalized * _childMoveSpeed : new Vector2(h, v).normalized * _adultMoveSpeed;
     }
     private void VelocitySave(Vector2 velo)
     {
@@ -125,7 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             _lastMoveVelocity.x = velo.x;
         }
-        if(velo.y != 0)
+        if (velo.y != 0)
         {
             _lastMoveVelocity.y = velo.y;
         }
@@ -138,24 +145,22 @@ public class PlayerController : MonoBehaviour
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;
-        _enemyPos = default;
         _timer = 0;
         _ui.ChargeSlider(_timer);
     }
 
     private void PlayerAndEnemyDis()//距離計算
     {
-        if (_enemyPos != default)
-            _returnPillowPos = Vector2.Distance(transform.position, new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y))
-            >= Vector2.Distance(transform.position, new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y)) ?
-            new Vector2(_enemyPos.x + _returnPillowDisToEnemy, _enemyPos.y) : new Vector2(_enemyPos.x - _returnPillowDisToEnemy, _enemyPos.y);
-        else
-            Debug.Log("敵の位置情報を取得出来ていません");
+        if (!_pillowEnemyObject)
+            return;
+        _returnPillowPos = Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPos[0].position)
+        >= Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPos[1].position) ?
+        _pillowEnemy.ReturnPillouPos[1].position : _pillowEnemy.ReturnPillouPos[0].position;
     }
     private void TranslatePlayerPos(float speed)
     {
-        if (_pillowEnemyObject)//Enemy情報を持っていたら
-        {
+        if (!_pillowEnemyObject)
+            return;
             _autoAnim = true;
             _returnPillowDisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
             if (_returnPillowDisToPlayer > _toleranceDis)//誤差範囲
@@ -165,12 +170,12 @@ public class PlayerController : MonoBehaviour
                     if (transform.position.x > _returnPillowPos.x)
                     {
                         transform.Translate(Vector2.left * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.left;
+                        _rb.velocity = Vector2.left * Time.deltaTime * speed;
                     }
                     else if (transform.position.x < _returnPillowPos.x)
                     {
                         transform.Translate(Vector2.right * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.right;
+                        _rb.velocity = Vector2.right * Time.deltaTime * speed;
                     }
                 }
                 else
@@ -178,12 +183,12 @@ public class PlayerController : MonoBehaviour
                     if (transform.position.y > _returnPillowPos.y)
                     {
                         transform.Translate(Vector2.down * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.down;
+                        _rb.velocity = Vector2.down * Time.deltaTime * speed;
                     }
                     else if (transform.position.y < _returnPillowPos.y)
                     {
                         transform.Translate(Vector2.up * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.up;
+                        _rb.velocity = Vector2.up * Time.deltaTime * speed;
                     }
                 }
             }
@@ -191,7 +196,6 @@ public class PlayerController : MonoBehaviour
                 _returnPillowInPos = true;
                 _timer += Time.deltaTime;
                 _ui.ChargeSlider(_timer);
-        }
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()

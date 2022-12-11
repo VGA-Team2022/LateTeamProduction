@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    /// <summary>残り時間の初期値</summary>
-    [SerializeField] float _timeLimit = 300;
-    /// <summary>残りの敵（枕）の数</summary>
-    [SerializeField] int _sleepingEnemy = 0;
-    /// <summary>ゲームオーバー時に表示するUI </summary>
-    [SerializeField] GameObject _gameOverUI = null;
+    [SerializeField,Tooltip("残り時間の初期値")] float _timeLimit = 300;
+    
+    [SerializeField,Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 0;
+    
+    [SerializeField,Tooltip("ゲームオーバー時に表示するUI")] GameObject _gameOverUI = null;
+    
     [SerializeField] UIManager _uIManager = default;
     PlayerController _player = default;
     public int SleepingEnemy { get => _sleepingEnemy; set => _sleepingEnemy = value; }

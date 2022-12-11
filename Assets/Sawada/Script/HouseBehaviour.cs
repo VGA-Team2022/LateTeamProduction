@@ -6,7 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class HouseBehaviour : MonoBehaviour,IHousePool
 {
-    [Tooltip("GameManagerを格納する変数")]
+    [Tooltip("プレイヤーを格納する変数")]
+    protected PlayerController _playerController;
+    [Tooltip("ゲームマネージャーを格納する変数")]
     protected GameManager _gameManager = null;
     [Tooltip("家のデータ1")]
     protected HouseBase _data1 = null;

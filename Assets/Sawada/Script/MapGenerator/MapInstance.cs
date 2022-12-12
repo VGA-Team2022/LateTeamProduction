@@ -53,8 +53,17 @@ public class MapInstance : MonoBehaviour
         _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
         for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
         {
-            if((houseTypeValue[houseTypes]) <= 0) return;
-            HouseBehaviour[] houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);
+            HouseBehaviour[] houses = null;
+            if ((houseTypeValue[houseTypes]) <= 0) return;
+            switch ((HouseType)houseTypes)
+            {
+                case HouseType.DoubleType:
+                    houses = CreateHouse(HouseType.Solt, HouseType.DevilArrow, houseTypeValue[houseTypes]);
+                    break;
+                default:
+                    houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);
+                    break;
+            }
             SetHouse(houses);
         }
         _currentMapLevel++;
@@ -68,10 +77,9 @@ public class MapInstance : MonoBehaviour
     HouseBehaviour[] CreateHouse(HouseType type1, int targetHouseValue)
     {
         HouseBehaviour[] houses = new HouseBehaviour[targetHouseValue];
-        HouseBehaviour housePrefab = _houseBases[(int)type1];
         for (int i = 0; i < targetHouseValue; i++)
         {
-            houses[i] = Instantiate(housePrefab);
+            houses[i] = Instantiate(_houseBases[0]);
             houses[i].CreateHouseObject(_houseDatas[(int)type1], _gameManager);
         }
         return houses;
@@ -83,15 +91,14 @@ public class MapInstance : MonoBehaviour
     /// <param name="type2">‰Æ‚Ì‘®«2</param>
     /// <param name="targetHouseValue">—pˆÓ‚·‚é‰Æ‚Ì”</param>
     /// <returns></returns>
-    HouseBehaviour[] CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
+    DoubleHouseBehaviour[] CreateHouse(HouseType type1, HouseType type2, int targetHouseValue)
     {
         DoubleHouseBehaviour[] houses = new DoubleHouseBehaviour[targetHouseValue];
-        //DoubleHouseBehaviour housePrefab = 
-        //if (housePrefab == null) return null;
-        //for (int i = 0; i < targetHouseValue; i++)
-        //{
-        //    houses[i] = Instantiate(housePrefab);
-        //}
+        for (int i = 0; i < targetHouseValue; i++)
+        {
+            houses[i] = Instantiate((DoubleHouseBehaviour)_houseBases[1]);
+            houses[i].CreateHouseObject(_houseDatas[(int)type1], _houseDatas[(int)type2], _gameManager);
+        }
         return houses;
     }
     /// <summary>

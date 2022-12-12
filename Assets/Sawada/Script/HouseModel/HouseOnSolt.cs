@@ -1,15 +1,13 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UniRx;
 
 
 public class HouseOnSolt : HouseBase
 {
-    //[Tooltip("")]
-
     [Tooltip("ドアのオブジェクトRendererの配列")]
     Renderer[] _doorRenderers = null;
     [Tooltip("ドアのオブジェクトのColliderの配列")]

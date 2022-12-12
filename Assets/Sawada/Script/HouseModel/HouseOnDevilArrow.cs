@@ -35,7 +35,7 @@ public class HouseOnDevilArrow : HouseBase
         return true;
     }
 
-    //カウントーリセット
+    //カウントリセット
     public void ResetTimer()
     {
         _time = 0;

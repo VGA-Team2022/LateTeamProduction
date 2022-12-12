@@ -6,31 +6,28 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    /// <summary>タメ時間を表すスライダー</summary>
-    [SerializeField] Slider _chargeSlider = null;
-    /// <summary>タメの完了度合いを表すオブジェクト</summary>
-    [SerializeField] GameObject _returnSign = null;
-    /// <summary>残り時間を表示するテキスト</summary>
-    [SerializeField] TextMeshProUGUI _timerText = null;
-    /// <summary>クリア時に表示するUI</summary>
-    [SerializeField] GameObject _clearUI = null;
-    /// <summary>クリアタイムを表示するテキスト</summary>
-    [SerializeField] TextMeshProUGUI _clearTimeText = null;
-    /// <summary>カットイン用のアニメーター</summary>
-    [SerializeField] Animator _cutIn = null;
+    [SerializeField, Tooltip("タメ時間を表すスライダー")] Slider _chargeSlider = null;
+    
+    [SerializeField, Tooltip("タメの完了度合いを表すオブジェクト")] GameObject _returnSign = null;
+    
+    [SerializeField,Tooltip("残り時間を表示するテキスト")] TextMeshProUGUI _timerText = null;
+    
+    [SerializeField,Tooltip("クリア時に表示するUI")] GameObject _clearUI = null;
+    
+    [SerializeField,Tooltip("クリアタイムを表示するテキスト")] TextMeshProUGUI _clearTimeText = null;
+    
+    [SerializeField,Tooltip("カットイン用のアニメーター")] Animator _cutIn = null;
     bool _isRange = false;
     PlayerController _player = null;
     Animator _returnSignAnim = null;
     // Start is called before the first frame update
-    private void Awake()
-    {
-        _returnSign.SetActive(false);
-    }
+    
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _returnSignAnim = _returnSign.GetComponent<Animator>();
         _clearUI.SetActive(false);
+        _returnSign.SetActive(false);
     }
     
     // Update is called once per frame

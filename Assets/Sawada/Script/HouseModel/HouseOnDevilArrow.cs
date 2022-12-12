@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class HouseOnDevilArrow : HouseBase
 {
@@ -39,5 +41,7 @@ public class HouseOnDevilArrow : HouseBase
     public void ResetTimer()
     {
         _time = 0;
+
+        List<string> data = new List<string>();
     }
 }

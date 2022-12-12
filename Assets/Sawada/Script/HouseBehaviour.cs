@@ -6,7 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class HouseBehaviour : MonoBehaviour,IHousePool
 {
-    [Tooltip("GameManager‚ðŠi”[‚·‚é•Ï”")]
+    [Tooltip("ƒvƒŒƒCƒ„[‚ðŠi”[‚·‚é•Ï”")]
+    protected PlayerController _playerController;
+    [Tooltip("ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[‚ðŠi”[‚·‚é•Ï”")]
     protected GameManager _gameManager = null;
     [Tooltip("‰Æ‚Ìƒf[ƒ^1")]
     protected HouseBase _data1 = null;
@@ -22,6 +24,11 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     public Collider2D[] ColidersInHouse => _collidersInHouse;
     public GameManager GameManager => _gameManager;
     public Returnpillow[] ReturnPillows => _returnPillows;
+
+    private void Start()
+    {
+        CreateHouseObject(new HouseBase(), FindObjectOfType<GameManager>());
+    }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
@@ -68,6 +75,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         _collidersInHouse = GetComponentsInChildren<Collider2D>();
         _returnPillows = GetComponentsInChildren<Returnpillow>();
         _hangingScroll = GetComponentInChildren<HangingScroll>();
+        _hangingScroll.Init(_gameManager);
         _data1 = house1;
         _data1.Init(this);
     }

@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HouseBase
 {
-    [SerializeField, Tooltip("‹N‚«‚éŽžŠÔ")]
+    [Tooltip("‹N‚«‚éŽžŠÔ")]
     protected float _getUpTime = 10f;
 
     public virtual void Init<T>(T house) where T : HouseBehaviour { }
@@ -28,7 +28,7 @@ public class HouseBase
         {
             returnPillows[i].enabled = true;
         }
-        Array.ForEach(returnPillows, x => x.GetUpTime(_getUpTime));
+        Array.ForEach(returnPillows, x => x.GetUpTimeAndTimeInPlayerStats(_getUpTime));
         allPillowValue -= pillowValue;
         return allPillowValue;
     }

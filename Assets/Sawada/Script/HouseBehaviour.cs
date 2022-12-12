@@ -25,6 +25,11 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     public GameManager GameManager => _gameManager;
     public Returnpillow[] ReturnPillows => _returnPillows;
 
+    private void Start()
+    {
+        CreateHouseObject(new HouseBase(), FindObjectOfType<GameManager>());
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
@@ -70,6 +75,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         _collidersInHouse = GetComponentsInChildren<Collider2D>();
         _returnPillows = GetComponentsInChildren<Returnpillow>();
         _hangingScroll = GetComponentInChildren<HangingScroll>();
+        _hangingScroll.Init(_gameManager);
         _data1 = house1;
         _data1.Init(this);
     }

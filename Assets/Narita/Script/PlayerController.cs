@@ -5,50 +5,45 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public VariableJoystick _joyStick;
-    /// <summary>動く速度（子供）</summary>
-    [SerializeField, Header("子供状態の動くスピード")]
+    [SerializeField, Header("子供状態の動くスピード"),Tooltip("動く速度（子供）")]
     float _childMoveSpeed = 10f;
-    /// <summary>動く速度（大人）</summary>
-    [SerializeField, Header("大人状態の動くスピード")]
+    [SerializeField, Header("大人状態の動くスピード"), Tooltip("動く速度（大人）")]
     float _adultMoveSpeed = 15f;
-    /// <summary>誤差の許容範囲</summary>
-    [SerializeField, Header("誤差の許容範囲")]
+    [SerializeField, Header("誤差の許容範囲"),Tooltip("誤差の許容範囲")]
     float _toleranceDis = 0.5f;
-    /// <summary>時計</summary>
-    float _timer = 0f;
+    [Tooltip("枕を返す時のカウント用タイマー")]
+    float _returnCountTime = 0f;
     ///// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
     //float _returnPillowDisToEnemy = 0.5f;
-    /// <summary>プレイヤーと_returnPillowPosの距離</summary>
+    [Tooltip("プレイヤーと_returnPillowPosの距離")]
     float _returnPillowDisToPlayer;
-    /// <summary>移動速度計算結果</summary>
+    [Tooltip("移動速度計算結果")]
     Vector2 _moveVelocity;
-    /// <summary>最後に移動していた方向</summary>
+    [Tooltip("動かなくなった時の最後に進んでいた方向")]
     Vector2 _lastMoveVelocity;
-    ///// <summary>敵の位置情報</summary>
-    //Vector2 _enemyPos = default;
-    /// <summary>プレイヤーが枕を返せる位置</summary>
+    [Tooltip("プレイヤーが枕を返せる位置情報")]
     Vector2 _returnPillowPos = default;
-    /// <summary>枕を返す標的のscriptを保持する</summary>
+    [Tooltip("寝ている敵のscript情報")]
     Returnpillow _pillowEnemy = null;
-    /// <summary>枕を返す標的のgameobjectを保持する</summary>
+    [Tooltip("寝ている敵そのもの")]
     GameObject _pillowEnemyObject = null;
-    /// <summary>大人か子供か</summary>
-    [SerializeField, Header("プレイヤーが大人か子供か")]
+    [SerializeField, Header("プレイヤーが大人か子供か"),Tooltip("大人の時True")]
     bool _adultState = false;
-    [SerializeField, Header("枕を返せる場所にいるかどうか,返しているときのみTrue")]
+    [SerializeField, Header("枕を返そうとしている時True"), Tooltip("枕を返せる位置にいてスペースキーを押しているときTrue")]
     public bool _returnPillowInPos = false;
-    [SerializeField,Header("枕の横に自動的に移動しているときにtrue")]
+    [SerializeField,Header("枕の横に自動的に移動しているときにtrue"),Tooltip("枕の横に自動的に移動しているときにtrue")]
     bool _autoAnim = false;
     Rigidbody2D _rb;
     UIManager _ui;
     GameManager _gm;
     Animator _anim = null;
-    /// <summary>プレイヤーの状態確認、外部参照用</summary>
+    [Tooltip("プレイヤーの状態確認、外部参照用")]
     public bool AdultState { get => _adultState; }
-    /// <summary>枕を返す標的のscript</summary>
+    [Tooltip("寝ている敵のscript情報、外部参照用")]
     public Returnpillow PillowEnemy { get => _pillowEnemy; set => _pillowEnemy = value; }
-    /// <summary>枕を返す標的のgameobject</summary>
-    public GameObject PillowEnemyObject { get => _pillowEnemyObject; set => _pillowEnemyObject = value; }
+    [Tooltip("寝ている敵そのもの、外部参照用")]
+    public GameObject PillowEnemyObject { get => _pillowEnemyObject; }
+    [Tooltip("枕を返せる位置にいてスペースキーを押しているときTrue, 外部参照用")]
     public Vector2 ReturnPillowPos { get => _returnPillowPos; }
     void Start()
     {
@@ -145,8 +140,8 @@ public class PlayerController : MonoBehaviour
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;
-        _timer = 0;
-        _ui.ChargeSlider(_timer);
+        _returnCountTime = 0;
+        _ui.ChargeSlider(_returnCountTime);
     }
 
     private void PlayerAndEnemyDis()//距離計算
@@ -194,8 +189,8 @@ public class PlayerController : MonoBehaviour
             }
             else
                 _returnPillowInPos = true;
-                _timer += Time.deltaTime;
-                _ui.ChargeSlider(_timer);
+                _returnCountTime += Time.deltaTime;
+                _ui.ChargeSlider(_returnCountTime);
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()

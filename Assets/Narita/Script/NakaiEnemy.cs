@@ -6,22 +6,25 @@ using UnityEngine;
 /// <summary>œpœj‚·‚é“G‚Ì“®‚«‚ğ§Œä‚·‚éscript</summary>
 public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒCƒ_[‚ÌŒü‚«‚ğ•ÏX‚·‚ê‚Î—Ç‚¢B
 {
-    [SerializeField]
+    [SerializeField,Tooltip("ƒiƒJƒC‚Ì“®‚­‘¬‚³")]
     float _moveSpeed = 5f;
-    [Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
+    [SerializeField,Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"),Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
     float _pointDis = 0.5f;
-    [Tooltip("ƒiƒJƒC‚Ì“®‚«‚ª•Ï‚í‚é‚ÌƒvƒŒƒCƒ„[‚ÌƒŒƒxƒ‹")]
+    [Tooltip("ƒiƒJƒC‚Ì“®‚«‚ª•Ï‚í‚é‚ÌƒXƒe[ƒW‚ÌƒŒƒxƒ‹")]
     int _stageLevelBorder = 0;
-    /// <summary>”z—ñ”Ô†</summary>
-    int arrayNumber = 0;
-    [SerializeField, Header("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ä‚¢‚é‚©‚Ç‚¤‚©")]
+    [Tooltip("ó‚¯æ‚Á‚½point‚Ì—v‘f”Ô†")]
+    int _pointArrayNumber = 0;
+    [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«TrueATrue‚Ì‚É‚ÍƒiƒJƒC‚Í“®‚©‚È‚¢")]
     bool _playerFind = false;
+    [SerializeField,Tooltip("ó‚¯æ‚Á‚½ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚ª_stageLevelBorderˆÈã‚È‚çTrue")]
     bool _levelBorder = false;
     [Tooltip("ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p,œpœjƒAƒjƒ[ƒVƒ‡ƒ“‚ªˆêü‚µ‚½‚çtrue")]
     bool _lookAround = false;
-    Transform[] points = null;
+    [Tooltip("ŠO•”‚©‚çó‚¯æ‚éAœpœj‚·‚éˆÊ’uî•ñ")]
+    Transform[] _points = null;
+    [Tooltip("ˆÚ“®•ûŒü‚Ö‚Ì‘¬“xŒvZŒ‹‰Ê")]
     Vector2 _dir = default;
-    /// <summary>ÅŒã‚ÉˆÚ“®‚µ‚Ä‚¢‚½•ûŒü</summary>
+    [Tooltip("“®‚©‚È‚­‚È‚Á‚½‚ÌÅŒã‚Éi‚ñ‚Å‚¢‚½•ûŒü")]
     Vector2 _lastMoveVelocity = default;
     Animator _anim = null;
     Rigidbody2D _rb = null;
@@ -36,17 +39,17 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     void Update()
     {
         VelocitySave(_rb.velocity);
-        if (points != null)//ƒ|ƒCƒ“ƒg‚ğó‚¯æ‚Á‚Ä‚¢‚é
+        if (_points != null)//ƒ|ƒCƒ“ƒg‚ğó‚¯æ‚Á‚Ä‚¢‚é
         {
             if (!_playerFind)//ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ä‚¢‚È‚¢
             {
                 if (!_levelBorder)//Œ©“n‚·ˆ—‚ğ‚·‚é•K—v‚ª‚È‚¢ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚¶‚á‚È‚©‚Á‚½ê‡
                 {
-                    GotoPoint(points);
+                    GotoPoint(_points);
                 }
                 else if(_levelBorder && !_lookAround)//Œ©“n‚·ˆ—‚ğ‚·‚é•K—v‚ª‚ ‚éƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚¾‚ªA•à‚¢‚Ä‚¢‚é
                 {
-                    GotoPoint(points);
+                    GotoPoint(_points);
                 }
             }
         }
@@ -73,10 +76,10 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     /// <param name="pointsArray"></param>
     public void GetPoints(Transform[] pointsArray)
     {
-        points = new Transform[pointsArray.Length];
-        for (int i = 0; i < points.Length; i++)
+        _points = new Transform[pointsArray.Length];
+        for (int i = 0; i < _points.Length; i++)
         {
-            points[i] = pointsArray[i];
+            _points[i] = pointsArray[i];
         }
     }
     public void GetPlayerLevel(int level)
@@ -88,10 +91,10 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     void GotoPoint(Transform[] pointsArray)
     {
         //©•ª©g‚Æƒ|ƒCƒ“ƒg‚Ì‹——£‚ğ‹‚ß‚é
-        float distance = Vector2.Distance(transform.position, pointsArray[pointsArray.Length % arrayNumber].position);
+        float distance = Vector2.Distance(transform.position, pointsArray[pointsArray.Length % _pointArrayNumber].position);
         if (distance >= _pointDis)//‹——£‚ª‚È‚­‚È‚éA“’B‚·‚é‚Ü‚Å
         {
-            _dir = (pointsArray[Mathf.Abs(pointsArray.Length % arrayNumber)].position - transform.position).normalized * _moveSpeed;
+            _dir = (pointsArray[Mathf.Abs(pointsArray.Length % _pointArrayNumber)].position - transform.position).normalized * _moveSpeed;
             //•ûŒü‚ğ’è‚ß‚é
             transform.Translate(_dir * Time.deltaTime);//ˆê’è‚Ì‘¬‚³
             _rb.velocity = _dir;
@@ -99,7 +102,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
         else//“’B‚µ‚½‚ç
         {
             //GameManager‚Ì”»’è—p•Ï”‚Å‹t‚É‰ñ‚é‚æ‚¤‚É‚È‚Á‚½ê‡‚ÍarrayNumber--;‚É‚·‚éB
-            arrayNumber++;
+            _pointArrayNumber++;
         }
     }
     public void LookAroundIsActive()//ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p

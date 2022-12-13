@@ -13,7 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField,Tooltip("残り時間を表示するテキスト")] TextMeshProUGUI _timerText = null;
     
     [SerializeField,Tooltip("クリア時に表示するUI")] GameObject _clearUI = null;
-    
+
+    [SerializeField, Tooltip("ゲームオーバー時に表示するUI")] GameObject _gameOverUI = null;
+
     [SerializeField,Tooltip("クリアタイムを表示するテキスト")] TextMeshProUGUI _clearTimeText = null;
     
     [SerializeField,Tooltip("カットイン用のアニメーター")] Animator _cutIn = null;
@@ -24,17 +26,13 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _player = FindObjectOfType<PlayerController>();
         _returnSignAnim = _returnSign.GetComponent<Animator>();
         _clearUI.SetActive(false);
+        _gameOverUI.SetActive(false);
         _returnSign.SetActive(false);
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void ChargeSlider(float charge)
     {
         
@@ -81,8 +79,12 @@ public class UIManager : MonoBehaviour
     }
     public void Clear(float clearTime)
     {
-        _clearTimeText.text = clearTime.ToString("F0");
+        _clearTimeText.text = clearTime.ToString("F0")+" 秒";
         _clearUI.SetActive(true);
+    }
+    public void GameOver() 
+    {
+        _gameOverUI.SetActive(true);
     }
     public void CutIn(bool before)
     {

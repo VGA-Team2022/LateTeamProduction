@@ -238,6 +238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3470912689245890920, guid: 4412cb80ff8b7a545ab0efd70108217f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3470912689245890923, guid: 4412cb80ff8b7a545ab0efd70108217f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -367,6 +371,7 @@ MonoBehaviour:
   _returnSign: {fileID: 0}
   _timerText: {fileID: 0}
   _clearUI: {fileID: 0}
+  _gameOverUI: {fileID: 0}
   _clearTimeText: {fileID: 0}
   _cutIn: {fileID: 0}
 --- !u!4 &527353516
@@ -902,6 +907,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 306138715}
     m_Modifications:
+    - target: {fileID: 6082162860318426406, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082162860568055531, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082162860868189704, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082162861634233400, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6082162861810832184, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -990,6 +1011,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cut in
       objectReference: {fileID: 0}
+    - target: {fileID: 6082162861882053302, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082162862081426014, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082162862108006826, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66da984370d6d7e4b8f3837236976128, type: 3}
 --- !u!1001 &6608035577556099537
@@ -1057,15 +1090,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755020347891550435, guid: e8992f8f3ec516244bed71571446cfd7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7755020347891550435, guid: e8992f8f3ec516244bed71571446cfd7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7755020347891550435, guid: e8992f8f3ec516244bed71571446cfd7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7755020347891550435, guid: e8992f8f3ec516244bed71571446cfd7, type: 3}
       propertyPath: m_AnchoredPosition.x

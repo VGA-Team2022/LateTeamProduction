@@ -11,23 +11,23 @@ using CriWare;
 /// </summary>
 public class SoundManager : MonoBehaviour
 {
-    [Header("開始時に呼ばれるべき処理"),  SerializeField] 
+    [Header("開始時に呼ばれるべき処理"),  SerializeField,Tooltip("開始時の処理が格納されたUnityEvent")] 
     UnityEvent _onGameStart;
-    [Header("ゲームオーバー時に呼ばれるべき処理"),  SerializeField] 
+    [Header("ゲームオーバー時に呼ばれるべき処理"),  SerializeField, Tooltip("ゲームオーバー時の処理が格納されたUnityEvent")] 
     UnityEvent _onGameOver;
-    [Header("クリア時に呼ばれるべき処理"),SerializeField] 
+    [Header("クリア時に呼ばれるべき処理"),SerializeField, Tooltip("クリア時の処理が格納されたUnityEvent")] 
     UnityEvent _onGameClear;
-    [Header("枕を返した際に呼ばれるべき処理"), SerializeField]
+    [Header("枕を返した際に呼ばれるべき処理"), SerializeField, Tooltip("枕を返した時の処理が格納されたUnityEvent")]
     UnityEvent _onMakuraReverse;
-    [Header("キャンセルボタンを押した際に呼ばれるべき処理"), SerializeField]
+    [Header("キャンセルボタンを押した際に呼ばれるべき処理"), SerializeField, Tooltip("キャンセルボタンを押した時の処理が格納されたUnityEvent")]
     UnityEvent _onCanceled;
-    [Header("ポーズボタンを押した際に呼ばれるべき処理"), SerializeField]
+    [Header("ポーズボタンを押した際に呼ばれるべき処理"), SerializeField, Tooltip("ポーズボタンを押したの処理が格納されたUnityEvent")]
     UnityEvent _onPaused;
-    [Header("決定ボタンを押した際に呼ばれるべき処理"), SerializeField]
+    [Header("決定ボタンを押した際に呼ばれるべき処理"), SerializeField,Tooltip("決定ボタンを時の処理が格納されたUnityEvent")]
     UnityEvent _onDecited;
-    [Header("掛け軸した際に呼ばれるべき処理"), SerializeField]
+    [Header("掛け軸した際に呼ばれるべき処理"), SerializeField, Tooltip("掛け軸時の処理が格納されたUnityEvent")]
     UnityEvent _onKakejikued;
-    [Header("カットインした際に呼ばれるべき処理"), SerializeField]
+    [Header("カットインした際に呼ばれるべき処理"), SerializeField, Tooltip("カットインした時の処理が格納されたUnityEvent")]
     UnityEvent _onCutined;
     /// <summary>
     /// ゲーム開始の時に一回呼んでください

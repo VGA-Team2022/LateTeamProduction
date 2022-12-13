@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CircleCollider2D))]
+//掛け軸のクラス(起動することで子供と大人が切り替わる)
 public class HangingScroll : MonoBehaviour
 {
     [SerializeField, Tooltip("掛け軸の画像。要素0が子供、要素1が大人")]

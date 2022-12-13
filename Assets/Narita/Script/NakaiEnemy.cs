@@ -6,6 +6,12 @@ using UnityEngine;
 /// <summary>œpœj‚·‚é“G‚Ì“®‚«‚ğ§Œä‚·‚éscript</summary>
 public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒCƒ_[‚ÌŒü‚«‚ğ•ÏX‚·‚ê‚Î—Ç‚¢B
 {
+    [Tooltip("•Ç‚É“–‚½‚Á‚½‰ñ”")]
+    int _number = 0;
+    [Tooltip("_number‚ÌÅ‘å’l")]
+    private int _maxNumber = 4;
+    [Tooltip("‰ñ“]‚·‚éŠp“x")]
+    float _rotateZ = 90f;
     [SerializeField,Tooltip("ƒiƒJƒC‚Ì“®‚­‘¬‚³")]
     float _moveSpeed = 5f;
     [SerializeField,Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"),Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
@@ -39,18 +45,30 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     void Update()
     {
         VelocitySave(_rb.velocity);
-        if (_points != null)//ƒ|ƒCƒ“ƒg‚ğó‚¯æ‚Á‚Ä‚¢‚é
-        {
             if (!_playerFind)//ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ä‚¢‚È‚¢
             {
-                if (!_levelBorder)//Œ©“n‚·ˆ—‚ğ‚·‚é•K—v‚ª‚È‚¢ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚¶‚á‚È‚©‚Á‚½ê‡
-                {
-                    GotoPoint(_points);
-                }
-                else if(_levelBorder && !_lookAround)//Œ©“n‚·ˆ—‚ğ‚·‚é•K—v‚ª‚ ‚éƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚¾‚ªA•à‚¢‚Ä‚¢‚é
-                {
-                    GotoPoint(_points);
-                }
+            switch (_number % _maxNumber)//0%4 = 0;1%4 = 1;...
+            {
+                case 0:
+                    {
+                        _rb.velocity = Vector2.up * _moveSpeed;
+                        break;
+                    }
+                case 1:
+                    {
+                        _rb.velocity = Vector2.left * _moveSpeed;
+                        break;
+                    }
+                case 2:
+                    {
+                        _rb.velocity = Vector2.down * _moveSpeed;
+                        break;
+                    }
+                case 3:
+                    {
+                        _rb.velocity = Vector2.right * _moveSpeed;
+                        break;
+                    }
             }
         }
     }
@@ -60,8 +78,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             return;
         _anim.SetFloat("lastVeloX", Mathf.Abs(_lastMoveVelocity.x));//‚Ì‚¿‚É–¼‘O‚ğŒˆ‚ß‚é
         _anim.SetFloat("lastVeloY", Mathf.Abs(_lastMoveVelocity.y));
-        _anim.SetBool("levelBorder", _levelBorder);
-        _anim.SetBool("lookAround", _lookAround);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -86,25 +102,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     {
         _levelBorder = _stageLevelBorder <= level ? true : false; 
     }
-    /// <summary>“n‚³‚ê‚½point‡‚Éi‚Ş</summary>
-    /// <param name="pointsArray"></param>
-    void GotoPoint(Transform[] pointsArray)
-    {
-        //©•ª©g‚Æƒ|ƒCƒ“ƒg‚Ì‹——£‚ğ‹‚ß‚é
-        float distance = Vector2.Distance(transform.position, pointsArray[pointsArray.Length % _pointArrayNumber].position);
-        if (distance >= _pointDis)//‹——£‚ª‚È‚­‚È‚éA“’B‚·‚é‚Ü‚Å
-        {
-            _dir = (pointsArray[Mathf.Abs(pointsArray.Length % _pointArrayNumber)].position - transform.position).normalized * _moveSpeed;
-            //•ûŒü‚ğ’è‚ß‚é
-            transform.Translate(_dir * Time.deltaTime);//ˆê’è‚Ì‘¬‚³
-            _rb.velocity = _dir;
-        }
-        else//“’B‚µ‚½‚ç
-        {
-            //GameManager‚Ì”»’è—p•Ï”‚Å‹t‚É‰ñ‚é‚æ‚¤‚É‚È‚Á‚½ê‡‚ÍarrayNumber--;‚É‚·‚éB
-            _pointArrayNumber++;
-        }
-    }
+ 
     public void LookAroundIsActive()//ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p
     {
         _lookAround = !_lookAround;
@@ -113,5 +111,11 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     {
         if (velo != Vector2.zero)
             _lastMoveVelocity = velo;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("rotate");
+        transform.Rotate(0.0f, 0.0f, _rotateZ);
+        _number++;
     }
 }

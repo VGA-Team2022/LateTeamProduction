@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 138323686224661002}
   - component: {fileID: 3427813977259994348}
   - component: {fileID: 4412250170729600986}
-  - component: {fileID: 1709791019}
   m_Layer: 0
   m_Name: Pillow
   m_TagString: ReturnPillow
@@ -112,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.54}
+  m_Size: {x: 0.68, y: 0.33}
   m_EdgeRadius: 0
 --- !u!58 &3427813977259994348
 CircleCollider2D:
@@ -149,26 +148,6 @@ MonoBehaviour:
   _getupTime: 0
   _timeInPlayerStats: 0
   _timeInBaby: 0
---- !u!95 &1709791019
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283526713477135800}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 38208d3fa1e3e8c43a149edfb26dc67b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1593565062440050678
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,5 +354,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 4.5}
+  m_Size: {x: 0.88, y: 0.99}
   m_EdgeRadius: 0

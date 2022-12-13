@@ -15,10 +15,7 @@ public class HangingScroll : MonoBehaviour
     [Tooltip("オブジェクトのRenderer")]
     SpriteRenderer _scrollRenderer = null;
 
-    
-
     //後々修正
-    ScrollText _scrollText = null;
     GameManager _gameManager = null;
     UIManager _uiManager = null;
     float _waitTime = 1f;
@@ -27,9 +24,8 @@ public class HangingScroll : MonoBehaviour
     public void Init(GameManager gameManager)
     {
         _scrollRenderer = GetComponentInChildren<SpriteRenderer>();
-        _scrollText = GetComponentInChildren<ScrollText>();
-        _scrollText.TextActivate(_playerController);
         _gameManager = gameManager;
+        _playerController = _gameManager.Player;
         _uiManager = FindObjectOfType<UIManager>();//後々修正
     }
 
@@ -61,7 +57,6 @@ public class HangingScroll : MonoBehaviour
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _playerController = player;
-            _scrollText.TextActivate(_playerController);
             StartCoroutine(PlayerInCollider());
             Debug.Log("In");
         }
@@ -71,7 +66,6 @@ public class HangingScroll : MonoBehaviour
         if (collision.gameObject == _gameManager.Player.gameObject)
         {
             _playerController = null;
-            _scrollText.TextActivate(_playerController);
             Debug.Log("Out");
         }
     }

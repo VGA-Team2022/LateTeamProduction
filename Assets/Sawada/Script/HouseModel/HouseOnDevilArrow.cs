@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//破魔矢の家の挙動
+//(制限時間)
 public class HouseOnDevilArrow : HouseBase
 {
     [Tooltip("プレイヤーが子供に戻る時間")]

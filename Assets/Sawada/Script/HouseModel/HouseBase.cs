@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//家のオブジェクトの挙動の基底クラス
 [RequireComponent(typeof(BoxCollider2D))]
 public class HouseBase
 {

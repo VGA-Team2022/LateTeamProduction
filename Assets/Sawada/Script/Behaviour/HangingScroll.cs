@@ -10,6 +10,8 @@ public class HangingScroll : MonoBehaviour
 {
     [SerializeField, Tooltip("掛け軸の画像。要素0が子供、要素1が大人")]
     Sprite[] _scrollImages = new Sprite[2];
+    [SerializeField, Tooltip("")]
+    ScrollText _scroolText = null; 
 
     [Tooltip("プレイヤーを格納する変数")]
     PlayerController _playerController = null;
@@ -26,6 +28,7 @@ public class HangingScroll : MonoBehaviour
     {
         _scrollRenderer = GetComponentInChildren<SpriteRenderer>();
         _gameManager = gameManager;
+        _scroolText.TextActivate(_playerController);
         _playerController = _gameManager.Player;
         _uiManager = FindObjectOfType<UIManager>();//後々修正
     }
@@ -58,6 +61,7 @@ public class HangingScroll : MonoBehaviour
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _playerController = player;
+            _scroolText.TextActivate(_playerController);
             StartCoroutine(PlayerInCollider());
             Debug.Log("In");
         }
@@ -67,6 +71,7 @@ public class HangingScroll : MonoBehaviour
         if (collision.gameObject == _gameManager.Player.gameObject)
         {
             _playerController = null;
+            _scroolText.TextActivate(_playerController);
             Debug.Log("Out");
         }
     }

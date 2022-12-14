@@ -83,21 +83,22 @@ public class PlayerController : MonoBehaviour
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 PlayerAndEnemyDis();
-            }
-           
+            }    
         }
-    }
-    private void LateUpdate()
-    {
         if (!_anim)
+        {
             return;
-        _anim.SetFloat("veloX", _rb.velocity.x);
-        _anim.SetFloat("veloY", _rb.velocity.y);
-        _anim.SetFloat("LastVeloX", _lastMoveVelocity.x);
-        _anim.SetFloat("LastVeloY", _lastMoveVelocity.y);
-        _anim.SetBool("adultState", _adultState);
-        _anim.SetBool("returnPillowInPos", _returnPillowInPos);
-        _anim.SetBool("autoMode", _autoAnim);
+        }
+        else
+        {
+            _anim.SetFloat("veloX", _rb.velocity.x);
+            _anim.SetFloat("veloY", _rb.velocity.y);
+            _anim.SetFloat("LastVeloX", _lastMoveVelocity.x);
+            _anim.SetFloat("LastVeloY", _lastMoveVelocity.y);
+            _anim.SetBool("adultState", _adultState);
+            _anim.SetBool("returnPillowInPos", _returnPillowInPos);
+            _anim.SetBool("autoMode", _autoAnim);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
     {
@@ -109,7 +110,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        InformationReset();
+        if (collision.gameObject.CompareTag("ReturnPillow"))
+        {
+            InformationReset();
+        }
     }
 
     private void ModeCheck(float h, float v)
@@ -143,7 +147,6 @@ public class PlayerController : MonoBehaviour
         _returnCountTime = 0;
         _ui.ChargeSlider(_returnCountTime);
     }
-
     private void PlayerAndEnemyDis()//距離計算
     {
         if (!_pillowEnemyObject)
@@ -191,6 +194,7 @@ public class PlayerController : MonoBehaviour
                 _returnPillowInPos = true;
                 _returnCountTime += Time.deltaTime;
                 _ui.ChargeSlider(_returnCountTime);
+                _gm.CheckSleepingEnemy();
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()

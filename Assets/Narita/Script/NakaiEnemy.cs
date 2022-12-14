@@ -16,6 +16,8 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     float _moveSpeed = 5f;
     [SerializeField,Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"),Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
     float _pointDis = 0.5f;
+    [Tooltip("“–‚½‚è”»’è‚ÌƒYƒŒ")]
+    float _MisalignmentPos = 0.64f;
     [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚é‚½‚ß‚Ì“–‚½‚è”»’è")]
     GameObject _atari = null;
     [Tooltip("ƒiƒJƒC‚Ì“®‚«‚ª•Ï‚í‚é‚ÌƒXƒe[ƒW‚ÌƒŒƒxƒ‹")]
@@ -74,15 +76,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            _playerFind = true;
-            Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
-            collision.GetComponent<PlayerController>().PlayerFind();
-        }
-    }
     /// <summary>“n‚·‘¤‚Í‡”Ô‚É‹C‚ğ•t‚¯‚é‚±‚Æ</summary>
     /// <param name="pointsArray"></param>
     public void GetPoints(Transform[] pointsArray)
@@ -114,9 +107,30 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("rotate");
-        Debug.Log(_lastMoveVelocity);
+        //Debug.Log("rotate");
+        //Debug.Log(_lastMoveVelocity);
         _atari.transform.Rotate(0.0f, 0.0f, _rotateZ);
         _number++;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _playerFind = true;
+            Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
+            collision.GetComponent<PlayerController>().PlayerFind();
+        }
+    }
+    void AtariPos(int num)
+    {
+        if(num == 1)
+        {
+            _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos, _atari.transform.localPosition.z);
+        }
+        if(num == 3)
+        {
+            _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos*-1, _atari.transform.localPosition.z);
+        }
     }
 }

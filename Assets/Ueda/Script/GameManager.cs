@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public void CheckSleepingEnemy() 
     {
+        _sleepingEnemy--;
         if(_sleepingEnemy == 0)
         {
             Clear();

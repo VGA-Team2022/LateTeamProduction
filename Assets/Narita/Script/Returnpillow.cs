@@ -9,8 +9,6 @@ public class Returnpillow : MonoBehaviour
     Transform[] _returnPillouPos = new Transform[2];
     [SerializeField, Header("枕を返されたかどうか"), Tooltip("枕を返されたかどうか")]
     bool _returnPillow = false;
-    [Tooltip("_returnPillowがTrueになったとき変化")]
-    SpriteRenderer _image = null;
     [SerializeField, Header("起きる時間（基準）"), Tooltip("起きる時間（関数内で値を決める）")]
     float _getupTime = 0f;
     //
@@ -35,8 +33,6 @@ public class Returnpillow : MonoBehaviour
     {;
         _returnPillow = false;
         _anim = GetComponent<Animator>();
-        //image = GetComponent<Image>();
-        _image = GetComponent<SpriteRenderer>();
         collider = GetComponents<Collider2D>();
     }
 
@@ -49,15 +45,6 @@ public class Returnpillow : MonoBehaviour
             foreach (var col in collider)
             {
                 col.enabled = false;
-            }
-            //↓変える色は後で変更予定
-            if (!_image)
-            {
-                Debug.LogError("imageがありません");
-            }
-            else
-            {
-                _image.color = Color.black;
             }
         }
     }

@@ -16,6 +16,8 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     float _moveSpeed = 5f;
     [SerializeField,Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"),Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
     float _pointDis = 0.5f;
+    [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚é‚½‚ß‚Ì“–‚½‚è”»’è")]
+    GameObject _atari = null;
     [Tooltip("ƒiƒJƒC‚Ì“®‚«‚ª•Ï‚í‚é‚ÌƒXƒe[ƒW‚ÌƒŒƒxƒ‹")]
     int _stageLevelBorder = 0;
     [Tooltip("ó‚¯æ‚Á‚½point‚Ì—v‘f”Ô†")]
@@ -72,13 +74,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             }
         }
     }
-    private void LateUpdate()
-    {
-        if (!_anim)
-            return;
-        _anim.SetFloat("lastVeloX", Mathf.Abs(_lastMoveVelocity.x));//‚Ì‚¿‚É–¼‘O‚ğŒˆ‚ß‚é
-        _anim.SetFloat("lastVeloY", Mathf.Abs(_lastMoveVelocity.y));
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -111,11 +106,17 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     {
         if (velo != Vector2.zero)
             _lastMoveVelocity = velo;
+
+        if (!_anim)
+            return;
+        _anim.SetFloat("lastVeloX", _lastMoveVelocity.x);//‚Ì‚¿‚É–¼‘O‚ğŒˆ‚ß‚é
+        _anim.SetFloat("lastVeloY", _lastMoveVelocity.y);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("rotate");
-        transform.Rotate(0.0f, 0.0f, _rotateZ);
+        Debug.Log(_lastMoveVelocity);
+        _atari.transform.Rotate(0.0f, 0.0f, _rotateZ);
         _number++;
     }
 }

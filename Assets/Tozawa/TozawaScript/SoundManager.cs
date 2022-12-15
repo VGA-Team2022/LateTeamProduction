@@ -29,6 +29,16 @@ public class SoundManager : MonoBehaviour
     UnityEvent _onKakejikued;
     [Header("カットインした際に呼ばれるべき処理"), SerializeField, Tooltip("カットインした時の処理が格納されたUnityEvent")]
     UnityEvent _onCutined;
+    [Header("寝てる人接近際に呼ばれるべき処理"), SerializeField, Tooltip("寝てる人接近時の処理が格納されたUnityEvent")]
+    UnityEvent _onSleepNear;
+    [Header("寝てる人接非接近に呼ばれるべき処理"), SerializeField, Tooltip("寝てる人非接近時の処理が格納されたUnityEvent")]
+    UnityEvent _onSleepFar;
+    [Header("発見された時に呼ばれるべき処理"), SerializeField, Tooltip("発見された時の処理が格納されたUnityEvent")]
+    UnityEvent _onDiscovered;
+    [Header("ゲージ上昇中に呼ばれるべき処理"), SerializeField, Tooltip("ゲージ上昇中の処理が格納されたUnityEvent")]
+    UnityEvent _onGauging;
+    [Header("ゲージ上昇停止時に呼ばれるべき処理"), SerializeField, Tooltip("ゲージ上昇停止時の処理が格納されたUnityEvent")]
+    UnityEvent _onGaugeStop;
     /// <summary>
     /// ゲーム開始の時に一回呼んでください
     /// </summary>
@@ -98,8 +108,40 @@ public class SoundManager : MonoBehaviour
     {
         _onCutined.Invoke();
     }
-    public void AudioPlay(CriAtomSource source)
+    /// <summary>
+    /// 寝てる奴の近くいる時？に一回呼んでください
+    /// </summary>
+    public void SleepingVoice()
     {
-        source.Play();
+        _onSleepNear.Invoke();
     }
+    /// <summary>
+    /// 寝てる奴の近くから離れたか殺した時に一回呼んでください
+    /// </summary>
+    public void KillSleeping()
+    {
+        _onSleepFar.Invoke();
+    }
+    /// <summary>
+    /// 発見された時に一回呼んでください
+    /// </summary>
+    public void Discoverd()
+    {
+        _onDiscovered.Invoke();
+    }
+    /// <summary>
+    /// ゲージ開始時に一回呼んでください
+    /// </summary>
+    public void Gauging()
+    {
+        _onGauging.Invoke();
+    }
+    /// <summary>
+    /// ゲージ停止時に一回呼んでください
+    /// </summary>
+    public void GaugeStop()
+    {
+        _onGaugeStop.Invoke();
+    }
+    
 }

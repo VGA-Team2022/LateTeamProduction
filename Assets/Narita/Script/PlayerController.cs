@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
         _pillowEnemy = null;
         _returnPillowAnim = null;
         _returnCountTime = 0;
-        //_ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
+        _ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
     }
     private void PlayerAndEnemyDis()//距離計算
     {
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
             else
                 _returnPillowInPos = true;
                 _returnCountTime += Time.deltaTime;
-                //_ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
+                _ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
                 _gm.CheckSleepingEnemy();
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>

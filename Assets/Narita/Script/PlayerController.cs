@@ -103,19 +103,16 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
     {
-        if (collision.gameObject.CompareTag("ReturnPillow"))
+        if (collision.TryGetComponent<Returnpillow>(out Returnpillow enemy))
         {
             _pillowEnemyObject = collision.gameObject;
-            _pillowEnemy = _pillowEnemyObject.GetComponent<Returnpillow>();
+            _pillowEnemy = enemy;
             _returnPillowAnim = _pillowEnemyObject.GetComponent<Animator>();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ReturnPillow"))
-        {
             InformationReset();
-        }
     }
 
     private void ModeCheck(float h, float v)
@@ -148,7 +145,7 @@ public class PlayerController : MonoBehaviour
         _pillowEnemy = null;
         _returnPillowAnim = null;
         _returnCountTime = 0;
-        //_ui.ChargeSlider(_returnCountTime);
+        //_ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
     }
     private void PlayerAndEnemyDis()//距離計算
     {
@@ -196,7 +193,7 @@ public class PlayerController : MonoBehaviour
             else
                 _returnPillowInPos = true;
                 _returnCountTime += Time.deltaTime;
-                //_ui.ChargeSlider(_returnCountTime);
+                //_ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
                 _gm.CheckSleepingEnemy();
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>

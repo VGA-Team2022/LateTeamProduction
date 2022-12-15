@@ -8,8 +8,6 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
 {
     [Tooltip("ƒvƒŒƒCƒ„[‚ðŠi”[‚·‚é•Ï”")]
     protected PlayerController _playerController;
-    [Tooltip("ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[‚ðŠi”[‚·‚é•Ï”")]
-    protected GameManager _gameManager = null;
     [Tooltip("‰Æ‚Ìƒf[ƒ^1")]
     protected HouseBase _data1 = null;
     [Tooltip("Š|‚¯Ž²")]
@@ -22,7 +20,6 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
     protected Returnpillow[] _returnPillows = null;
     
     public Collider2D[] ColidersInHouse => _collidersInHouse;
-    public GameManager GameManager => _gameManager;
     public Returnpillow[] ReturnPillows => _returnPillows;
 
     private void Start()
@@ -70,12 +67,11 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
 
     public virtual void CreateHouseObject(HouseBase house1,GameManager gameManager)
     {
-        _gameManager = gameManager;
         _renderersInHouse = GetComponentsInChildren<TilemapRenderer>();
         _collidersInHouse = GetComponentsInChildren<Collider2D>();
         _returnPillows = GetComponentsInChildren<Returnpillow>();
         _hangingScroll = GetComponentInChildren<HangingScroll>();
-        _hangingScroll.Init(_gameManager);
+        _hangingScroll.Init(gameManager);
         _data1 = house1;
         _data1.Init(this);
     }

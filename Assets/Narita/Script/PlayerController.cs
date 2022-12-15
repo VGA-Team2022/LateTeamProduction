@@ -143,9 +143,9 @@ public class PlayerController : MonoBehaviour
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;
-        _returnPillowAnim = null;
         _returnCountTime = 0;
         _ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
+        _returnPillowAnim = null;
     }
     private void PlayerAndEnemyDis()//‹——£ŒvŽZ
     {

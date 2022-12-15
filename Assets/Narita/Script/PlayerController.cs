@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     UIManager _ui;
     GameManager _gm;
-    Animator _anim = null;
+    Animator _playerAnim = null;
+    Animator _returnPillowAnim = null;
     [Tooltip("プレイヤーの状態確認、外部参照用")]
     public bool AdultState { get => _adultState; }
     [Tooltip("寝ている敵のscript情報、外部参照用")]
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _ui = FindObjectOfType<UIManager>();
         _gm = FindObjectOfType<GameManager>();
-        _anim = GetComponent<Animator>();
+        _playerAnim = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -85,35 +86,33 @@ public class PlayerController : MonoBehaviour
                 PlayerAndEnemyDis();
             }    
         }
-        if (!_anim)
+        if (!_playerAnim)
         {
             return;
         }
         else
         {
-            _anim.SetFloat("veloX", _rb.velocity.x);
-            _anim.SetFloat("veloY", _rb.velocity.y);
-            _anim.SetFloat("LastVeloX", _lastMoveVelocity.x);
-            _anim.SetFloat("LastVeloY", _lastMoveVelocity.y);
-            _anim.SetBool("adultState", _adultState);
-            _anim.SetBool("returnPillowInPos", _returnPillowInPos);
-            _anim.SetBool("autoMode", _autoAnim);
+            _playerAnim.SetFloat("veloX", _rb.velocity.x);
+            _playerAnim.SetFloat("veloY", _rb.velocity.y);
+            _playerAnim.SetFloat("LastVeloX", _lastMoveVelocity.x);
+            _playerAnim.SetFloat("LastVeloY", _lastMoveVelocity.y);
+            _playerAnim.SetBool("adultState", _adultState);
+            _playerAnim.SetBool("returnPillowInPos", _returnPillowInPos);
+            _playerAnim.SetBool("autoMode", _autoAnim);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)//寝ている敵の情報を取る
     {
-        if (collision.gameObject.CompareTag("ReturnPillow"))
+        if (collision.TryGetComponent<Returnpillow>(out Returnpillow enemy))
         {
             _pillowEnemyObject = collision.gameObject;
-            _pillowEnemy = _pillowEnemyObject.GetComponent<Returnpillow>();
+            _pillowEnemy = enemy;
+            _returnPillowAnim = _pillowEnemyObject.GetComponent<Animator>();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ReturnPillow"))
-        {
             InformationReset();
-        }
     }
 
     private void ModeCheck(float h, float v)
@@ -144,8 +143,9 @@ public class PlayerController : MonoBehaviour
     {
         _pillowEnemyObject = null;
         _pillowEnemy = null;
+        _returnPillowAnim = null;
         _returnCountTime = 0;
-        _ui.ChargeSlider(_returnCountTime);
+        //_ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
     }
     private void PlayerAndEnemyDis()//距離計算
     {
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
             else
                 _returnPillowInPos = true;
                 _returnCountTime += Time.deltaTime;
-                _ui.ChargeSlider(_returnCountTime);
+                //_ui.ChargeSlider(_returnCountTime,_returnPillowAnim);
                 _gm.CheckSleepingEnemy();
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>

@@ -19,8 +19,10 @@ public class UIManager : MonoBehaviour
     [SerializeField,Tooltip("カットイン用のアニメーター")] Animator _cutIn = null;
     bool _isRange = false;
     PlayerController _player = null;
+
+    //Animator _chargeAnim = null;
     // Start is called before the first frame update
-    
+
     void Start()
     {
         _player = FindObjectOfType<PlayerController>();
@@ -28,34 +30,33 @@ public class UIManager : MonoBehaviour
         _gameOverUI.SetActive(false);
     }
     
-    public void ChargeSlider(float charge , Animator chargeAnim) // スライダーとひっくり返す対象のアニメーターを制御
+    public void ChargeSlider(float charge ) // スライダーとひっくり返す対象のアニメーターを制御
     {
-        
-        if(_player._returnPillowInPos)
-        {
-            chargeAnim.speed = 1;
-        }
-        else
-        {
-            chargeAnim.speed = 0;
-        }
-        if (charge == 0)
-        {
-            _isRange = true;
-            return;
-        }
-        if(charge >= 1) charge = 1; 
-        if(_isRange)
-        {
-            chargeAnim.Play("",0,0);
-            _isRange = false;
-        }
+
+        //if (_player._returnPillowInPos)
+        //{
+        //    _chargeAnim.speed = 1;
+        //}
+        //else
+        //{
+        //    _chargeAnim.speed = 0;
+        //}
+        //if (charge == 0)
+        //{
+        //    _isRange = true;
+        //    return;
+        //}
+        if (charge >= _chargeSlider.maxValue) charge = _chargeSlider.maxValue;
+        //if (_isRange)
+        //{
+        //    _chargeAnim.Play("", 0, 0);
+        //    _isRange = false;
+        //}
         _chargeSlider.value = charge;
 
         //スライダーが満タンになったらプレイヤーのboolを変える
-        if (charge == 1)
+        if (charge == _chargeSlider.maxValue)
         {
-            
             _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
             

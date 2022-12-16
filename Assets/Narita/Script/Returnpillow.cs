@@ -51,7 +51,7 @@ public class Returnpillow : MonoBehaviour
     private void LateUpdate()
     {
         if (_anim)
-            _anim.SetBool("boolの名前", _returnPillow);
+            _anim.SetBool("returnPillowPlay", _returnPillow);
     }
 
     private void OnTriggerStay2D(Collider2D collision)//プレイヤーが当たり判定の中にとどまったら

@@ -143,5 +143,8 @@ public class SoundManager : MonoBehaviour
     {
         _onGaugeStop.Invoke();
     }
-    
+    public void AudioPlay(CriAtomSource source)
+    {
+        source.Play();
+    }
 }

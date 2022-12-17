@@ -191,7 +191,6 @@ public class PlayerController : MonoBehaviour
                 _returnPillowInPos = true;
                 _returnCountTime += Time.deltaTime;
                 _ui.ChargeSlider(_returnCountTime);
-                _gm.CheckSleepingEnemy();
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()

@@ -21,6 +21,7 @@ public class HangingScroll : MonoBehaviour
     //å„ÅXèCê≥
     GameManager _gameManager = null;
     UIManager _uiManager = null;
+    SoundManager _soundManager = null;
     float _waitTime = 1f;
 
 
@@ -30,7 +31,10 @@ public class HangingScroll : MonoBehaviour
         _gameManager = gameManager;
         _scroolText.TextActivate(_playerController);
         _playerController = _gameManager.Player;
-        _uiManager = FindObjectOfType<UIManager>();//å„ÅXèCê≥
+
+        //å„ÅXèCê≥
+        _uiManager = FindObjectOfType<UIManager>();
+        _soundManager = FindObjectOfType<SoundManager>();
     }
 
     IEnumerator PlayerInCollider()
@@ -41,6 +45,7 @@ public class HangingScroll : MonoBehaviour
             {
                 bool isAdultMode = !_playerController.AdultState;
                 _uiManager.CutIn(!isAdultMode);
+                _soundManager.Kakejikued();
                 yield return new WaitForSeconds(_waitTime);
                 _playerController.ModeChange(isAdultMode);
                 if (isAdultMode)

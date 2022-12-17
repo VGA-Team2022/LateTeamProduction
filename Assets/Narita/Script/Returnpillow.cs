@@ -30,7 +30,7 @@ public class Returnpillow : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {;
+    {
         _returnPillow = false;
         _anim = GetComponent<Animator>();
         collider = GetComponents<Collider2D>();

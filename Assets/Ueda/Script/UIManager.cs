@@ -17,8 +17,10 @@ public class UIManager : MonoBehaviour
     [SerializeField,Tooltip("クリアタイムを表示するテキスト")] TextMeshProUGUI _clearTimeText = null;
     
     [SerializeField,Tooltip("カットイン用のアニメーター")] Animator _cutIn = null;
-    bool _isRange = false;
+    //bool _isRange = false;
     PlayerController _player = null;
+
+    [SerializeField] GameManager gameManager = null;
 
     //Animator _chargeAnim = null;
     // Start is called before the first frame update
@@ -59,9 +61,11 @@ public class UIManager : MonoBehaviour
         {
             _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
-            
+
+            gameManager.CheckSleepingEnemy();
+
             _player.InformationReset();
-            _isRange = true;
+            //_isRange = true;
         }
     }
     public void TimerText(float time)

@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         _time += Time.deltaTime;
         _uIManager.TimerText(_timeLimit-_time);
-        if (_time <= 0) GameOver();
+        if (_time >= _timeLimit) GameOver();
     }
     
 }

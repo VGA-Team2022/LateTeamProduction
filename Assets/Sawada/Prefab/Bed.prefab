@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _returnPillouPos:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 786904942406222346}
+  - {fileID: 6963375248658328154}
   _returnPillow: 0
-  _getupTime: 0
+  _getupTime: 5
   _timeInPlayerStats: 0
   _timeInBaby: 0
 --- !u!95 &1808635530449653856

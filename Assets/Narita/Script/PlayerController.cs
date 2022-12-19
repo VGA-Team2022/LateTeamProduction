@@ -116,7 +116,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        InformationReset();
+        //InformationReset();
+        _returnCountTime = 0;
+        _ui.ChargeSlider(_returnCountTime);
         _sound.KillSleeping();
     }
 

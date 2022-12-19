@@ -49,7 +49,7 @@ public class Returnpillow : MonoBehaviour,IRevers
             {
                 //見つかった時、ゲームオーバーの関数を書く
                 _sound.Discoverd();
-                GetUp(player);
+                player.PlayerFind();
             }
         }
     }

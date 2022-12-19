@@ -39,18 +39,6 @@ public class Returnpillow : MonoBehaviour,IRevers
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (_returnPillow)
-        {
-            ObjectRevers();
-        }
-    }
-    private void LateUpdate()
-    {
-        if (_anim)
-            _anim.SetBool("returnPillowPlay", _returnPillow);
-    }
 
     private void OnTriggerStay2D(Collider2D collision)//ƒvƒŒƒCƒ„[‚ª“–‚½‚è”»’è‚Ì’†‚É‚Æ‚Ç‚Ü‚Á‚½‚ç
     {
@@ -84,6 +72,9 @@ public class Returnpillow : MonoBehaviour,IRevers
 
     public void ObjectRevers()
     {
+        _returnPillow = true;
+        if (_anim)
+            _anim.SetBool("returnPillowPlay", _returnPillow);
         foreach (var col in collider)
         {
             col.enabled = false;

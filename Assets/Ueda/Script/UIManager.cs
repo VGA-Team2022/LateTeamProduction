@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using IsGame;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,8 +20,6 @@ public class UIManager : MonoBehaviour
     [SerializeField,Tooltip("カットイン用のアニメーター")] Animator _cutIn = null;
     //bool _isRange = false;
     PlayerController _player = null;
-
-    [SerializeField] GameManager gameManager = null;
 
     //Animator _chargeAnim = null;
     // Start is called before the first frame update
@@ -62,7 +61,7 @@ public class UIManager : MonoBehaviour
             _player.PillowEnemy.ReturnPillow = true;
             _chargeSlider.value = 0;
 
-            gameManager.CheckSleepingEnemy();
+            GameManager.Instance.CheckSleepingEnemy();
 
             _player.InformationReset();
             //_isRange = true;

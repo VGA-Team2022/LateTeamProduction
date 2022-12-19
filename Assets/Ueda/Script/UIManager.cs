@@ -29,8 +29,13 @@ public class UIManager : MonoBehaviour
         _player = FindObjectOfType<PlayerController>();
         _clearUI.SetActive(false);
         _gameOverUI.SetActive(false);
+        GameManager.Instance.Initialize(this);
     }
-    
+    private void Update()
+    {
+        GameManager.Instance.Timer();
+    }
+
     public void ChargeSlider(float charge ) // スライダーとひっくり返す対象のアニメーターを制御
     {
 
@@ -60,9 +65,7 @@ public class UIManager : MonoBehaviour
         {
             _player.PillowEnemy.ObjectRevers();
             _chargeSlider.value = 0;
-
             GameManager.Instance.CheckSleepingEnemy();
-
             _player.InformationReset();
             //_isRange = true;
         }

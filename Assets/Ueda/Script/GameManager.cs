@@ -11,16 +11,13 @@ namespace IsGame
 
         [Tooltip("残り時間の初期値")] float _timeLimit = 300;
 
-        [Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 0;
+        [Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 9;
 
 
-
+        //相互参照が起きているので後々修正
         UIManager _uIManager = default;
-
-
         public bool _isGame = false;
-
-        MapInstance _mapInstance = default;
+        //MapInstance _mapInstance = default;
 
         public static GameManager Instance
         {
@@ -39,9 +36,11 @@ namespace IsGame
 
         /// <summary>残り時間</summary>
         float _time = 0;
-        // Start is called before the first frame update
-        void Awake()
+
+        //後々修正
+        public void Initialize(UIManager uIManager)
         {
+            _uIManager = uIManager;
             //_mapInstance = 
             //_sleepingEnemy = _mapInstance.Entity.SleeperValue; マップインスタンスが完成していないため保留
             GameStart();
@@ -78,7 +77,8 @@ namespace IsGame
             _isGame = false;
         }
 
-        private void Timer()
+        //修正
+        public void Timer()
         {
             _time += Time.deltaTime;
             _uIManager.TimerText(_timeLimit - _time);

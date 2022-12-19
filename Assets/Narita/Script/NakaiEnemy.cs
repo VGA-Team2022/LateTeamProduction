@@ -36,6 +36,8 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     Vector2 _dir = default;
     [Tooltip("“®‚©‚È‚­‚È‚Á‚½‚ÌÅŒã‚Éi‚ñ‚Å‚¢‚½•ûŒü")]
     Vector2 _lastMoveVelocity = default;
+    [SerializeField,Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Ég—p")]
+    SoundManager _sound = null;
     Animator _anim = null;
     Rigidbody2D _rb = null;
     // Start is called before the first frame update
@@ -43,6 +45,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _sound = FindObjectOfType<SoundManager>();
     }
 
     // Update is called once per frame
@@ -119,6 +122,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
         {
             _playerFind = true;
             Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
+            _sound.Discoverd();
             collision.GetComponent<PlayerController>().PlayerFind();
         }
     }

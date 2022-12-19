@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public VariableJoystick _joyStick;
-    [SerializeField, Header("子供状態の動くスピード"),Tooltip("動く速度（子供）")]
+    [SerializeField, Header("子供状態の動くスピード"), Tooltip("動く速度（子供）")]
     float _childMoveSpeed = 10f;
     [SerializeField, Header("大人状態の動くスピード"), Tooltip("動く速度（大人）")]
     float _adultMoveSpeed = 15f;
-    [SerializeField, Header("誤差の許容範囲"),Tooltip("誤差の許容範囲")]
+    [SerializeField, Header("誤差の許容範囲"), Tooltip("誤差の許容範囲")]
     float _toleranceDis = 0.5f;
     [Tooltip("枕を返す時のカウント用タイマー")]
     float _returnCountTime = 0f;
@@ -27,15 +27,17 @@ public class PlayerController : MonoBehaviour
     Returnpillow _pillowEnemy = null;
     [Tooltip("寝ている敵そのもの")]
     GameObject _pillowEnemyObject = null;
-    [SerializeField, Header("プレイヤーが大人か子供か"),Tooltip("大人の時True")]
+    [SerializeField, Header("プレイヤーが大人か子供か"), Tooltip("大人の時True")]
     bool _adultState = false;
     [SerializeField, Header("枕を返そうとしている時True"), Tooltip("枕を返せる位置にいてスペースキーを押しているときTrue")]
     public bool _returnPillowInPos = false;
-    [SerializeField,Header("枕の横に自動的に移動しているときにtrue"),Tooltip("枕の横に自動的に移動しているときにtrue")]
+    [SerializeField, Header("枕の横に自動的に移動しているときにtrue"), Tooltip("枕の横に自動的に移動しているときにtrue")]
     bool _autoAnim = false;
+    [SerializeField, Tooltip("スライダーに値を渡すために使用")]
+    UIManager _ui = null;
+    [SerializeField, Tooltip("敵の範囲内に入ったとき、出たときに使用")]
+    SoundManager _sound = null;
     Rigidbody2D _rb;
-    UIManager _ui;
-    GameManager _gm;
     Animator _playerAnim = null;
     [Tooltip("プレイヤーの状態確認、外部参照用")]
     public bool AdultState { get => _adultState; }
@@ -48,8 +50,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _ui = FindObjectOfType<UIManager>();
-        _gm = FindObjectOfType<GameManager>();
         _playerAnim = GetComponent<Animator>();
     }
     // Update is called once per frame
@@ -57,9 +57,8 @@ public class PlayerController : MonoBehaviour
     {
         float _joyX = _joyStick.Horizontal;
         float _joyY = _joyStick.Vertical;
-        //Debug.Log(_rb.velocity);
         ModeCheck(_joyX, _joyY);
-        if(!_autoAnim)
+        if (!_autoAnim)
         {
             _rb.velocity = _moveVelocity;
         }
@@ -83,7 +82,7 @@ public class PlayerController : MonoBehaviour
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 PlayerAndEnemyDis();
-            }    
+            }
         }
         if (!_playerAnim)
         {
@@ -104,13 +103,15 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.TryGetComponent<Returnpillow>(out Returnpillow enemy))
         {
+            _sound.SleepingVoice();
             _pillowEnemyObject = collision.gameObject;
             _pillowEnemy = enemy;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-            InformationReset();
+        InformationReset();
+        _sound.KillSleeping();
     }
 
     private void ModeCheck(float h, float v)
@@ -156,45 +157,44 @@ public class PlayerController : MonoBehaviour
     {
         if (!_pillowEnemyObject)
             return;
-            _autoAnim = true;
-            _returnPillowDisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
-            if (_returnPillowDisToPlayer > _toleranceDis)//誤差範囲
+        _autoAnim = true;
+        _returnPillowDisToPlayer = Vector2.Distance(transform.position, _returnPillowPos);
+        if (_returnPillowDisToPlayer > _toleranceDis)//誤差範囲
+        {
+            if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > _toleranceDis)
             {
-                if (Mathf.Abs(transform.position.x - _returnPillowPos.x) > _toleranceDis)
+                if (transform.position.x > _returnPillowPos.x)
                 {
-                    if (transform.position.x > _returnPillowPos.x)
-                    {
-                        transform.Translate(Vector2.left * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.left * Time.deltaTime * speed;
-                    }
-                    else if (transform.position.x < _returnPillowPos.x)
-                    {
-                        transform.Translate(Vector2.right * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.right * Time.deltaTime * speed;
-                    }
+                    transform.Translate(Vector2.left * Time.deltaTime * speed);
+                    _rb.velocity = Vector2.left * Time.deltaTime * speed;
                 }
-                else
+                else if (transform.position.x < _returnPillowPos.x)
                 {
-                    if (transform.position.y > _returnPillowPos.y)
-                    {
-                        transform.Translate(Vector2.down * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.down * Time.deltaTime * speed;
-                    }
-                    else if (transform.position.y < _returnPillowPos.y)
-                    {
-                        transform.Translate(Vector2.up * Time.deltaTime * speed);
-                        _rb.velocity = Vector2.up * Time.deltaTime * speed;
-                    }
+                    transform.Translate(Vector2.right * Time.deltaTime * speed);
+                    _rb.velocity = Vector2.right * Time.deltaTime * speed;
                 }
             }
             else
-                _returnPillowInPos = true;
-                _returnCountTime += Time.deltaTime;
-                _ui.ChargeSlider(_returnCountTime);
+            {
+                if (transform.position.y > _returnPillowPos.y)
+                {
+                    transform.Translate(Vector2.down * Time.deltaTime * speed);
+                    _rb.velocity = Vector2.down * Time.deltaTime * speed;
+                }
+                else if (transform.position.y < _returnPillowPos.y)
+                {
+                    transform.Translate(Vector2.up * Time.deltaTime * speed);
+                    _rb.velocity = Vector2.up * Time.deltaTime * speed;
+                }
+            }
+        }
+        else
+            _returnPillowInPos = true;
+        _returnCountTime += Time.deltaTime;
+        _ui.ChargeSlider(_returnCountTime);
     }
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()
     {
-        _gm.GameOver();
     }
 }

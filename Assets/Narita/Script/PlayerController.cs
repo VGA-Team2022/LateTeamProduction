@@ -30,9 +30,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Header("プレイヤーが大人か子供か"), Tooltip("大人の時True")]
     bool _adultState = false;
     [SerializeField, Header("枕を返そうとしている時True"), Tooltip("枕を返せる位置にいてスペースキーを押しているときTrue")]
-    public bool _returnPillowInPos = false;
+    bool _returnPillowInPos = false;
     [SerializeField, Header("枕の横に自動的に移動しているときにtrue"), Tooltip("枕の横に自動的に移動しているときにtrue")]
     bool _autoAnim = false;
+    [SerializeField, Header("プレイヤーが動いている時True"), Tooltip("プレイヤーのvelocityが0ではない場合True")]
+    bool _playerMove = false;
     [SerializeField, Tooltip("スライダーに値を渡すために使用")]
     UIManager _ui = null;
     [SerializeField, Tooltip("敵の範囲内に入ったとき、出たときに使用")]
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
             _playerAnim.SetFloat("veloY", _rb.velocity.y);
             _playerAnim.SetFloat("LastVeloX", _lastMoveVelocity.x);
             _playerAnim.SetFloat("LastVeloY", _lastMoveVelocity.y);
+            _playerAnim.SetBool("playerMove", _playerMove);
             _playerAnim.SetBool("adultState", _adultState);
             _playerAnim.SetBool("returnPillowInPos", _returnPillowInPos);
             _playerAnim.SetBool("autoMode", _autoAnim);
@@ -125,6 +128,7 @@ public class PlayerController : MonoBehaviour
     }
     private void VelocitySave(Vector2 velo)
     {
+        _playerMove = velo == Vector2.zero ? false : true;
         if (velo.x != 0)
         {
             _lastMoveVelocity.x = velo.x;

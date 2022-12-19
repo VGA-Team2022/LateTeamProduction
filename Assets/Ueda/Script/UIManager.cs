@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
         //スライダーが満タンになったらプレイヤーのboolを変える
         if (charge == _chargeSlider.maxValue)
         {
-            _player.PillowEnemy.ReturnPillow = true;
+            _player.PillowEnemy.ObjectRevers();
             _chargeSlider.value = 0;
 
             GameManager.Instance.CheckSleepingEnemy();

@@ -19,18 +19,18 @@ public class HangingScroll : MonoBehaviour
     SpriteRenderer _scrollRenderer = null;
 
     //å„ÅXèCê≥
-    GameManager _gameManager = null;
+    //GameManager _gameManager = null;
     UIManager _uiManager = null;
     SoundManager _soundManager = null;
     float _waitTime = 1f;
 
 
-    public void Init(GameManager gameManager)
+    public void Init()
     {
         _scrollRenderer = GetComponentInChildren<SpriteRenderer>();
-        _gameManager = gameManager;
+        //_gameManager = gameManager;
         _scroolText.TextActivate(_playerController);
-        _playerController = _gameManager.Player;
+        //_playerController = _gameManager.Player;
 
         //å„ÅXèCê≥
         _uiManager = FindObjectOfType<UIManager>();
@@ -73,11 +73,11 @@ public class HangingScroll : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == _gameManager.Player.gameObject)
-        {
-            _playerController = null;
-            _scroolText.TextActivate(_playerController);
-            Debug.Log("Out");
-        }
+        //if (collision.gameObject == _gameManager.Player.gameObject)
+        //{
+        //    _playerController = null;
+        //    _scroolText.TextActivate(_playerController);
+        //    Debug.Log("Out");
+        //}
     }
 }

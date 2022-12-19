@@ -15,8 +15,8 @@ public class MapInstance : MonoBehaviour
     System.Random _random = new System.Random();
     [Tooltip("マップデータ")]
     MapData _mapData = null;
-    [Tooltip("GameManagerを格納する変数")]
-    GameManager _gameManager = null;
+    //[Tooltip("GameManagerを格納する変数")]
+    //GameManager _gameManager = null;
     [Tooltip("生成するTransform")]
     SpawnPosState[] _insPos = null;
     [Tooltip("家のプレハブ")]
@@ -27,7 +27,7 @@ public class MapInstance : MonoBehaviour
 
     void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
+        //_gameManager = FindObjectOfType<GameManager>();
         _mapData = new MapData(_filePath);
         _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").ToArray();
         _houseDatas = new HouseBase[]
@@ -80,7 +80,7 @@ public class MapInstance : MonoBehaviour
         for (int i = 0; i < targetHouseValue; i++)
         {
             houses[i] = Instantiate(_houseBases[0]);
-            houses[i].CreateHouseObject(_houseDatas[(int)type1], _gameManager);
+            //houses[i].CreateHouseObject(_houseDatas[(int)type1], _gameManager);
         }
         return houses;
     }
@@ -97,7 +97,7 @@ public class MapInstance : MonoBehaviour
         for (int i = 0; i < targetHouseValue; i++)
         {
             houses[i] = Instantiate((DoubleHouseBehaviour)_houseBases[1]);
-            houses[i].CreateHouseObject(_houseDatas[(int)type1], _houseDatas[(int)type2], _gameManager);
+            //houses[i].CreateHouseObject(_houseDatas[(int)type1], _houseDatas[(int)type2], _gameManager);
         }
         return houses;
     }

@@ -29,7 +29,7 @@ public class DoubleHouseBehaviour : HouseBehaviour
         }
     }
 
-    public  void CreateHouseObject(HouseBase house1, HouseBase house2,GameManager gameManager)
+    public  void CreateHouseObject(HouseBase house1, HouseBase house2)
     {
         house1.Init(this);
         house2.Init(this);

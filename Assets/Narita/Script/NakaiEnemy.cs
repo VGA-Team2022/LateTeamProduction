@@ -38,11 +38,13 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     Vector2 _lastMoveVelocity = default;
     Animator _anim = null;
     Rigidbody2D _rb = null;
+    SoundManager _sManager = null;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _sManager = FindObjectOfType<SoundManager>();
     }
 
     // Update is called once per frame
@@ -119,6 +121,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
         {
             _playerFind = true;
             Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
+            _sManager.Discoverd();
             collision.GetComponent<PlayerController>().PlayerFind();
         }
     }

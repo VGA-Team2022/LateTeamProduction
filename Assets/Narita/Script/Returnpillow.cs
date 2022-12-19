@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Returnpillow : MonoBehaviour
+public class Returnpillow : MonoBehaviour,IRevers
 {
     [SerializeField, Header("枕を返す時のプレイヤーの位置"), Tooltip("枕を返す時のプレイヤーの位置情報")]
     Transform[] _returnPillouPos = new Transform[2];
@@ -43,11 +43,7 @@ public class Returnpillow : MonoBehaviour
     {
         if (_returnPillow)
         {
-            //↓当たり判定は後で変更予定
-            foreach (var col in collider)
-            {
-                col.enabled = false;
-            }
+            ObjectRevers();
         }
     }
     private void LateUpdate()
@@ -84,5 +80,13 @@ public class Returnpillow : MonoBehaviour
     private void GetUp(PlayerController player)
     {
         player.PlayerFind();
+    }
+
+    public void ObjectRevers()
+    {
+        foreach (var col in collider)
+        {
+            col.enabled = false;
+        }
     }
 }

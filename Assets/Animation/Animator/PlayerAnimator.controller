@@ -171,12 +171,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: veloX
-    m_EventTreshold: 0.0001
-  - m_ConditionMode: 4
-    m_ConditionEvent: veloY
-    m_EventTreshold: 0.0001
+  - m_ConditionMode: 2
+    m_ConditionEvent: playerMove
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8192693030139551914}
   m_Solo: 0
@@ -643,12 +640,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: veloX
-    m_EventTreshold: 0.0001
-  - m_ConditionMode: 4
-    m_ConditionEvent: veloY
-    m_EventTreshold: 0.0001
+  - m_ConditionMode: 2
+    m_ConditionEvent: playerMove
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5954694154642962180}
   m_Solo: 0
@@ -779,43 +773,49 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: veloY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: LastVeloY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: LastVeloX
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: adultState
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: returnPillowInPos
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: autoMode
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: playerMove
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -870,10 +870,10 @@ AnimatorStateMachine:
     m_Position: {x: 1070, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7741787566794492799}
-    m_Position: {x: 920, y: 260, z: 0}
+    m_Position: {x: 1050, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4606856767361690267}
-    m_Position: {x: 970, y: 450, z: 0}
+    m_Position: {x: 1030, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2456383964098361580}
     m_Position: {x: 950, y: -290, z: 0}
@@ -1003,12 +1003,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: veloX
-    m_EventTreshold: 0.0001
-  - m_ConditionMode: 3
-    m_ConditionEvent: veloY
-    m_EventTreshold: 0.0001
+  - m_ConditionMode: 1
+    m_ConditionEvent: playerMove
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5128524802099985940}
   m_Solo: 0
@@ -1056,12 +1053,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: veloX
-    m_EventTreshold: 0.0001
-  - m_ConditionMode: 3
-    m_ConditionEvent: veloY
-    m_EventTreshold: 0.0001
+  - m_ConditionMode: 1
+    m_ConditionEvent: playerMove
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8766092363118719719}
   m_Solo: 0
@@ -1087,7 +1081,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 1d38082da23f2734ab1b448f50608235, type: 2}
     m_Threshold: 0
-    m_Position: {x: 0, y: 1}
+    m_Position: {x: 0, y: 7}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1095,7 +1089,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 8b055ff6815bb864fb4b17db78bc21db, type: 2}
     m_Threshold: 0.25
-    m_Position: {x: 0, y: -1}
+    m_Position: {x: 0, y: -7}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1103,7 +1097,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 8b055ff6815bb864fb4b17db78bc21db, type: 2}
     m_Threshold: 0.5
-    m_Position: {x: -1, y: 0}
+    m_Position: {x: -7, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1111,7 +1105,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 8b055ff6815bb864fb4b17db78bc21db, type: 2}
     m_Threshold: 0.75
-    m_Position: {x: 1, y: 0}
+    m_Position: {x: 7, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1142,7 +1136,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: ed2e4f553fe109448824466b127b3e03, type: 2}
     m_Threshold: 0
-    m_Position: {x: 0, y: 1}
+    m_Position: {x: 0, y: 7}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1150,7 +1144,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 7319c6f2138d69f46a14276380951288, type: 2}
     m_Threshold: 0.33333334
-    m_Position: {x: 0, y: -1}
+    m_Position: {x: 0, y: -7}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1158,7 +1152,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: a52703a9c20df494ba0308e68bd81793, type: 2}
     m_Threshold: 0.6666667
-    m_Position: {x: 1, y: 0}
+    m_Position: {x: 7, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX
@@ -1166,7 +1160,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: d841d967876c168439389430962e6065, type: 2}
     m_Threshold: 1
-    m_Position: {x: -1, y: 0}
+    m_Position: {x: -7, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: JoyX

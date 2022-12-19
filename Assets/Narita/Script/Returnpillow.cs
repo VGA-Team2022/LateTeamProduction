@@ -23,7 +23,8 @@ public class Returnpillow : MonoBehaviour
     [Tooltip("起きるまでの時間をカウントするタイマー")]
     float _getupCountTimer;
     Animator _anim = null;
-    SoundManager _sManager = null;
+    [SerializeField,Tooltip("playerを見つけたときに使用")]
+    SoundManager _sound = null;
     [Tooltip("枕を返されたかどうか、外部参照用")]
     public bool ReturnPillow { get => _returnPillow; set => _returnPillow = value; }
     [Tooltip("枕を返す時のプレイヤーの位置情報、外部参照用")]
@@ -35,7 +36,6 @@ public class Returnpillow : MonoBehaviour
         _returnPillow = false;
         _anim = GetComponent<Animator>();
         collider = GetComponents<Collider2D>();
-        _sManager = FindObjectOfType<SoundManager>();
     }
 
     // Update is called once per frame
@@ -64,6 +64,7 @@ public class Returnpillow : MonoBehaviour
             if (_getupTime<= _getupCountTimer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら + プレイヤーがまだ範囲内にいたら
             {
                 //見つかった時、ゲームオーバーの関数を書く
+                _sound.Discoverd();
                 GetUp(player);
             }
         }

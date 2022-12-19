@@ -33,10 +33,11 @@ public class PlayerController : MonoBehaviour
     public bool _returnPillowInPos = false;
     [SerializeField, Header("枕の横に自動的に移動しているときにtrue"), Tooltip("枕の横に自動的に移動しているときにtrue")]
     bool _autoAnim = false;
-    Rigidbody2D _rb;
+    [SerializeField, Tooltip("スライダーに値を渡すために使用")]
     UIManager _ui = null;
-    GameManager _gm = null;
-    SoundManager _sManager = null;
+    [SerializeField, Tooltip("敵の範囲内に入ったとき、出たときに使用")]
+    SoundManager _sound = null;
+    Rigidbody2D _rb;
     Animator _playerAnim = null;
     [Tooltip("プレイヤーの状態確認、外部参照用")]
     public bool AdultState { get => _adultState; }
@@ -49,9 +50,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _ui = FindObjectOfType<UIManager>();
-        _gm = FindObjectOfType<GameManager>();
-        _sManager = FindObjectOfType<SoundManager>();
         _playerAnim = GetComponent<Animator>();
     }
     // Update is called once per frame
@@ -105,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.TryGetComponent<Returnpillow>(out Returnpillow enemy))
         {
-            _sManager.SleepingVoice();
+            _sound.SleepingVoice();
             _pillowEnemyObject = collision.gameObject;
             _pillowEnemy = enemy;
         }
@@ -113,7 +111,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         InformationReset();
-        _sManager.KillSleeping();
+        _sound.KillSleeping();
     }
 
     private void ModeCheck(float h, float v)
@@ -198,6 +196,5 @@ public class PlayerController : MonoBehaviour
     /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
     public void PlayerFind()
     {
-        _gm.GameOver();
     }
 }

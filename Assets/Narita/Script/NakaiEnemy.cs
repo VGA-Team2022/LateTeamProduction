@@ -118,12 +118,12 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _playerFind = true;
             Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
             _sound.Discoverd();
-            collision.GetComponent<PlayerController>().PlayerFind();
+            player.PlayerFind();
         }
     }
     void AtariPos(int num)

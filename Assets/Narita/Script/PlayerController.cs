@@ -170,12 +170,10 @@ public class PlayerController : MonoBehaviour
                 if (transform.position.x > _returnPillowPos.x)
                 {
                     transform.Translate(Vector2.left * Time.deltaTime * speed);
-                    _rb.velocity = Vector2.left * Time.deltaTime * speed;
                 }
                 else if (transform.position.x < _returnPillowPos.x)
                 {
                     transform.Translate(Vector2.right * Time.deltaTime * speed);
-                    _rb.velocity = Vector2.right * Time.deltaTime * speed;
                 }
             }
             else
@@ -183,12 +181,10 @@ public class PlayerController : MonoBehaviour
                 if (transform.position.y > _returnPillowPos.y)
                 {
                     transform.Translate(Vector2.down * Time.deltaTime * speed);
-                    _rb.velocity = Vector2.down * Time.deltaTime * speed;
                 }
                 else if (transform.position.y < _returnPillowPos.y)
                 {
                     transform.Translate(Vector2.up * Time.deltaTime * speed);
-                    _rb.velocity = Vector2.up * Time.deltaTime * speed;
                 }
             }
         }

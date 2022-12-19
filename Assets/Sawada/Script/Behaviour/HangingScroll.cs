@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(CircleCollider2D))]
 //掛け軸のクラス(起動することで子供と大人が切り替わる)
-public class HangingScroll : MonoBehaviour
+public class HangingScroll : MonoBehaviour,IRevers
 {
     [SerializeField, Tooltip("掛け軸の画像。要素0が子供、要素1が大人")]
     Sprite[] _scrollImages = new Sprite[2];
@@ -19,7 +19,6 @@ public class HangingScroll : MonoBehaviour
     SpriteRenderer _scrollRenderer = null;
 
     //後々修正
-    //GameManager _gameManager = null;
     UIManager _uiManager = null;
     SoundManager _soundManager = null;
     float _waitTime = 1f;
@@ -79,5 +78,10 @@ public class HangingScroll : MonoBehaviour
         //    _scroolText.TextActivate(_playerController);
         //    Debug.Log("Out");
         //}
+    }
+
+    public void ObjectRevers()
+    {
+        throw new NotImplementedException();
     }
 }

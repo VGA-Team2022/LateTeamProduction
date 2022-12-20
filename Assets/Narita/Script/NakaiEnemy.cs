@@ -12,9 +12,9 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     private int _maxNumber = 4;
     [Tooltip("‰ñ“]‚·‚éŠp“x")]
     float _rotateZ = 90f;
-    [SerializeField,Tooltip("ƒiƒJƒC‚Ì“®‚­‘¬‚³")]
+    [SerializeField, Tooltip("ƒiƒJƒC‚Ì“®‚­‘¬‚³")]
     float _moveSpeed = 5f;
-    [SerializeField,Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"),Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
+    [SerializeField, Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"), Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
     float _pointDis = 0.5f;
     [Tooltip("“–‚½‚è”»’è‚ÌƒYƒŒ")]
     float _MisalignmentPos = 0.64f;
@@ -26,7 +26,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     int _pointArrayNumber = 0;
     [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«TrueATrue‚Ì‚É‚ÍƒiƒJƒC‚Í“®‚©‚È‚¢")]
     bool _playerFind = false;
-    [SerializeField,Tooltip("ó‚¯æ‚Á‚½ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚ª_stageLevelBorderˆÈã‚È‚çTrue")]
+    [SerializeField, Tooltip("ó‚¯æ‚Á‚½ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚ª_stageLevelBorderˆÈã‚È‚çTrue")]
     bool _levelBorder = false;
     [Tooltip("ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p,œpœjƒAƒjƒ[ƒVƒ‡ƒ“‚ªˆêü‚µ‚½‚çtrue")]
     bool _lookAround = false;
@@ -36,7 +36,7 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     Vector2 _dir = default;
     [Tooltip("“®‚©‚È‚­‚È‚Á‚½‚ÌÅŒã‚Éi‚ñ‚Å‚¢‚½•ûŒü")]
     Vector2 _lastMoveVelocity = default;
-    [SerializeField,Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Ég—p")]
+    [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Ég—p")]
     SoundManager _sound = null;
     Animator _anim = null;
     Rigidbody2D _rb = null;
@@ -46,54 +46,64 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _sound = FindObjectOfType<SoundManager>();
+        _anim.SetBool("levelBorder", _levelBorder);
     }
 
     // Update is called once per frame
     void Update()
     {
         VelocitySave(_rb.velocity);
-            if (!_playerFind)//ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ä‚¢‚È‚¢
+        if (!_playerFind)//ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ä‚¢‚È‚¢
+        {
+            if (!_levelBorder || !_lookAround && _levelBorder)
             {
-            switch (_number % _maxNumber)//0%4 = 0;1%4 = 1;...
+                switch (_number % _maxNumber)//0%4 = 0;1%4 = 1;...
+                {
+                    case 0:
+                        {
+                            _rb.velocity = Vector2.up * _moveSpeed;
+                            break;
+                        }
+                    case 1:
+                        {
+                            _rb.velocity = Vector2.left * _moveSpeed;
+                            break;
+                        }
+                    case 2:
+                        {
+                            _rb.velocity = Vector2.down * _moveSpeed;
+                            break;
+                        }
+                    case 3:
+                        {
+                            _rb.velocity = Vector2.right * _moveSpeed;
+                            break;
+                        }
+                }
+            }
+            else
             {
-                case 0:
-                    {
-                        _rb.velocity = Vector2.up * _moveSpeed;
-                        break;
-                    }
-                case 1:
-                    {
-                        _rb.velocity = Vector2.left * _moveSpeed;
-                        break;
-                    }
-                case 2:
-                    {
-                        _rb.velocity = Vector2.down * _moveSpeed;
-                        break;
-                    }
-                case 3:
-                    {
-                        _rb.velocity = Vector2.right * _moveSpeed;
-                        break;
-                    }
+                _rb.velocity = Vector2.zero;
             }
         }
+        _anim.SetBool("lookAround", _lookAround);
     }
     /// <summary>“n‚·‘¤‚Í‡”Ô‚É‹C‚ğ•t‚¯‚é‚±‚Æ</summary>
     /// <param name="pointsArray"></param>
-    public void GetPoints(Transform[] pointsArray)
-    {
-        _points = new Transform[pointsArray.Length];
-        for (int i = 0; i < _points.Length; i++)
-        {
-            _points[i] = pointsArray[i];
-        }
-    }
+    //public void GetPoints(Transform[] pointsArray)
+    //{
+    //    _points = new Transform[pointsArray.Length];
+    //    for (int i = 0; i < _points.Length; i++)
+    //    {
+    //        _points[i] = pointsArray[i];
+    //    }
+    //}
     public void GetPlayerLevel(int level)
     {
-        _levelBorder = _stageLevelBorder <= level ? true : false; 
+        _levelBorder = _stageLevelBorder <= level ? true : false;
+        _anim.SetBool("levelBorder", _levelBorder);
     }
- 
+
     public void LookAroundIsActive()//ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p
     {
         _lookAround = !_lookAround;
@@ -107,6 +117,8 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             return;
         _anim.SetFloat("lastVeloX", _lastMoveVelocity.x);//‚Ì‚¿‚É–¼‘O‚ğŒˆ‚ß‚é
         _anim.SetFloat("lastVeloY", _lastMoveVelocity.y);
+        _anim.SetFloat("vertical", Mathf.Abs(_lastMoveVelocity.x));
+        _anim.SetFloat("horizontal", Mathf.Abs(_lastMoveVelocity.y));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -126,15 +138,15 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             player.PlayerFind();
         }
     }
-    void AtariPos(int num)
-    {
-        if(num == 1)
-        {
-            _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos, _atari.transform.localPosition.z);
-        }
-        if(num == 3)
-        {
-            _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos*-1, _atari.transform.localPosition.z);
-        }
-    }
+    //void AtariPos(int num)
+    //{
+    //    if (num == 1)
+    //    {
+    //        _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos, _atari.transform.localPosition.z);
+    //    }
+    //    if (num == 3)
+    //    {
+    //        _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos * -1, _atari.transform.localPosition.z);
+    //    }
+    //}
 }

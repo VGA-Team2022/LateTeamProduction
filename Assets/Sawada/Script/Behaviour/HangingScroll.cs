@@ -10,7 +10,7 @@ public class HangingScroll : MonoBehaviour,IRevers
 {
     [SerializeField, Tooltip("掛け軸の画像。要素0が子供、要素1が大人")]
     Sprite[] _scrollImages = new Sprite[2];
-    [SerializeField, Tooltip("")]
+    [SerializeField, Tooltip("案内のテキスト")]
     ScrollText _scroolText = null; 
 
     [Tooltip("プレイヤーを格納する変数")]
@@ -23,13 +23,13 @@ public class HangingScroll : MonoBehaviour,IRevers
     SoundManager _soundManager = null;
     float _waitTime = 1f;
 
-
+    /// <summary>
+    /// 初期化
+    /// </summary>
     public void Init()
     {
         _scrollRenderer = GetComponentInChildren<SpriteRenderer>();
-        //_gameManager = gameManager;
         _scroolText.TextActivate(_playerController);
-        //_playerController = _gameManager.Player;
 
         //後々修正
         _uiManager = FindObjectOfType<UIManager>();
@@ -72,12 +72,12 @@ public class HangingScroll : MonoBehaviour,IRevers
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //if (collision.gameObject == _gameManager.Player.gameObject)
-        //{
-        //    _playerController = null;
-        //    _scroolText.TextActivate(_playerController);
-        //    Debug.Log("Out");
-        //}
+        if (collision.gameObject.tag == "Player")
+        {
+            _playerController = null;
+            _scroolText.TextActivate(_playerController);
+            Debug.Log("Out");
+        }
     }
 
     public void ObjectRevers()

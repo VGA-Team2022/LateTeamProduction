@@ -35,24 +35,24 @@ public class MapInstance : MonoBehaviour
             new HouseOnSolt(),
             new HouseOnDevilArrow()
         };
+        SetStage();
     }
 
     public void SetStage()
     {
         int[] houseTypeValue = null;
         //用意する家の総数をカウント
-        houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None]
-                                    , _mapData.data[_currentMapLevel][(int)HouseType.Baby]
-                                    , _mapData.data[_currentMapLevel][(int)HouseType.Solt]
-                                    , _mapData.data[_currentMapLevel][(int)HouseType.DevilArrow]
-                                    , _mapData.data[_currentMapLevel][(int)HouseType.DoubleType]};
-        int houseValueSum = houseTypeValue.Sum();
+        houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None + 2]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.Baby + 2]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.Solt + 2]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.DevilArrow + 2]
+                                    , _mapData.data[_currentMapLevel][(int)HouseType.DoubleType + 2]};
 
         _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
         for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
         {
             HouseBehaviour[] houses = null;
-            if ((houseTypeValue[houseTypes]) <= 0) return;
+            if ((houseTypeValue[houseTypes]) <= 0) continue;
             switch ((HouseType)houseTypes)
             {
                 case HouseType.DoubleType:

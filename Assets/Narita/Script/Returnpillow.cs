@@ -12,7 +12,7 @@ public class Returnpillow : MonoBehaviour,IRevers
     [SerializeField, Header("枕を返されたかどうか"), Tooltip("枕を返されたかどうか")]
     bool _returnPillow = false;
     [SerializeField, Header("起きる時間（基準）"), Tooltip("起きる時間（関数内で値を決める）")]
-    float _getupTime = 0f;
+    float _getupTime = 5f;
     //
     [SerializeField, Header("プレイヤーの状態で変化する時間"), Tooltip("プレイヤーが大人の時値を変化させる")]
     float _timeInPlayerStats = 0f;
@@ -47,7 +47,7 @@ public class Returnpillow : MonoBehaviour,IRevers
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _getupCountTimer += Time.deltaTime;
-            if (_getupTime<= _getupCountTimer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら + プレイヤーがまだ範囲内にいたら
+            if (_getupTime <= _getupCountTimer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら + プレイヤーがまだ範囲内にいたら
             {
                 //見つかった時、ゲームオーバーの関数を書く
                 _sound.Discoverd();
@@ -58,7 +58,7 @@ public class Returnpillow : MonoBehaviour,IRevers
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _getupCountTimer -= _getupCountTimer;
+        _getupCountTimer = 0;
     }
     /// <summary>起きる時間を決める、プレイヤーの状態が変化したときに呼ぶ関数</summary>
     /// <param name="time"></param>

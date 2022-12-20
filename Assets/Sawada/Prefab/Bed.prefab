@@ -129,7 +129,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.5}
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 1.8
 --- !u!114 &4412250170729600986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,13 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80abab3569f4b0442b18d672d66f5862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _returnPillouPos:
-  - {fileID: 786904942406222346}
-  - {fileID: 6963375248658328154}
+  _returnPillouPosLeft: {fileID: 6963375248658328154}
+  _returnPillouPosRight: {fileID: 786904942406222346}
   _returnPillow: 0
   _getupTime: 5
   _timeInPlayerStats: 0
   _timeInBaby: 0
+  _sound: {fileID: 0}
 --- !u!95 &1808635530449653856
 Animator:
   serializedVersion: 4

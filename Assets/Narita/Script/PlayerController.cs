@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     bool _autoAnim = false;
     [SerializeField, Header("プレイヤーが動いている時True"), Tooltip("プレイヤーのvelocityが0ではない場合True")]
     bool _playerMove = false;
+    [Tooltip("右側が近いときTrue")]
+    bool _closePos = false;
     [SerializeField, Tooltip("スライダーに値を渡すために使用")]
     UIManager _ui = null;
     [SerializeField, Tooltip("敵の範囲内に入ったとき、出たときに使用")]
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour
             _playerAnim.SetFloat("LastVeloY", _lastMoveVelocity.y);
             _playerAnim.SetBool("playerMove", _playerMove);
             _playerAnim.SetBool("adultState", _adultState);
+            _playerAnim.SetBool("closePos", _closePos);
             _playerAnim.SetBool("returnPillowInPos", _returnPillowInPos);
             _playerAnim.SetBool("autoMode", _autoAnim);
         }
@@ -113,7 +116,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        InformationReset();
+        //InformationReset();
+        _returnCountTime = 0;
+        _ui.ChargeSlider(_returnCountTime);
         _sound.KillSleeping();
     }
 
@@ -153,9 +158,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!_pillowEnemyObject)
             return;
-        _returnPillowPos = Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPos[0].position)
-        >= Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPos[1].position) ?
-        _pillowEnemy.ReturnPillouPos[1].position : _pillowEnemy.ReturnPillouPos[0].position;
+        if (Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPosLeft.position)
+        >= Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPosRight.position))
+        {
+            _returnPillowPos =  _pillowEnemy.ReturnPillouPosRight.position;
+            _closePos = false;
+        }
+        else
+        {
+            _returnPillowPos = _pillowEnemy.ReturnPillouPosLeft.position;
+            _closePos = true;
+        }
+        
     }
     private void TranslatePlayerPos(float speed)
     {

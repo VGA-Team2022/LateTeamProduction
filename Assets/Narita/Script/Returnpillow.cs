@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class Returnpillow : MonoBehaviour,IRevers
 {
     [SerializeField, Header("枕を返す時のプレイヤーの位置"), Tooltip("枕を返す時のプレイヤーの位置情報")]
-    Transform[] _returnPillouPos = new Transform[2];
+    Transform _returnPillouPosLeft;
+    [SerializeField, Header("枕を返す時のプレイヤーの位置"), Tooltip("枕を返す時のプレイヤーの位置情報")]
+    Transform _returnPillouPosRight;
     [SerializeField, Header("枕を返されたかどうか"), Tooltip("枕を返されたかどうか")]
     bool _returnPillow = false;
     [SerializeField, Header("起きる時間（基準）"), Tooltip("起きる時間（関数内で値を決める）")]
@@ -28,8 +30,8 @@ public class Returnpillow : MonoBehaviour,IRevers
     [Tooltip("枕を返されたかどうか、外部参照用")]
     public bool ReturnPillow { get => _returnPillow; set => _returnPillow = value; }
     [Tooltip("枕を返す時のプレイヤーの位置情報、外部参照用")]
-    public Transform[] ReturnPillouPos { get => _returnPillouPos;}
-
+    public Transform ReturnPillouPosLeft { get => _returnPillouPosLeft;}
+    public Transform ReturnPillouPosRight { get => _returnPillouPosRight; }
     // Start is called before the first frame update
     void Start()
     {

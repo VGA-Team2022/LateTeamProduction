@@ -9,6 +9,8 @@ namespace IsGame
     {
         static GameManager _instance = new GameManager();
 
+        PlayerController _player = default;
+
         [Tooltip("残り時間の初期値")] float _timeLimit = 300;
 
         [Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 9;
@@ -31,7 +33,14 @@ namespace IsGame
             }
         }
 
+        public void PlayerSet(PlayerController player)
+        {
+            _player = player;
+        }
+
+
         public int SleepingEnemy { get => _sleepingEnemy; set => _sleepingEnemy = value; }
+        public PlayerController Player { get => _player;}
 
 
         /// <summary>残り時間</summary>

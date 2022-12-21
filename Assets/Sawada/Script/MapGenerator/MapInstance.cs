@@ -5,9 +5,10 @@ using System.Linq;
 using UnityEngine;
 using IsGame;
 
+//マップの自動生成クラス
 public class MapInstance : MonoBehaviour
 {
-    [SerializeField, Tooltip("現在のレベル")]
+    [SerializeField, Tooltip("CSVファイルのパス")]
     string _filePath = null;
     [SerializeField, Tooltip("現在のレベル")]
     int _currentMapLevel = 0;
@@ -26,40 +27,46 @@ public class MapInstance : MonoBehaviour
 
     void Start()
     {
-        _mapData = new MapData(_filePath);
-        _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").ToArray();
-        _houseDatas = new HouseBase[]
+        _mapData = new MapData(_filePath);　//CSVデータの読み込み
+        _houseBases = Resources.LoadAll<HouseBehaviour>("HousePrefab").ToArray();　//家のプレハブデータの取得
+        _houseDatas = new HouseBase[]　//家の挙動を決めるクラスの配列を生成
         {
             new HouseBase(),
             new HouseInBaby(),
             new HouseOnSolt(),
             new HouseOnDevilArrow()
         };
+        _insPos = GetComponentsInChildren<Transform>()　　//生成地点の取得
+            .Where(x => x.tag == "SpawnPos")
+            .Select(x => new SpawnPosState(x))
+            .ToArray();
         SetStage();
     }
 
+    /// <summary>
+    /// ステージの自動生成する関数
+    /// </summary>
     public void SetStage()
     {
-        int[] houseTypeValue = null;
-        //用意する家の総数をカウント
-        houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None + 2]
+        //用意する家の数を配列で一時保存
+        int[] houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.Baby + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.Solt + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.DevilArrow + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.DoubleType + 2]};
 
-        _insPos = GetComponentsInChildren<Transform>().Where(x => x.tag == "SpawnPos").Select(x => new SpawnPosState(x)).ToArray();
+        //ゲームに存在する家の種類の数だけ回し、それぞれ指定された数だけ生成する
         for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
         {
             HouseBehaviour[] houses = null;
-            if ((houseTypeValue[houseTypes]) <= 0) continue;
+            if ((houseTypeValue[houseTypes]) <= 0) continue;　//生成する数が０だった場合continueで飛ばす
             switch ((HouseType)houseTypes)
             {
                 case HouseType.DoubleType:
-                    houses = CreateHouse(HouseType.Solt, HouseType.DevilArrow, houseTypeValue[houseTypes]);
+                    houses = CreateHouse(HouseType.Solt, HouseType.DevilArrow, houseTypeValue[houseTypes]);　//二つ以上の要素がある家を生成
                     break;
                 default:
-                    houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);
+                    houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);　//一つ以上の要素がある家を生成
                     break;
             }
             SetHouse(houses);
@@ -107,16 +114,16 @@ public class MapInstance : MonoBehaviour
     {
         for (int i = 0; i < houses.Length; i++)
         {
-            SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();
-            SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];
+            SpawnPosState[] unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();　//使われていない座標を配列で取得
+            SpawnPosState targetPos = unUsePosValue[_random.Next(unUsePosValue.Length)];　//配列の中からランダムに要素を取得
             houses[i].transform.position = targetPos.spawnPos.position;
             houses[i].transform.rotation = targetPos.spawnPos.rotation;
-            targetPos.State = SpawnPosState.SpawnState.used;
+            targetPos.State = SpawnPosState.SpawnState.used; //使われた要素の状態を更新する
         }
     }
 }
 
-//家をセットする座標の状態
+//家をセットする座標とその状態を保持するクラス
 public class SpawnPosState
 {
     public Transform spawnPos;

@@ -1252,5 +1252,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSceneName: MastarGameScene
-  _fadePanel: {fileID: 931033674}
+  _fadePanel: {fileID: 0}
   _fadetime: 1

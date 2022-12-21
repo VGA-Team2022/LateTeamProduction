@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8200373144944012955}
   - component: {fileID: 8200373144944012952}
   - component: {fileID: 8200373144944012948}
-  - component: {fileID: 8200373144944012951}
   - component: {fileID: 8200373144944012950}
+  - component: {fileID: 1585636293}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -129,32 +129,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &8200373144944012951
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8200373144944012953}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 2.56}
-    newSize: {x: 1.28, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 2.56}
-  m_EdgeRadius: 0
 --- !u!114 &8200373144944012950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +145,25 @@ MonoBehaviour:
   _childMoveSpeed: 10
   _adultMoveSpeed: 15
   _toleranceDis: 0.5
-  _adultState: 0
+  _adultState: 1
   _returnPillowInPos: 0
   _autoAnim: 0
+  _playerMove: 0
+  _ui: {fileID: 0}
+  _sound: {fileID: 0}
+--- !u!70 &1585636293
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8200373144944012953}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0}
+  m_Size: {x: 1, y: 2.29}
+  m_Direction: 0

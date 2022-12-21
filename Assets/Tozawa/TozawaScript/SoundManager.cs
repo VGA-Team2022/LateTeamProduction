@@ -39,6 +39,10 @@ public class SoundManager : MonoBehaviour
     UnityEvent _onGauging;
     [Header("ƒQ[ƒWã¸’â~‚ÉŒÄ‚Î‚ê‚é‚×‚«ˆ—"), SerializeField, Tooltip("ƒQ[ƒWã¸’â~‚Ìˆ—‚ªŠi”[‚³‚ê‚½UnityEvent")]
     UnityEvent _onGaugeStop;
+    private void Start()
+    {
+        GameStart();
+    }
     /// <summary>
     /// ƒQ[ƒ€ŠJn‚Ì‚Éˆê‰ñŒÄ‚ñ‚Å‚­‚¾‚³‚¢
     /// </summary>

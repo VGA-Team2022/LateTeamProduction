@@ -25,7 +25,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
 
     private void Start()
     {
-        ///CreateHouseObject(new HouseBase());
+        //CreateHouseObject(new HouseBase());
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +50,9 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         }
     }
 
+    /// <summary>
+    /// コンポーネント有効時に呼ぶ関数
+    /// </summary>
     public void Activate()
     {
         Array.ForEach(_collidersInHouse, x => x.enabled = true);
@@ -65,7 +68,10 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         Array.ForEach(_renderersInHouse, x => x.enabled = false);
         Array.ForEach(_returnPillows, x => x.enabled = false);
     }
-
+    /// <summary>
+    /// コンポーネント生成時に呼ぶ関数
+    /// </summary>
+    /// <param name="house1"></param>
     public virtual void CreateHouseObject(HouseBase house1)
     {
         _hangingScroll.Init();

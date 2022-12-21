@@ -13,6 +13,8 @@ public class MapInstance : MonoBehaviour
     [SerializeField, Tooltip("現在のレベル")]
     int _currentMapLevel = 0;
 
+    [Tooltip("家の総数")]
+    int[] _houseTypeValue  = null;
     [Tooltip("Transformをランダムで指定する為の変数")]
     System.Random _random = new System.Random();
     [Tooltip("マップデータ")]
@@ -23,6 +25,8 @@ public class MapInstance : MonoBehaviour
     HouseBehaviour[] _houseBases = null;
     [Tooltip("家のデータの配列")]
     HouseBase[] _houseDatas = null;
+
+    public int AllHouseValue => _houseTypeValue.Sum();
 
 
     void Start()
@@ -49,24 +53,25 @@ public class MapInstance : MonoBehaviour
     public void SetStage()
     {
         //用意する家の数を配列で一時保存
-        int[] houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None + 2]
+         _houseTypeValue = new int[5] { _mapData.data[_currentMapLevel][(int)HouseType.None + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.Baby + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.Solt + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.DevilArrow + 2]
                                     , _mapData.data[_currentMapLevel][(int)HouseType.DoubleType + 2]};
 
+
         //ゲームに存在する家の種類の数だけ回し、それぞれ指定された数だけ生成する
-        for (int houseTypes = 0; houseTypes < houseTypeValue.Length; houseTypes++)
+        for (int houseTypes = 0; houseTypes < _houseTypeValue.Length; houseTypes++)
         {
             HouseBehaviour[] houses = null;
-            if ((houseTypeValue[houseTypes]) <= 0) continue;　//生成する数が０だった場合continueで飛ばす
+            if ((_houseTypeValue[houseTypes]) <= 0) continue;　//生成する数が０だった場合continueで飛ばす
             switch ((HouseType)houseTypes)
             {
                 case HouseType.DoubleType:
-                    houses = CreateHouse(HouseType.Solt, HouseType.DevilArrow, houseTypeValue[houseTypes]);　//二つ以上の要素がある家を生成
+                    houses = CreateHouse(HouseType.Solt, HouseType.DevilArrow, _houseTypeValue[houseTypes]);　//二つ以上の要素がある家を生成
                     break;
                 default:
-                    houses = CreateHouse((HouseType)houseTypes, houseTypeValue[houseTypes]);　//一つ以上の要素がある家を生成
+                    houses = CreateHouse((HouseType)houseTypes, _houseTypeValue[houseTypes]);　//一つ以上の要素がある家を生成
                     break;
             }
             SetHouse(houses);
@@ -120,6 +125,14 @@ public class MapInstance : MonoBehaviour
             houses[i].transform.rotation = targetPos.spawnPos.rotation;
             targetPos.State = SpawnPosState.SpawnState.used; //使われた要素の状態を更新する
         }
+    }
+
+    /// <summary>
+    /// ゲーム終了時に値をリセットする関数
+    /// </summary>
+    public　void ResetValue()
+    {
+        _houseTypeValue = null;
     }
 }
 

@@ -124,7 +124,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     {
         //Debug.Log("rotate");
         //Debug.Log(_lastMoveVelocity);
-        _atari.transform.Rotate(0.0f, 0.0f, _rotateZ);
         _number++;
     }
 

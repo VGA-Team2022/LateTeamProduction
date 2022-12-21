@@ -28945,6 +28945,7 @@ MonoBehaviour:
   _gameOverUI: {fileID: 7755020348273353171}
   _clearTimeText: {fileID: 1696254145}
   _cutIn: {fileID: 6082162861441423599}
+  _soundManager: {fileID: 0}
 --- !u!4 &1654339269
 Transform:
   m_ObjectHideFlags: 0

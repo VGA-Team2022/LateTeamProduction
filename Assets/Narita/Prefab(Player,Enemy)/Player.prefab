@@ -145,7 +145,7 @@ MonoBehaviour:
   _childMoveSpeed: 10
   _adultMoveSpeed: 15
   _toleranceDis: 0.5
-  _adultState: 1
+  _adultState: 0
   _returnPillowInPos: 0
   _autoAnim: 0
   _playerMove: 0

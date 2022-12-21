@@ -20,11 +20,12 @@ public class Returnpillow : MonoBehaviour,IRevers
     [SerializeField, Header("部屋の中に赤ん坊がいた場合変化する時間")]
     float _timeInBaby = 0f;
     //,「//」で囲っている変数はこのscriptが持つべきなのかわからないが、話に上がっているのにどこにも存在しないため定義している。
-    [Tooltip("当たり判定の配列")]
-    Collider2D[] collider = null;
     [Tooltip("起きるまでの時間をカウントするタイマー")]
     float _getupCountTimer;
     Animator _anim = null;
+    [Tooltip("当たり判定の配列")]
+    Collider2D[] collider = null;
+    SleepingEnemyAnimControle _sleepHumanController = null;
     [SerializeField,Tooltip("playerを見つけたときに使用")]
     SoundManager _sound = null;
     [Tooltip("枕を返されたかどうか、外部参照用")]
@@ -36,6 +37,7 @@ public class Returnpillow : MonoBehaviour,IRevers
     void Start()
     {
         _returnPillow = false;
+        _sleepHumanController = GetComponent<SleepingEnemyAnimControle>();
         _anim = GetComponent<Animator>();
         collider = GetComponents<Collider2D>();
     }
@@ -47,11 +49,19 @@ public class Returnpillow : MonoBehaviour,IRevers
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _getupCountTimer += Time.deltaTime;
-            if (_getupTime <= _getupCountTimer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら + プレイヤーがまだ範囲内にいたら
+            if (_getupTime <= _getupCountTimer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら 
             {
-                //見つかった時、ゲームオーバーの関数を書く
-                _sound.Discoverd();
-                player.PlayerFind();
+                _sleepHumanController.Awake();
+                if (collision.TryGetComponent<PlayerController>(out PlayerController p))//プレイヤーがまだ範囲内にいたら
+                {
+                    _sound.Discoverd();
+                    _sleepHumanController.Discover();
+                    player.PlayerFind();
+                }
+                else
+                {
+                    _sleepHumanController.Sleeping();
+                }
             }
         }
     }

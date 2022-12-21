@@ -25,7 +25,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
 
     private void Start()
     {
-        //CreateHouseObject(new HouseBase());
+        CreateHouseObject(new HouseBase());
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)

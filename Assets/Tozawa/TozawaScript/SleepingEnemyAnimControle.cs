@@ -13,7 +13,7 @@ public class SleepingEnemyAnimControle : MonoBehaviour
     /// <summary>
     /// Q‚Ä‚¢‚é“G‚ª‹N‚«‚½‚Æ‚«‚ÉŒÄ‚ñ‚Å‚­‚¾‚³‚¢
     /// </summary>
-    public void Awake()
+    public void Awaken()
     {
         _bodyAnim.SetTrigger("IsAwake");
         _reactionAnim.SetTrigger("IsAwake");

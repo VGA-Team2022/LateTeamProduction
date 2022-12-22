@@ -11,6 +11,8 @@ public class Returnpillow : MonoBehaviour,IRevers
     Transform _returnPillouPosRight;
     [SerializeField, Header("枕を返されたかどうか"), Tooltip("枕を返されたかどうか")]
     bool _returnPillow = false;
+    [SerializeField,Header("起きたかどうか"),Tooltip("起きたかどうか")]
+    bool _getUp = false;
     [SerializeField, Header("起きる時間（基準）"), Tooltip("起きる時間（関数内で値を決める）")]
     float _getupTime = 5f;
     //
@@ -22,7 +24,9 @@ public class Returnpillow : MonoBehaviour,IRevers
     //,「//」で囲っている変数はこのscriptが持つべきなのかわからないが、話に上がっているのにどこにも存在しないため定義している。
     [Tooltip("起きるまでの時間をカウントするタイマー")]
     float _getupCountTimer;
-    Animator _anim = null;
+    [SerializeField,Tooltip("reactionのanimator"),Header("リアクションするときに使うアニメーター")]
+    Animator _reactionAnim = null;
+    Animator _returnPillowAnim = null;
     [Tooltip("当たり判定の配列")]
     Collider2D[] collider = null;
     SleepingEnemyAnimControle _sleepHumanController = null;
@@ -38,7 +42,7 @@ public class Returnpillow : MonoBehaviour,IRevers
     {
         _returnPillow = false;
         _sleepHumanController = GetComponent<SleepingEnemyAnimControle>();
-        _anim = GetComponent<Animator>();
+        _returnPillowAnim = GetComponent<Animator>();
         collider = GetComponents<Collider2D>();
     }
 
@@ -51,16 +55,15 @@ public class Returnpillow : MonoBehaviour,IRevers
             _getupCountTimer += Time.deltaTime;
             if (_getupTime <= _getupCountTimer && _returnPillow)//制限時間を超えた + 枕を返されていなかったら 
             {
-                _sleepHumanController.Awake();
+                _sleepHumanController.Awaken();
+                _returnPillowAnim.SetFloat("getUpTime", _getupCountTimer);
                 if (collision.TryGetComponent<PlayerController>(out PlayerController p))//プレイヤーがまだ範囲内にいたら
                 {
+                    _getUp = true;
+                    _returnPillowAnim.SetBool("getUp", _getUp);
                     _sound.Discoverd();
                     _sleepHumanController.Discover();
                     player.PlayerFind();
-                }
-                else
-                {
-                    _sleepHumanController.Sleeping();
                 }
             }
         }
@@ -85,8 +88,8 @@ public class Returnpillow : MonoBehaviour,IRevers
     public void ObjectRevers()
     {
         _returnPillow = true;
-        if (_anim)
-            _anim.SetBool("returnPillowPlay", _returnPillow);
+        if (_returnPillowAnim)
+            _returnPillowAnim.SetBool("returnPillowPlay", _returnPillow);
         foreach (var col in collider)
         {
             col.enabled = false;

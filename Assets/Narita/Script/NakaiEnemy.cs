@@ -10,30 +10,26 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     int _number = 0;
     [Tooltip("_number‚ÌÅ‘å’l")]
     private int _maxNumber = 4;
-    [Tooltip("‰ñ“]‚·‚éŠp“x")]
-    float _rotateZ = 90f;
     [SerializeField, Tooltip("ƒiƒJƒC‚Ì“®‚­‘¬‚³")]
     float _moveSpeed = 5f;
     [SerializeField, Header("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T"), Tooltip("–Ú•W‚Æ‚Ì‹——£‚Ì—]—T")]
     float _pointDis = 0.5f;
-    [Tooltip("“–‚½‚è”»’è‚ÌƒYƒŒ")]
-    float _MisalignmentPos = 0.64f;
-    [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚é‚½‚ß‚Ì“–‚½‚è”»’è")]
-    GameObject _atari = null;
+    //[SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚é‚½‚ß‚Ì“–‚½‚è”»’è")]
+    //GameObject _atari = null;
     [Tooltip("ƒiƒJƒC‚Ì“®‚«‚ª•Ï‚í‚é‚ÌƒXƒe[ƒW‚ÌƒŒƒxƒ‹")]
     int _stageLevelBorder = 0;
-    [Tooltip("ó‚¯æ‚Á‚½point‚Ì—v‘f”Ô†")]
-    int _pointArrayNumber = 0;
+    //[Tooltip("ó‚¯æ‚Á‚½point‚Ì—v‘f”Ô†")]
+    //int _pointArrayNumber = 0;
     [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«TrueATrue‚Ì‚É‚ÍƒiƒJƒC‚Í“®‚©‚È‚¢")]
     bool _playerFind = false;
     [SerializeField, Tooltip("ó‚¯æ‚Á‚½ƒXƒe[ƒW‚ÌƒŒƒxƒ‹‚ª_stageLevelBorderˆÈã‚È‚çTrue")]
     bool _levelBorder = false;
     [Tooltip("ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p,œpœjƒAƒjƒ[ƒVƒ‡ƒ“‚ªˆêü‚µ‚½‚çtrue")]
     bool _lookAround = false;
-    [Tooltip("ŠO•”‚©‚çó‚¯æ‚éAœpœj‚·‚éˆÊ’uî•ñ")]
-    Transform[] _points = null;
-    [Tooltip("ˆÚ“®•ûŒü‚Ö‚Ì‘¬“xŒvZŒ‹‰Ê")]
-    Vector2 _dir = default;
+    //[Tooltip("ŠO•”‚©‚çó‚¯æ‚éAœpœj‚·‚éˆÊ’uî•ñ")]
+    //Transform[] _points = null;
+    //[Tooltip("ˆÚ“®•ûŒü‚Ö‚Ì‘¬“xŒvZŒ‹‰Ê")]
+    //Vector2 _dir = default;
     [Tooltip("“®‚©‚È‚­‚È‚Á‚½‚ÌÅŒã‚Éi‚ñ‚Å‚¢‚½•ûŒü")]
     Vector2 _lastMoveVelocity = default;
     [SerializeField, Tooltip("player‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Ég—p")]

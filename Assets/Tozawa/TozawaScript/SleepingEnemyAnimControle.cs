@@ -18,14 +18,17 @@ public class SleepingEnemyAnimControle : MonoBehaviour
         _bodyAnim.SetTrigger("IsAwake");
         _reactionAnim.SetTrigger("IsAwake");
     }
+    ///// <summary>
+    ///// Ä“xQ‚é‚ÉŒÄ‚ñ‚Å‚­‚¾‚³‚¢
+    ///// </summary>
+    //public void Sleeping()
+    //{
+    //    _bodyAnim.SetTrigger("IsSleep");
+    //    _reactionAnim.SetTrigger("IsSleep");
+    //}
     /// <summary>
-    /// Ä“xQ‚é‚ÉŒÄ‚ñ‚Å‚­‚¾‚³‚¢
+    /// ‹N‚«‚½‚Æ‚«‚ÉŒÄ‚Ô
     /// </summary>
-    public void Sleeping()
-    {
-        _bodyAnim.SetTrigger("IsSleep");
-        _reactionAnim.SetTrigger("IsSleep");
-    }
     public void Discover()
     {
         _bodyAnim.SetTrigger("IsDiscover");

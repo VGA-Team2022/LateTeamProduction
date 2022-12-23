@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy_A_Angry
+  m_Name: SleepingEnemyAngry
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f6eb9ff9ff81c6143ba8d82e84d8043c, type: 3}
+      value: {fileID: 21300000, guid: f54d81f96fbba964a9c82c6a1c849c69, type: 3}
     attribute: m_Sprite
     path: 
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: f6eb9ff9ff81c6143ba8d82e84d8043c, type: 3}
+    attribute: m_Sprite
+    path: EnemyReaction
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -39,7 +46,15 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 262971856
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: 21300000, guid: f54d81f96fbba964a9c82c6a1c849c69, type: 3}
     - {fileID: 21300000, guid: f6eb9ff9ff81c6143ba8d82e84d8043c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2

@@ -48,8 +48,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
         _sound = FindObjectOfType<SoundManager>();
         _anim.SetBool("levelBorder", _levelBorder);
     }
-
-    // Update is called once per frame
     void Update()
     {
         VelocitySave(_rb.velocity);
@@ -122,8 +120,6 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("rotate");
-        //Debug.Log(_lastMoveVelocity);
         _number++;
     }
 
@@ -137,15 +133,4 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             player.PlayerFind();
         }
     }
-    //void AtariPos(int num)
-    //{
-    //    if (num == 1)
-    //    {
-    //        _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos, _atari.transform.localPosition.z);
-    //    }
-    //    if (num == 3)
-    //    {
-    //        _atari.transform.localPosition = new Vector3(_atari.transform.localPosition.x, _MisalignmentPos * -1, _atari.transform.localPosition.z);
-    //    }
-    //}
 }

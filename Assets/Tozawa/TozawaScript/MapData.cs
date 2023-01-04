@@ -7,7 +7,7 @@ using System.Linq;
 public class MapData
 {
     [Tooltip("CSVのデータを公開するための変数")]
-    public int[][] data = null;
+    public List<int[]> data = new List<int[]>();
     /// <summary>
     /// このコンストラクタでCSVのデータを読み取る
     /// CSV側でデータの説明をしているので0列目は破棄する
@@ -15,19 +15,19 @@ public class MapData
     /// <param name="filePath">ファイルのパス</param>
     public MapData(string filePath)
     {
-        if (!File.Exists(filePath))//パスの先に該当ファイルがない場合にエラーログ
+        TextAsset file = Resources.Load<TextAsset>(filePath);
+        if (!file)//パスの先に該当ファイルがない場合にエラーログ
         {
             Debug.LogError("!Warning! Your security clearance is not allowed to view this file.");
             return;
         }
-        StreamReader reader = new StreamReader(filePath);
-        string rows2Bdiscarded = reader.ReadLine(); //一行目破棄 
-        while(!reader.EndOfStream)
+        StringReader reader = new StringReader(file.text);
+        reader.ReadLine(); //一行目破棄 
+        string rows2Bdiscarded;
+        while((rows2Bdiscarded = reader.ReadLine()) != null)
         {
-            int i = 0;
-            var line = reader.ReadLine().Split(',').Select(x=>int.Parse(x)).ToArray(); //一行ごとに読み込み
-            data[i]= line;
-            i++;
+            var line = rows2Bdiscarded.Split(',').Select(x=>int.Parse(x)).ToArray(); //一行ごとに読み込み
+            data.Add(line);
         }
     }
     public enum MapElemantEntity

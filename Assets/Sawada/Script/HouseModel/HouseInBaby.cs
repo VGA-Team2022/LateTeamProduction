@@ -6,10 +6,10 @@ using UniRx;
 
 public class HouseInBaby : HouseBase
 {
-    public override void Init<T>(T house)
+    float _newGetUp = 0.8f;
+    public override void Initialize<T>(T house)
     {
-        base.Init(house);
-        house.ReturnPillows.ToList().ForEach(x => x.GetUpTimeAndTimeInPlayerStats(_getUpTime));
-
+        base.Initialize(house);
+        house.ReturnPillows.ToList().ForEach(x => x.GetUpTimeAndTimeInPlayerStats(house.GetUpTime * _newGetUp));
     }
 }

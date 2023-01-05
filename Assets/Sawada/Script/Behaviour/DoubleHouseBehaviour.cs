@@ -31,8 +31,8 @@ public class DoubleHouseBehaviour : HouseBehaviour
 
     public  void CreateHouseObject(HouseBase house1, HouseBase house2)
     {
-        house1.Init(this);
-        house2.Init(this);
+        house1.Initialize(this);
+        house2.Initialize(this);
         _data1 = house1;
         _data2 = house2;
     }

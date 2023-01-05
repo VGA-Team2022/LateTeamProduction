@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UniRx;
+using IsGame;
 
 
 public class HouseOnSolt : HouseBase
@@ -13,9 +12,9 @@ public class HouseOnSolt : HouseBase
     [Tooltip("ドアのオブジェクトのColliderの配列")]
     Collider2D[] _doorColliers = null;
 
-    public override void Init<T>(T house)
+    public override void Initialize<T>(T house)
     {
-        base.Init(house);
+        base.Initialize(house);
         //取得(ドアのオブジェクトには”Door”というタグを付けてください)
         _doorColliers = house.ColidersInHouse.Where(x => x.tag == "Door").ToArray();
         _doorRenderers = new Renderer[_doorColliers.Length];
@@ -36,7 +35,7 @@ public class HouseOnSolt : HouseBase
         base.PlayerInHouseMotion(player);
         if (!player.AdultState)
         {
-            
+            GameManager.Instance.GameOver();
         }
     }
 }

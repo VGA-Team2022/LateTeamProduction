@@ -7,10 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HouseBase
 {
-    [Tooltip("‹N‚«‚éŽžŠÔ")]
-    protected float _getUpTime = 10f;
 
-    public virtual void Init<T>(T house) where T : HouseBehaviour { }
+    public virtual void Initialize<T>(T house) where T : HouseBehaviour 
+    {
+        house.ReturnPillows.ToList().ForEach(x => x.GetUpTimeAndTimeInPlayerStats(house.GetUpTime));
+    }
     public virtual void PlayerEntryHouseMotion(PlayerController player) { }
     public virtual void PlayerInHouseMotion(PlayerController player) { }
     public virtual void PlayerExitHouseMotion(PlayerController player) { }
@@ -23,12 +24,13 @@ public class HouseBase
     /// <returns></returns>
     public int SetPillow(Returnpillow[] returnPillows, int allPillowValue)
     {
-        int pillowValue = allPillowValue >= returnPillows.Length ? pillowValue = UnityEngine.Random.Range(1, 4) : pillowValue = allPillowValue;
+        int pillowValue
+            = allPillowValue >= returnPillows.Length 
+            ? pillowValue = UnityEngine.Random.Range(1, 4) : pillowValue = allPillowValue;
         for (int i = 0; i < pillowValue; i++)
         {
-            returnPillows[i].enabled = true;
+            returnPillows[i].gameObject.SetActive(true);
         }
-        Array.ForEach(returnPillows, x => x.GetUpTimeAndTimeInPlayerStats(_getUpTime));
         allPillowValue -= pillowValue;
         return allPillowValue;
     }

@@ -26,7 +26,7 @@ public class HangingScroll : MonoBehaviour,IRevers
     /// <summary>
     /// ‰Šú‰»
     /// </summary>
-    public void Init()
+    public void Initialize()
     {
         _scrollRenderer = GetComponentInChildren<SpriteRenderer>();
         _scroolText.TextActivate(_playerController);

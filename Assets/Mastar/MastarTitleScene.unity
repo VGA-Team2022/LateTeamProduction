@@ -203,6 +203,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549943551}
   m_CullTransparentMesh: 1
+--- !u!1 &644283487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5707212560936120683, guid: e4904614ca12bcf43b5ba8ba87495cd3, type: 3}
+  m_PrefabInstance: {fileID: 787738509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &644283489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644283487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnStart: 0
+  _regionOnStart: {fileID: 0}
+  _listenerOnStart: {fileID: 0}
+  _use3dPositioning: 1
+  _freezeOrientation: 0
+  _loop: 0
+  _volume: 1
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  _use3dRandomization: 0
+  _randomPositionListMaxLength: 0
+  randomize3dConfig:
+    followsOriginalSource: 0
+    calculationType: 0
+    calculationParameters:
+    - 0
+    - 0
+    - 0
+  _cueName: SE_Decison
+  _cueSheet: CueSheet_0 (1)
 --- !u!1 &726417994
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +376,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1156066637976396536, guid: e4904614ca12bcf43b5ba8ba87495cd3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4904614ca12bcf43b5ba8ba87495cd3, type: 3}
 --- !u!1 &931033672
 GameObject:
@@ -641,6 +680,93 @@ MonoBehaviour:
     - 0
   _cueName: SE_Makura
   _cueSheet: CueSheet_0 (3)
+--- !u!114 &1501045006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3072198765928632561, guid: e4904614ca12bcf43b5ba8ba87495cd3, type: 3}
+  m_PrefabInstance: {fileID: 787738509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501045002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272a8a56b1425714cbd5006367c159c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1666409826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666409829}
+  - component: {fileID: 1666409828}
+  - component: {fileID: 1666409827}
+  m_Layer: 5
+  m_Name: fadePanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1666409827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666409826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1666409828
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666409826}
+  m_CullTransparentMesh: 1
+--- !u!224 &1666409829
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666409826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2049599801}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1714879893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1222,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1501045006}
+        m_TargetAssemblyTypeName: TittleSound, Assembly-CSharp
+        m_MethodName: AudioPlay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 644283489}
+          m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2024868894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,6 +1369,7 @@ RectTransform:
   - {fileID: 2024868892}
   - {fileID: 1091622084}
   - {fileID: 2000981342}
+  - {fileID: 1666409829}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1252,5 +1391,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSceneName: MastarGameScene
-  _fadePanel: {fileID: 0}
-  _fadetime: 1
+  _fadePanel: {fileID: 1666409827}
+  _fadetime: 3

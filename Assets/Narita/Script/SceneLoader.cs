@@ -11,8 +11,10 @@ public class SceneLoader : MonoBehaviour
     string _loadSceneName = "sceneの名前";
     [SerializeField] 
     Image _fadePanel = null;
-    [SerializeField] 
-    float _fadetime = 1f;
+    [SerializeField,Header("シーン開始時のパネルの色が変わる時間")] 
+    float _fastFadeTime = 1f;
+    [SerializeField,Header("ボタンを押した後のパネルの色が変わる時間")]
+    float _loadFadeTime = 1f;
     bool _loadStart = false;
 
 
@@ -30,7 +32,7 @@ public class SceneLoader : MonoBehaviour
     }
     void StartFade()
     {
-        _fadePanel.DOColor(Color.clear, _fadetime);
+        _fadePanel.DOColor(Color.clear, _fastFadeTime);
     }
     public void LoadScene()
     {//リロード以外はこの関数を呼ぶ
@@ -45,7 +47,7 @@ public class SceneLoader : MonoBehaviour
     {//この中で指定された名前のシーンに飛ぶ。
         if (_fadePanel)
         {
-            _fadePanel.DOColor(Color.black, _fadetime).OnComplete(() => SceneManager.LoadScene(sceneName));
+            _fadePanel.DOColor(Color.black, _loadFadeTime).OnComplete(() => SceneManager.LoadScene(sceneName));
             _loadStart = false;
             Debug.Log("遷移完了");
         }

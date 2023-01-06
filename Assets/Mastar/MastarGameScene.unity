@@ -27081,11 +27081,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397173758}
   m_CullTransparentMesh: 1
---- !u!4 &1441060022 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6049236229621890219, guid: acaf29c07fe60d04b83bb2f7a7159402, type: 3}
-  m_PrefabInstance: {fileID: 6049236228210812957}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1464299977
 GameObject:
   m_ObjectHideFlags: 0
@@ -27213,54 +27208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1441060022}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!114 &1515255488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28530,7 +28477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296571787162833180, guid: 3c15a31b2edf1d842a551825570725a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2296571787162833180, guid: 3c15a31b2edf1d842a551825570725a2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28678,6 +28625,10 @@ PrefabInstance:
     - target: {fileID: 4100603236979445683, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
       propertyPath: m_Name
       value: GameOverPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100603236979445683, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
@@ -29114,6 +29065,10 @@ PrefabInstance:
     - target: {fileID: 6411402990296471997, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
       propertyPath: m_Name
       value: ClearPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411402990296471997, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6411402990296471998, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
       propertyPath: m_Pivot.x

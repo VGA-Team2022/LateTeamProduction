@@ -118,7 +118,7 @@ public class MapInstance : MonoBehaviour
         for (int i = 0; i < targetHouseValue; i++)
         {
             houses[i] = Instantiate((DoubleHouseBehaviour)_houseBases[1]);
-            houses[i].CreateHouseObject(_houseDatas[(int)type1], _houseDatas[(int)type2]);
+            houses[i].CreateHouseObject(this,_houseDatas[(int)type1], _houseDatas[(int)type2]);
         }
         return houses;
     }

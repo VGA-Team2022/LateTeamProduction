@@ -13,7 +13,7 @@ namespace IsGame
 
         [Tooltip("残り時間の初期値")] float _timeLimit = 300;
 
-        [Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 0;
+        [Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 9;
 
 
 

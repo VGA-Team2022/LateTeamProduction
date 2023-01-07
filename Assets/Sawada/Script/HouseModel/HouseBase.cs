@@ -34,9 +34,6 @@ public class HouseBase
         allPillowValue -= pillowValue;
         return allPillowValue;
     }
-    /// <summary>
-    ///　コンポーネント有効時に呼ぶ関数
-    /// </summary>
 
 }
 public enum HouseType

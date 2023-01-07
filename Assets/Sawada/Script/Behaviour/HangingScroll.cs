@@ -84,4 +84,16 @@ public class HangingScroll : MonoBehaviour,IRevers
     {
         throw new NotImplementedException();
     }
+
+    public void RendererChange(PlayerController player)
+    {
+        if (player.AdultState)
+        {
+            _scrollRenderer.sprite = _scrollImages[0];
+        }
+        else
+        {
+            _scrollRenderer.sprite = _scrollImages[1];
+        }
+    }
 }

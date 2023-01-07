@@ -29,11 +29,10 @@ public class DoubleHouseBehaviour : HouseBehaviour
         }
     }
 
-    public  void CreateHouseObject(HouseBase house1, HouseBase house2)
+    public  void CreateHouseObject(MapInstance mapInstance, HouseBase house1, HouseBase house2)
     {
-        house1.Initialize(this);
+        base.CreateHouseObject(mapInstance, house1);
         house2.Initialize(this);
-        _data1 = house1;
         _data2 = house2;
     }
 }

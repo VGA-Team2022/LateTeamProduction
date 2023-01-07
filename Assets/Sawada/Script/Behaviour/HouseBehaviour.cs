@@ -26,7 +26,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
 
     private void Start()
     {
-        //CreateHouseObject(new HouseBase());
+        CreateHouseObject(new HouseBase());
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -34,6 +34,7 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _data1.PlayerEntryHouseMotion(player);
+            _hangingScroll.RendererChange(player);
         }
     }
     public virtual void OnTriggerStay2D(Collider2D collision)
@@ -78,16 +79,17 @@ public class HouseBehaviour : MonoBehaviour,IHousePool
         _data1 = house1;
         _data1.Initialize(this);
         int remainPillows = _data1.SetPillow(_returnPillows,mapInstance.AllPillowValue);
-        Array.ForEach(_returnPillows, x => x.gameObject.transform.rotation = Quaternion.identity);
+        Array.ForEach(_returnPillows, x => x.gameObject.transform.Rotate(Vector3.zero,Space.World));
         Array.ForEach(_returnPillows, x => x.gameObject.SetActive(false));
         _hangingScroll.Initialize();
 
         return remainPillows;
     }
 
-    /// <summary>
-    /// –‚ğ‹N“®‚³‚¹‚éŠÖ”
-    /// </summary>
-    /// <returns>‹N“®‚³‚¹‚½–‚Ì”</returns>
-    
+    public void CreateHouseObject(HouseBase house1)
+    {
+        _data1 = house1;
+        _data1.Initialize(this);
+        _hangingScroll.Initialize();
+    }
 }

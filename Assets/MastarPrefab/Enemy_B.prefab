@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b031755ca0625204c908f418991d3007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nakaiSprite: {fileID: 2033310978912401063}
   _moveSpeed: 3
   _pointDis: 0.5
-  _atari: {fileID: 0}
   _playerFind: 0
   _levelBorder: 0
   _sound: {fileID: 0}

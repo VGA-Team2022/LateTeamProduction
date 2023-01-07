@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6411402990296471997, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6411402990296471998, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

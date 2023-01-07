@@ -6,6 +6,8 @@ using UnityEngine;
 /// <summary>œpœj‚·‚é“G‚Ì“®‚«‚ğ§Œä‚·‚éscript</summary>
 public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒCƒ_[‚ÌŒü‚«‚ğ•ÏX‚·‚ê‚Î—Ç‚¢B
 {
+    [SerializeField,Tooltip("©g‚ÌƒŒƒCƒ„[‚ğæ“¾‚·‚é‚½‚ß‚Ì‚à‚Ì")]
+    SpriteRenderer _nakaiSprite = null;
     [Tooltip("•Ç‚É“–‚½‚Á‚½‰ñ”")]
     int _number = 0;
     [Tooltip("_number‚ÌÅ‘å’l")]
@@ -124,6 +126,12 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
         if (collision.TryGetComponent<PlayerController>(out PlayerController player))
         {
             _playerFind = true;
+            if (gameObject.transform.position.y < collision.transform.position.y)
+            {//player‚æ‚è‰º‚É‚¢‚éó‘Ô‚Å”­Œ©‚µ‚½ê‡‚ÍA©g‚ÌƒŒƒCƒ„[‚ğplayer‚Æ“¯‚¶‚É‚·‚é‚±‚Æ‚ÅŠG‚ª‰B‚ê‚é‚±‚Æ‚ğ‰ñ”ğB
+                SpriteRenderer _playerSprite = collision.GetComponent<SpriteRenderer>();
+                _nakaiSprite.sortingOrder = _playerSprite.sortingOrder;
+            }
+            _anim.SetBool("playerFind", _playerFind);
             Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
             _sound.Discoverd();
             player.PlayerFind();

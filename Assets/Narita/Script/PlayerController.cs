@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.TryGetComponent<Returnpillow>(out Returnpillow enemy))
         {
-            _sound.SleepingVoice();
+            //_sound.SleepingVoice();
             _pillowEnemyObject = collision.gameObject;
             _pillowEnemy = enemy;
         }

@@ -67,7 +67,7 @@ public class Returnpillow : MonoBehaviour, IRevers
             }
             if (_getupTime < _getupCountTimer)//§ŒÀŽžŠÔ‚ð’´‚¦‚½ + –‚ð•Ô‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç 
             {
-                _sound.Discoverd();
+                //_sound.Discoverd();
                 _sleepHumanController.Awaken();
                 _getUp = true;
                 _sleepHumanController.Discover();

@@ -1606,9 +1606,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _asobikata:
-  - {fileID: 21300000, guid: 98dcaea7d4e3d0045bce9129fe23f220, type: 3}
-  - {fileID: 21300000, guid: 22476ed022b222e48b8bc732eae99106, type: 3}
-  - {fileID: 21300000, guid: ea5e750d1af6fba4ca53b17ff54b267f, type: 3}
+  - {fileID: 21300000, guid: d73af33fbc380a74da5ac5d2fddc808e, type: 3}
+  - {fileID: 21300000, guid: a4acbb46288e9c34da674613f168d62f, type: 3}
+  - {fileID: 21300000, guid: afff54c7451cff84188d34e5cbc7a403, type: 3}
   _thisImage: {fileID: 1145026371}
 --- !u!1 &1903838801
 GameObject:
@@ -1953,4 +1953,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadSceneName: MastarGameScene
   _fadePanel: {fileID: 1666409827}
-  _fadetime: 3
+  _fastFadeTime: 1
+  _loadFadeTime: 1

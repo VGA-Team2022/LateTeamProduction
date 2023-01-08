@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
     float _childMoveSpeed = 10f;
     [SerializeField, Header("大人状態の動くスピード"), Tooltip("動く速度（大人）")]
     float _adultMoveSpeed = 15f;
+    [SerializeField, Header("枕の横に行こうとしている時（スペース入力時）のスピード")]
+    float _autoMoveSpeed = 3f;
     [SerializeField, Header("誤差の許容範囲"), Tooltip("誤差の許容範囲")]
-    float _toleranceDis = 0.5f;
+    float _toleranceDis = 0.3f;
     [Tooltip("枕を返す時のカウント用タイマー")]
     float _returnCountTime = 0f;
     ///// <summary>敵からどれだけ離れた距離から枕を返すかの間隔</summary>
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
     UIManager _ui = null;
     [SerializeField, Tooltip("敵の範囲内に入ったとき、出たときに使用")]
     SoundManager _sound = null;
+    [SerializeField, Tooltip("プレイヤーの当たり判定")]
+    CapsuleCollider2D _collider = null;
     Rigidbody2D _rb;
     Animator _playerAnim = null;
     [Tooltip("プレイヤーの状態確認、外部参照用")]
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
         float _joyX = _joyStick.Horizontal;
         float _joyY = _joyStick.Vertical;
         ModeCheck(_joyX, _joyY);
+        _collider.enabled = _returnPillowInPos == true ? false : true;
         if (!_autoAnim)
         {
             _rb.velocity = _moveVelocity;
@@ -71,10 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
-                if (!_adultState)
-                    TranslatePlayerPos(_childMoveSpeed);
-                else
-                    TranslatePlayerPos(_adultMoveSpeed);
+               TranslatePlayerPos();
             }
         }
         else
@@ -171,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    private void TranslatePlayerPos(float speed)
+    private void TranslatePlayerPos()
     {
         if (!_pillowEnemyObject)
             return;
@@ -183,33 +185,35 @@ public class PlayerController : MonoBehaviour
             {
                 if (transform.position.x > _returnPillowPos.x)
                 {
-                    transform.Translate(Vector2.left * Time.deltaTime * speed);
+                    transform.Translate(Vector2.left * Time.deltaTime * _autoMoveSpeed);
                 }
                 else if (transform.position.x < _returnPillowPos.x)
                 {
-                    transform.Translate(Vector2.right * Time.deltaTime * speed);
+                    transform.Translate(Vector2.right * Time.deltaTime * _autoMoveSpeed);
                 }
             }
             else
             {
                 if (transform.position.y > _returnPillowPos.y)
                 {
-                    transform.Translate(Vector2.down * Time.deltaTime * speed);
+                    transform.Translate(Vector2.down * Time.deltaTime * _autoMoveSpeed);
                 }
                 else if (transform.position.y < _returnPillowPos.y)
                 {
-                    transform.Translate(Vector2.up * Time.deltaTime * speed);
+                    transform.Translate(Vector2.up * Time.deltaTime * _autoMoveSpeed);
                 }
             }
         }
-        else
+        else if (_returnPillowDisToPlayer < _toleranceDis)
+        {
             _returnPillowInPos = true;
-        _returnCountTime += Time.deltaTime;
-        _ui.ChargeSlider(_returnCountTime);
+            _returnCountTime += Time.deltaTime;
+            _ui.ChargeSlider(_returnCountTime);
+        }
     }
-    /// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
-    public void PlayerFind()
-    {
-        IsGame.GameManager.Instance.GameOver();
-    }
+    ///// <summary>見つかった場合呼ぶ,アニメーションイベント専用関数</summary>
+    //public void PlayerFind()
+    //{
+    //    IsGame.GameManager.Instance.GameOver();
+    //}
 }

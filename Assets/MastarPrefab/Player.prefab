@@ -143,14 +143,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _joyStick: {fileID: 0}
   _childMoveSpeed: 10
-  _adultMoveSpeed: 15
-  _toleranceDis: 0.5
-  _adultState: 1
+  _adultMoveSpeed: 12
+  _toleranceDis: 0.3
+  _adultState: 0
   _returnPillowInPos: 0
   _autoAnim: 0
   _playerMove: 0
   _ui: {fileID: 0}
   _sound: {fileID: 0}
+  _collider: {fileID: 1585636293}
 --- !u!70 &1585636293
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

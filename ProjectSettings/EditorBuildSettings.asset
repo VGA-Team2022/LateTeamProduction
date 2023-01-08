@@ -14,4 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Iwamae/Scenes/test2.unity
     guid: 1845a4c7eafef374fb760e4ce0a00908
+  - enabled: 1
+    path: Assets/Narita/GameScene/CopySawadaScene.unity
+    guid: 25bc8e5f3039d354f9066a15059f05fe
+  - enabled: 1
+    path: Assets/Ueda/Scene/Title.unity
+    guid: cf158b9c0f1755a45970677fc67855bb
+  - enabled: 1
+    path: Assets/Sawada/SawadaScene.unity
+    guid: 8c5c48e2a270b534882fcdff7eef54eb
+  - enabled: 1
+    path: Assets/Mastar/MastarTitleScene.unity
+    guid: 97fb11033b10f7246be398dcca8928c0
+  - enabled: 1
+    path: Assets/Mastar/MastarGameScene.unity
+    guid: 5bf7fa1d09e4be345b006555586064f6
   m_configObjects: {}

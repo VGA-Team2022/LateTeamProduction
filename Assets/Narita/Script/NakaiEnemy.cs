@@ -134,7 +134,10 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
             _anim.SetBool("playerFind", _playerFind);
             Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
             _sound.Discoverd();
-            player.PlayerFind();
         }
+    }
+    public void PlayerFind()//ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p
+    {
+        IsGame.GameManager.Instance.GameOver();
     }
 }

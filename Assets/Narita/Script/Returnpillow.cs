@@ -17,6 +17,8 @@ public class Returnpillow : MonoBehaviour, IRevers
     bool _playerIntrusion = false;
     [SerializeField, Header("起きる時間（基準）"), Tooltip("起きる時間（関数内で値を決める）")]
     float _getupTime = 5f;
+    [SerializeField,Header("playerを見つけてから怒るまでの時間")]
+    float _resultDelayTime = 4f;
     [Tooltip("reactionを表示する秒数のborder、_getupCountTimerの半分")]
     float _reactionTime = 2.5f;
     //
@@ -71,8 +73,10 @@ public class Returnpillow : MonoBehaviour, IRevers
                 _sleepHumanController.Awaken();
                 _getUp = true;
                 _sleepHumanController.Discover();
-                //何秒か遅らせてから
-                IsGame.GameManager.Instance.GameOver();
+            }
+            if(_getupTime + _resultDelayTime < _getupCountTimer )
+            {
+                GetUp();
             }
         }
     }
@@ -99,9 +103,9 @@ public class Returnpillow : MonoBehaviour, IRevers
         _getupTime = getuptime;
     }
 
-    private void GetUp(PlayerController player)
+    public void GetUp()//アニメーションイベント用
     {
-        player.PlayerFind();
+        IsGame.GameManager.Instance.GameOver();
     }
 
     public void ObjectRevers()

@@ -8,7 +8,11 @@ public class Pause : MonoBehaviour
     GameObject[] _moveObject;
     [SerializeField, Header("pauseƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çTrue")]
     bool _isPause = false;
+
+    /// <summary>True‚ÌAŠÔ‚Ì‰ÁZ‚ğ~‚ß‚é</summary>
+    public bool IsPause { get => _isPause; }
     
+  
     public void PauseAction()
     {
         if (!_isPause)

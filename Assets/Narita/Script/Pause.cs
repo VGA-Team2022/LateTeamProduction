@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField,Header("pause中に消すオブジェクト")]
     List<GameObject> _objList;
     [SerializeField, Header("pauseボタンが押されたらTrue")]
     bool _isPause = false;
-
+    [SerializeField]
+    SoundManager _sound = null;
     /// <summary>Trueの時、時間の加算を止める</summary>
     public bool IsPause { get => _isPause; }
 
@@ -27,6 +28,7 @@ public class Pause : MonoBehaviour
     {
         if (!_isPause)
         {
+            _sound.Paused();
             foreach (var obj in _objList)
             {
                 obj.SetActive(false);

@@ -82,6 +82,10 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
                 _rb.velocity = Vector2.zero;
             }
         }
+        else
+        {
+            _rb.velocity = Vector2.zero;
+        }
         _anim.SetBool("lookAround", _lookAround);
     }
     /// <summary>“n‚·‘¤‚Í‡”Ô‚É‹C‚ğ•t‚¯‚é‚±‚Æ</summary>
@@ -118,7 +122,16 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _number++;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _playerFind = true;
+            _anim.SetBool("playerFind", _playerFind);
+            _sound.Discoverd();
+        }
+        else
+        {
+            _number++;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -132,10 +145,10 @@ public class NakaiEnemy : MonoBehaviour//•Ó‚è‚ğŒ©‰ñ‚·‚Ì‚ÍƒAƒjƒ[ƒVƒ‡ƒ““à‚ÅƒRƒ‰ƒ
                 _nakaiSprite.sortingOrder = _playerSprite.sortingOrder;
             }
             _anim.SetBool("playerFind", _playerFind);
-            Debug.Log("ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚Ü‚µ‚½");
             _sound.Discoverd();
         }
     }
+
     public void PlayerFind()//ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg—p
     {
         IsGame.GameManager.Instance.GameOver();

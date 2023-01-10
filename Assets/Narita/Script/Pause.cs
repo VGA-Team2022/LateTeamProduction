@@ -6,12 +6,12 @@ public class Pause : MonoBehaviour
 {
     [SerializeField,Header("pause中に消すオブジェクト")]
     List<GameObject> _objList;
-    [SerializeField, Header("pauseボタンが押されたらTrue")]
-    bool _isPause = false;
+    //[SerializeField, Header("pauseボタンが押されたらTrue")]
+    //bool _isPause = false;
     [SerializeField]
     SoundManager _sound = null;
     /// <summary>Trueの時、時間の加算を止める</summary>
-    public bool IsPause { get => _isPause; }
+    //public bool IsPause { get => _isPause; }
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class Pause : MonoBehaviour
 
     public void PauseAction()
     {
-        if (!_isPause)
+        if (IsGame.GameManager.Instance._isGame)
         {
             _sound.Paused();
             foreach (var obj in _objList)
@@ -41,6 +41,6 @@ public class Pause : MonoBehaviour
                 obj.SetActive(true);
             }
         }
-        _isPause = !_isPause;
+        IsGame.GameManager.Instance._isGame = !IsGame.GameManager.Instance._isGame;
     }
 }

@@ -1,18 +1,18 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class Clickfade : MonoBehaviour
+public class ClickFade : MonoBehaviour
 {
-    //ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¬ã‚¯ãƒˆã‹ã‚‰æŒ‡å®šã‚·ãƒ¼ãƒ³ã¸é£›ã¶
-    [Header("ãƒ•ã‚§ãƒ¼ãƒ‰UIã‚’ã‚»ãƒƒãƒˆ"),SerializeField]
+    //ƒXƒe[ƒWƒZƒŒƒNƒg‚©‚çw’èƒV[ƒ“‚Ö”ò‚Ô
+    [Header("ƒtƒF[ƒhUI‚ğƒZƒbƒg"), SerializeField]
     GameObject _fadein;
-    [Header("ã‚¹ãƒ†ãƒ¼ã‚¸æŒ‡å®šâ€»ãƒœã‚¿ãƒ³ãã‚Œãã‚Œã«"), SerializeField]
-    string _stagename ;
-    [Header("UIã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆ"), SerializeField]
+    [Header("ƒXƒe[ƒWw’è¦ƒ{ƒ^ƒ“‚»‚ê‚¼‚ê‚É"), SerializeField]
+    string _stagename;
+    [Header("UI‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒZƒbƒg"), SerializeField]
     Animator _uianim;
     const int ONE_NUM = 1;
     public void HighlightCommand()
@@ -26,11 +26,11 @@ public class Clickfade : MonoBehaviour
     public void ClickCommand()
     {
         _fadein.SetActive(true);
-        Invoke(nameof(MoveScene), ONE_NUM); //ãƒãƒ¼ã‚¸ã™ã‚‹ã¨ãã¯ã¡ã‚ƒã‚“ã¨ã‚³ãƒ¼ãƒ‰è¦‹ã‚ã‚„æ¾¤ç”° å•é¡Œã®ç­”ãˆã¯ã“ã“
+        Invoke(nameof(MoveScene), ONE_NUM); //ƒ}[ƒW‚·‚é‚Æ‚«‚Í‚¿‚á‚ñ‚ÆƒR[ƒhŒ©‚ë‚âàV“c –â‘è‚Ì“š‚¦‚Í‚±‚±
     }
     void MoveScene()
     {
         SceneManager.LoadScene(_stagename);
     }
-   
+
 }

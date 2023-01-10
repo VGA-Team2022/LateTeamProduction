@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1175226368}
   m_Layer: 0
   m_Name: Enemy_B
-  m_TagString: Untagged
+  m_TagString: NakaiEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

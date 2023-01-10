@@ -240,9 +240,9 @@ GameObject:
   - component: {fileID: 4230257521504616741}
   - component: {fileID: 4230257521504616740}
   - component: {fileID: 4230257521504616743}
-  - component: {fileID: 4230257521504616739}
   - component: {fileID: 4230257521504616738}
   - component: {fileID: 4230257521504616736}
+  - component: {fileID: 869874362}
   m_Layer: 5
   m_Name: select4
   m_TagString: Untagged
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5019608}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
     m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.29803923}
@@ -355,9 +355,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4230257521504616739}
-        m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-        m_MethodName: clickCommand
+      - m_Target: {fileID: 869874362}
+        m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+        m_MethodName: ClickCommand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -367,21 +367,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4230257521504616739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4230257521504616761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadein: {fileID: 0}
-  _stagename: Stage4
-  _uianim: {fileID: 4230257521504616738}
 --- !u!95 &4230257521504616738
 Animator:
   serializedVersion: 4
@@ -419,9 +404,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257521504616739}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: highlightCommand
+        - m_Target: {fileID: 869874362}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: HighlightCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -435,9 +420,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257521504616739}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: normalCommand
+        - m_Target: {fileID: 869874362}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: NormalCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -447,6 +432,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &869874362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230257521504616761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadein: {fileID: 0}
+  _stagename: 4
+  _uianim: {fileID: 4230257521504616738}
 --- !u!1 &4230257521705269102
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,9 +539,9 @@ GameObject:
   - component: {fileID: 4230257521776101042}
   - component: {fileID: 4230257521776101045}
   - component: {fileID: 4230257521776101044}
-  - component: {fileID: 4230257521776101040}
   - component: {fileID: 4230257521776101043}
   - component: {fileID: 4230257521776101041}
+  - component: {fileID: 270298344}
   m_Layer: 5
   m_Name: select2
   m_TagString: Untagged
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5019608}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
     m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.29803923}
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4230257521776101040}
-        m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-        m_MethodName: clickCommand
+      - m_Target: {fileID: 270298344}
+        m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+        m_MethodName: ClickCommand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -666,21 +666,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4230257521776101040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4230257521776101046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadein: {fileID: 0}
-  _stagename: Stage2
-  _uianim: {fileID: 4230257521776101043}
 --- !u!95 &4230257521776101043
 Animator:
   serializedVersion: 4
@@ -718,9 +703,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257521776101040}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: highlightCommand
+        - m_Target: {fileID: 270298344}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: HighlightCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -734,9 +719,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257521776101040}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: normalCommand
+        - m_Target: {fileID: 270298344}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: NormalCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -746,6 +731,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &270298344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230257521776101046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadein: {fileID: 0}
+  _stagename: 2
+  _uianim: {fileID: 4230257521776101043}
 --- !u!1 &4230257521850019569
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,9 +850,9 @@ GameObject:
   - component: {fileID: 4230257521956072173}
   - component: {fileID: 4230257521956072172}
   - component: {fileID: 4230257521956072175}
-  - component: {fileID: 4230257521956072171}
   - component: {fileID: 4230257521956072170}
   - component: {fileID: 4230257521956072168}
+  - component: {fileID: 475060303}
   m_Layer: 5
   m_Name: select3
   m_TagString: Untagged
@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5019608}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
     m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.29803923}
@@ -965,9 +965,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4230257521956072171}
-        m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-        m_MethodName: clickCommand
+      - m_Target: {fileID: 475060303}
+        m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+        m_MethodName: ClickCommand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -977,21 +977,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4230257521956072171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4230257521956072161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadein: {fileID: 0}
-  _stagename: Stage3
-  _uianim: {fileID: 4230257521956072170}
 --- !u!95 &4230257521956072170
 Animator:
   serializedVersion: 4
@@ -1029,9 +1014,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257521956072171}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: highlightCommand
+        - m_Target: {fileID: 475060303}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: HighlightCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1045,9 +1030,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257521956072171}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: normalCommand
+        - m_Target: {fileID: 475060303}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: NormalCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1057,6 +1042,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &475060303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230257521956072161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadein: {fileID: 0}
+  _stagename: 3
+  _uianim: {fileID: 4230257521956072170}
 --- !u!1 &4230257521978587199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,9 +1699,9 @@ GameObject:
   - component: {fileID: 4230257522304369015}
   - component: {fileID: 4230257522304369014}
   - component: {fileID: 4230257522304368969}
-  - component: {fileID: 4230257522304369013}
   - component: {fileID: 4230257522304369012}
   - component: {fileID: 4230257522304369010}
+  - component: {fileID: 1916002269}
   m_Layer: 5
   m_Name: select1
   m_TagString: Untagged
@@ -1791,10 +1791,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5019608}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
+    m_NormalColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.61960787}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.8235294}
     m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.29803923}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1814,9 +1814,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4230257522304369013}
-        m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-        m_MethodName: clickCommand
+      - m_Target: {fileID: 1916002269}
+        m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+        m_MethodName: ClickCommand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1826,21 +1826,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4230257522304369013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4230257522304368971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadein: {fileID: 0}
-  _stagename: Stage1
-  _uianim: {fileID: 4230257522304369012}
 --- !u!95 &4230257522304369012
 Animator:
   serializedVersion: 4
@@ -1878,9 +1863,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257522304369013}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: highlightCommand
+        - m_Target: {fileID: 1916002269}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: HighlightCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1894,9 +1879,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257522304369013}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: normalCommand
+        - m_Target: {fileID: 1916002269}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: NormalCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1906,6 +1891,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1916002269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230257522304368971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadein: {fileID: 0}
+  _stagename: 1
+  _uianim: {fileID: 4230257522304369012}
 --- !u!1 &4230257522309196485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,9 +2591,9 @@ GameObject:
   - component: {fileID: 4230257523024993311}
   - component: {fileID: 4230257523024993310}
   - component: {fileID: 4230257523024993297}
-  - component: {fileID: 4230257523024993309}
   - component: {fileID: 4230257523024993308}
   - component: {fileID: 4230257523024993306}
+  - component: {fileID: 1344506635}
   m_Layer: 5
   m_Name: select5
   m_TagString: Untagged
@@ -2684,7 +2684,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5019608}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.69803923}
     m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.29803923}
@@ -2706,9 +2706,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4230257523024993309}
-        m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-        m_MethodName: clickCommand
+      - m_Target: {fileID: 1344506635}
+        m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+        m_MethodName: ClickCommand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2718,21 +2718,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4230257523024993309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4230257523024993299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadein: {fileID: 0}
-  _stagename: Stage5
-  _uianim: {fileID: 4230257523024993308}
 --- !u!95 &4230257523024993308
 Animator:
   serializedVersion: 4
@@ -2770,9 +2755,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257523024993309}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: highlightCommand
+        - m_Target: {fileID: 1344506635}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: HighlightCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2786,9 +2771,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4230257523024993309}
-          m_TargetAssemblyTypeName: clickfade, Assembly-CSharp
-          m_MethodName: normalCommand
+        - m_Target: {fileID: 1344506635}
+          m_TargetAssemblyTypeName: ClickFade, Assembly-CSharp
+          m_MethodName: NormalCommand
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2798,6 +2783,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1344506635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230257523024993299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadein: {fileID: 0}
+  _stagename: 5
+  _uianim: {fileID: 4230257523024993308}
 --- !u!1 &4230257523069008904
 GameObject:
   m_ObjectHideFlags: 0

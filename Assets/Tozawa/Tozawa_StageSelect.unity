@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &381562223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4230257523024993309, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+  m_PrefabInstance: {fileID: 2994177122709531590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a54ee4bc1d0b34e8c444e00a2faf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1036125108
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +271,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1937527202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937527203}
+  m_Layer: 0
+  m_Name: BGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1937527203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937527202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.024060635, y: -0.3884351, z: 0.04245063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2030120337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3765572601715211434, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+  m_PrefabInstance: {fileID: 3629143542549304992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2030120346
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030120337}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23b825400dfcfd14781f0f043615f09b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &244316154813834131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
@@ -272,18 +339,118 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4230257521504616736, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HighlightCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521504616736, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NormalCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521504616736, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521504616736, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4230257521504616739, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
       propertyPath: _fadein
       value: 
       objectReference: {fileID: 244316154813834131}
+    - target: {fileID: 4230257521504616743, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521504616743, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 381562223}
+    - target: {fileID: 4230257521504616743, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521504616743, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4230257521776101040, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
       propertyPath: _fadein
       value: 
       objectReference: {fileID: 244316154813834131}
+    - target: {fileID: 4230257521776101041, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HighlightCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521776101041, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NormalCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521776101041, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521776101041, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521776101044, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521776101044, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 381562223}
+    - target: {fileID: 4230257521776101044, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521776101044, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072168, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HighlightCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072168, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NormalCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072168, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072168, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4230257521956072171, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
       propertyPath: _fadein
       value: 
       objectReference: {fileID: 244316154813834131}
+    - target: {fileID: 4230257521956072172, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072175, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072175, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 381562223}
+    - target: {fileID: 4230257521956072175, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257521956072175, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4230257522118652256, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
       propertyPath: m_Name
       value: StageSelectCanvas
@@ -372,10 +539,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0.61960787
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304368969, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304369010, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HighlightCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304369010, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NormalCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304369010, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257522304369010, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4230257522304369013, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
       propertyPath: _fadein
       value: 
       objectReference: {fileID: 244316154813834131}
+    - target: {fileID: 4230257522304369014, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993297, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993297, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993297, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993306, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HighlightCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993306, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NormalCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993306, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230257523024993306, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clickfade, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4230257523024993309, guid: 949425c9375168a4c9e008367cd1c629, type: 3}
       propertyPath: _fadein
       value: 
@@ -389,6 +632,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1299235395596364435, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_Name
       value: FadeinObject

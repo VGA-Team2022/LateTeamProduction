@@ -4,23 +4,39 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] _moveObject;
+    [SerializeField,Header("pause中に消すオブジェクト")]
+    List<GameObject> _objList;
     [SerializeField, Header("pauseボタンが押されたらTrue")]
     bool _isPause = false;
-    
+    [SerializeField]
+    SoundManager _sound = null;
+    /// <summary>Trueの時、時間の加算を止める</summary>
+    public bool IsPause { get => _isPause; }
+
+    private void Start()
+    {
+        _objList = new List<GameObject>();
+        _objList.Add(GameObject.FindGameObjectWithTag("Player"));
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("NakaiEnemy");
+        foreach (var enemy in enemys)
+        {
+            _objList.Add(enemy);
+        }
+    }
+
     public void PauseAction()
     {
         if (!_isPause)
         {
-            foreach (var obj in _moveObject)
+            _sound.Paused();
+            foreach (var obj in _objList)
             {
                 obj.SetActive(false);
             }
         }
         else
         {
-            foreach (var obj in _moveObject)
+            foreach (var obj in _objList)
             {
                 obj.SetActive(true);
             }

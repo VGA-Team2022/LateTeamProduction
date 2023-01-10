@@ -8,6 +8,7 @@ TagManager:
   - Door
   - ReturnPillow
   - SpawnPos
+  - NakaiEnemy
   layers:
   - Default
   - TransparentFX

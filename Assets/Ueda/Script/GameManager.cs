@@ -15,7 +15,7 @@ namespace IsGame
 
         [Tooltip("残りの敵（枕）の数")] int _sleepingEnemy = 9;
 
-
+        [Tooltip("現在のステージ数")]static int _stageIndex = 0;
 
         UIManager _uIManager = default;
 
@@ -23,6 +23,8 @@ namespace IsGame
         public bool _isGame = false;
 
         MapInstance _mapInstance = default;
+
+        public static int StageIndex => _stageIndex;
 
         public static GameManager Instance
         {
@@ -34,6 +36,7 @@ namespace IsGame
                 }
                 return _instance;
             }
+            set => _instance = value;
         }
 
         public void PlayerSet(PlayerController player)
@@ -48,14 +51,14 @@ namespace IsGame
 
         public int SleepingEnemy { get => _sleepingEnemy; set => _sleepingEnemy = value; }
         public PlayerController Player { get => _player;}
-
-
-        /// <summary>残り時間</summary>
+        /// <summary>経過時間</summary>
         float _time = 0;
+
         // Start is called before the first frame update
-        void GameStart()
+        public void GameStart()
         {
             _isGame = true;
+            _time = 0;
         }
         
         public void CheckSleepingEnemy()
@@ -70,8 +73,7 @@ namespace IsGame
         {
             _uIManager.Clear(_timeLimit - _time);
             _isGame = false;
-            //Scene移動用関数を使用
-
+            _stageIndex++;
         }
         public void GameOver()
         {
@@ -81,9 +83,13 @@ namespace IsGame
 
         public void Timer()
         {
-            _time += Time.deltaTime;
-            _uIManager.TimerText(_timeLimit - _time);
-            if (_time >= _timeLimit) GameOver();
+            if(_isGame)
+            {
+                _time += Time.deltaTime;
+                _uIManager.TimerText(_timeLimit - _time);
+                if (_time >= _timeLimit) GameOver();
+            }
+            
         }
 
     }

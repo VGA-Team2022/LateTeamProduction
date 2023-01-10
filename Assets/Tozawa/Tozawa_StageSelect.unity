@@ -307,26 +307,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3765572601715211434, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
   m_PrefabInstance: {fileID: 3629143542549304992}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2030120342
-MonoBehaviour:
+--- !u!95 &2030120346
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030120337}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc40176da71d08418750d0e275dfd30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SaveX: 0
-  SaveY: 0
-  r: 0
-  g: 0
-  b: 0
-  scenetrg: 1
-  MaxOutTime: 0
-  NextScene: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23b825400dfcfd14781f0f043615f09b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &244316154813834131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
@@ -632,6 +632,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1299235395596364435, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_Name
       value: FadeinObject

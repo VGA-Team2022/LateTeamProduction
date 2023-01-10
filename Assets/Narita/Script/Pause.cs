@@ -6,6 +6,8 @@ public class Pause : MonoBehaviour
 {
     [SerializeField,Header("pause中に消すオブジェクト")]
     List<GameObject> _objList;
+    [SerializeField]
+    GameObject _pausePanel = null;
     //[SerializeField, Header("pauseボタンが押されたらTrue")]
     //bool _isPause = false;
     [SerializeField]
@@ -15,6 +17,7 @@ public class Pause : MonoBehaviour
 
     private void Start()
     {
+        _pausePanel.SetActive(false);
         _objList = new List<GameObject>();
         _objList.Add(GameObject.FindGameObjectWithTag("Player"));
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("NakaiEnemy");
@@ -41,6 +44,7 @@ public class Pause : MonoBehaviour
                 obj.SetActive(true);
             }
         }
+        _pausePanel.SetActive(IsGame.GameManager.Instance._isGame);
         IsGame.GameManager.Instance._isGame = !IsGame.GameManager.Instance._isGame;
     }
 }

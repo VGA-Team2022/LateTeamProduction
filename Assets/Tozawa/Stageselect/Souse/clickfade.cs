@@ -15,18 +15,18 @@ public class Clickfade : MonoBehaviour
     [Header("UIのアニメーションをセット"), SerializeField]
     Animator _uianim;
     const int ONE_NUM = 1;
-    public void highlightCommand()
+    public void HighlightCommand()
     {
         _uianim.SetInteger("Anumber", ONE_NUM);
     }
-    public void normalCommand()
+    public void NormalCommand()
     {
         _uianim.SetInteger("Anumber", 0);
     }
-    public void clickCommand()
+    public void ClickCommand()
     {
         _fadein.SetActive(true);
-        Invoke("MoveScene", ONE_NUM);
+        Invoke(nameof(MoveScene), ONE_NUM); //マージするときはちゃんとコード見ろや澤田 問題の答えはここ
     }
     void MoveScene()
     {

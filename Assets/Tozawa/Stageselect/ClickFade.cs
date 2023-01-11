@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using IsGame;
-public class ClickFade : MonoBehaviour
+public class ClickFade : MonoBehaviour //a
 {
     //ステージセレクトから指定シーンへ飛ぶ
     [Header("フェードUIをセット"), SerializeField]

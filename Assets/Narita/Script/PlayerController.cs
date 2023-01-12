@@ -66,13 +66,15 @@ public class PlayerController : MonoBehaviour
         float _joyX = _joyStick.Horizontal;
         float _joyY = _joyStick.Vertical;
         ModeCheck(_joyX, _joyY);
-        _collider.enabled = _returnPillowInPos == true ? false : true;
+        _collider.isTrigger = _returnPillowInPos == true ? true : false;
         if (!_autoAnim)
         {
             _rb.velocity = _moveVelocity;
-        }
-        VelocitySave(_rb.velocity);
-        if (Input.GetButton("Jump") || Input.GetMouseButton(0))//スペース長押し
+            VelocitySave(_rb.velocity);
+        }  
+        //if (Input.GetButton("Jump"))//スペース長押し
+
+        if (Input.GetMouseButton(0))
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
@@ -83,7 +85,8 @@ public class PlayerController : MonoBehaviour
         {
             _returnPillowInPos = false;
         }
-        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(0))//自動で動くために距離計算を行う,スペースキー一回
+        //if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回 || 
+        if(Input.GetMouseButtonDown(0))
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
@@ -111,14 +114,17 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.TryGetComponent<Returnpillow>(out Returnpillow enemy))
         {
-            //_sound.SleepingVoice();
+            _sound.SleepingVoice();
             _pillowEnemyObject = collision.gameObject;
             _pillowEnemy = enemy;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //InformationReset();
+        if(collision.gameObject.CompareTag("ReturnPillow"))
+        {
+            InformationReset();
+        }
         _returnCountTime = 0;
         _ui.ChargeSlider(_returnCountTime);
         _sound.KillSleeping();
@@ -130,8 +136,11 @@ public class PlayerController : MonoBehaviour
         {
             _autoAnim = false;
         }
-        _moveVelocity = !_adultState ?
-           new Vector2(h, v).normalized * _childMoveSpeed : new Vector2(h, v).normalized * _adultMoveSpeed;
+        if(!_autoAnim)
+        {
+            _moveVelocity = !_adultState ?
+                       new Vector2(h, v).normalized * _childMoveSpeed : new Vector2(h, v).normalized * _adultMoveSpeed;
+        }
     }
     private void VelocitySave(Vector2 velo)
     {
@@ -151,8 +160,10 @@ public class PlayerController : MonoBehaviour
     }
     public void InformationReset()//取得したデータ全消し、スライダーの初期化
     {
+        _autoAnim = false;
         _pillowEnemyObject = null;
         _pillowEnemy = null;
+        _returnPillowPos = default;
         _returnCountTime = 0;
         _ui.ChargeSlider(_returnCountTime);
     }

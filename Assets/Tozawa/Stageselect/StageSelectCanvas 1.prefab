@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadein: {fileID: 0}
-  _stagename: 5
+  _stagename: GameScene5
   _uianim: {fileID: 385666844216999719}
   _button: {fileID: 385666844216999722}
   _anim: {fileID: 385666844216999719}
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadein: {fileID: 0}
-  _stagename: 1
+  _stagename: GameScene1
   _uianim: {fileID: 385666845069763151}
   _button: {fileID: 385666845069763186}
   _anim: {fileID: 385666845069763151}
@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadein: {fileID: 0}
-  _stagename: 3
+  _stagename: GameScene3
   _uianim: {fileID: 385666845303802321}
   _button: {fileID: 385666845303802324}
   _anim: {fileID: 385666845303802321}
@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadein: {fileID: 0}
-  _stagename: 2
+  _stagename: GameScene2
   _uianim: {fileID: 385666845614843272}
   _button: {fileID: 385666845614843279}
   _anim: {fileID: 385666845614843272}
@@ -2832,7 +2832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadein: {fileID: 0}
-  _stagename: 4
+  _stagename: GameScene4
   _uianim: {fileID: 385666845888356889}
   _button: {fileID: 385666845888356892}
   _anim: {fileID: 385666845888356889}

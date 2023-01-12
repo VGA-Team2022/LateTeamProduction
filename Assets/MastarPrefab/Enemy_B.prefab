@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2033310978912401060}
   - component: {fileID: 2033310978912401061}
   - component: {fileID: 1175226368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_B
   m_TagString: NakaiEnemy
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.6}
-  m_Size: {x: 1, y: 1.1}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!1 &4043194452599231027
 GameObject:
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 5237980866162730602}
   - component: {fileID: 6473197438161824645}
   - component: {fileID: 1294923110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Hanni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -91
   m_Sprite: {fileID: 21300000, guid: 5e5041001ee1a6840ace15c36dcdac2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

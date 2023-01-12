@@ -255,7 +255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2899225125667092147}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7305842010178376767}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: PauseAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4467838864824699430
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +389,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1916708501459024376}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6935611140047459716
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8497103641455375764
 RectTransform:
   m_ObjectHideFlags: 0
@@ -469,7 +493,7 @@ GameObject:
   - component: {fileID: 7305842009602088468}
   - component: {fileID: 7305842009602088459}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -653,5 +677,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objList: []
-  _canvas: {fileID: 0}
+  _pausePanel: {fileID: 6935611140047459716}
   _sound: {fileID: 0}

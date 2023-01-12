@@ -218,6 +218,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageSelectCanvas 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4606845135174827238, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _stagename
+      value: GameScene1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606845135744182320, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _stagename
+      value: GameScene5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606845136238680449, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _stagename
+      value: GameScene4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606845136749984628, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _stagename
+      value: GameScene3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606845136821506003, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _stagename
+      value: GameScene2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
 --- !u!1 &1036125108

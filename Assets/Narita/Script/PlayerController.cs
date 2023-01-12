@@ -65,29 +65,32 @@ public class PlayerController : MonoBehaviour
     {
         float _joyX = _joyStick.Horizontal;
         float _joyY = _joyStick.Vertical;
-        ModeCheck(_joyX, _joyY);
         _collider.isTrigger = _returnPillowInPos == true ? true : false;
         if (!_autoAnim)
         {
+            ModeCheck(_joyX, _joyY);
             _rb.velocity = _moveVelocity;
             VelocitySave(_rb.velocity);
-        }  
-        //if (Input.GetButton("Jump"))//スペース長押し
+        }
+        //if (Input.GetMouseButton(0))//スペース長押し
 
-        if (Input.GetMouseButton(0))
-        {
+
+        if (Input.GetButton("Jump"))
+            {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
-               TranslatePlayerPos();
+                TranslatePlayerPos();
             }
         }
         else
         {
             _returnPillowInPos = false;
+            _autoAnim = false;
         }
-        //if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回 || 
-        if(Input.GetMouseButtonDown(0))
-        {
+        //if (Input.GetMouseButtonDown(0))//自動で動くために距離計算を行う,スペースキー一回 || 
+
+        if (Input.GetButtonDown("Jump"))
+            {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 PlayerAndEnemyDis();
@@ -121,7 +124,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("ReturnPillow"))
+        if (collision.gameObject.CompareTag("ReturnPillow"))
         {
             InformationReset();
         }
@@ -132,11 +135,7 @@ public class PlayerController : MonoBehaviour
 
     private void ModeCheck(float h, float v)
     {
-        if (h != 0 && v != 0)
-        {
-            _autoAnim = false;
-        }
-        if(!_autoAnim)
+        if (!_autoAnim)
         {
             _moveVelocity = !_adultState ?
                        new Vector2(h, v).normalized * _childMoveSpeed : new Vector2(h, v).normalized * _adultMoveSpeed;
@@ -161,6 +160,7 @@ public class PlayerController : MonoBehaviour
     public void InformationReset()//取得したデータ全消し、スライダーの初期化
     {
         _autoAnim = false;
+        _returnPillowInPos = false;
         _pillowEnemyObject = null;
         _pillowEnemy = null;
         _returnPillowPos = default;
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
         if (Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPosLeft.position)
         >= Vector2.Distance(transform.position, _pillowEnemy.ReturnPillouPosRight.position))
         {
-            _returnPillowPos =  _pillowEnemy.ReturnPillouPosRight.position;
+            _returnPillowPos = _pillowEnemy.ReturnPillouPosRight.position;
             _closePos = false;
         }
         else
@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
             _returnPillowPos = _pillowEnemy.ReturnPillouPosLeft.position;
             _closePos = true;
         }
-        
+
     }
     private void TranslatePlayerPos()
     {

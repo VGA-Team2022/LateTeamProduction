@@ -14,6 +14,7 @@ public class HouseOnDevilArrow : HouseBase
     public override void PlayerInHouseMotion(PlayerController player)
     {
         base.PlayerInHouseMotion(player);
+        _houseType = HouseType.DevilArrow;
         //カウントダウン終了時に子供にする
         if (IsCountUp() && player.AdultState)
         {

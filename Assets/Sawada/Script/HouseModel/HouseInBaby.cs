@@ -10,6 +10,7 @@ public class HouseInBaby : HouseBase
     public override void Initialize<T>(T house)
     {
         base.Initialize(house);
+        _houseType = HouseType.Baby;
         house.ReturnPillows.ToList().ForEach(x => x.GetUpTimeAndTimeInPlayerStats(house.GetUpTime * _newGetUp));
     }
 }

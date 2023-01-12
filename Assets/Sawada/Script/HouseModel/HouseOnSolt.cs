@@ -15,7 +15,7 @@ public class HouseOnSolt : HouseBase
     public override void Initialize<T>(T house)
     {
         base.Initialize(house);
-        //取得(ドアのオブジェクトには”Door”というタグを付けてください)
+        _houseType = HouseType.Solt;
         _doorColliers = house.ColidersInHouse.Where(x => x.tag == "Door").ToArray();
         _doorRenderers = new Renderer[_doorColliers.Length];
         for (int i = 0; i < _doorColliers.Length; i++)

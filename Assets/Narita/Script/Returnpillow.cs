@@ -34,7 +34,7 @@ public class Returnpillow : MonoBehaviour, IRevers
     GameObject _reactionObject = null; 
     [SerializeField, Tooltip("‚à‚â‚à‚â‚Ì‰æ‘œ")]
     Sprite _reaction = null;
-    [Tooltip("©g‚Ìanimator")]
+    [SerializeField,Tooltip("©g‚Ìanimator")]
     Animator _returnPillowAnim = null;
     [Tooltip("“–‚½‚è”»’è‚Ì”z—ñ")]
     Collider2D[] collider = null;
@@ -52,7 +52,6 @@ public class Returnpillow : MonoBehaviour, IRevers
         _returnPillow = false;
         _reactionObject.SetActive(false);
         _sleepHumanController = GetComponent<SleepingEnemyAnimControle>();
-        _returnPillowAnim = GetComponent<Animator>();
         collider = GetComponents<Collider2D>();
     }
 

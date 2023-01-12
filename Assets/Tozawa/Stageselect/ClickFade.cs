@@ -14,7 +14,7 @@ public class ClickFade : MonoBehaviour //a
     string _stagename;
     [Header("UIのアニメーションをセット"), SerializeField]
     Animator _uianim;
-    [SerializeField]Button _button;
+    [SerializeField] Button _button;
     [SerializeField] Animator _anim;
     [SerializeField] int _ownNum = 1;
     [SerializeField] GameObject _yajirusi;
@@ -23,6 +23,10 @@ public class ClickFade : MonoBehaviour //a
     {
         //
         if (_ownNum < GameManager.StageIndex)
+        {
+            _button.interactable = true;
+        }
+        else if(_ownNum == ONE_NUM)
         {
             _button.interactable = true;
         }

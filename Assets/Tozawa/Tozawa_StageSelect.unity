@@ -218,6 +218,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageSelectCanvas 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4606845135174827238, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _fadein
+      value: 
+      objectReference: {fileID: 1259769684}
+    - target: {fileID: 4606845135744182320, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _fadein
+      value: 
+      objectReference: {fileID: 1259769684}
+    - target: {fileID: 4606845136238680449, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _fadein
+      value: 
+      objectReference: {fileID: 1259769684}
+    - target: {fileID: 4606845136749984628, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _fadein
+      value: 
+      objectReference: {fileID: 1259769684}
+    - target: {fileID: 4606845136821506003, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
+      propertyPath: _fadein
+      value: 
+      objectReference: {fileID: 1259769684}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 295dda2d21a7c44499b128b8faae9df2, type: 3}
 --- !u!1 &1036125108
@@ -273,6 +293,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1259769684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+  m_PrefabInstance: {fileID: 3629143542549304992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904620493
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = _moveVelocity;
         }
         VelocitySave(_rb.velocity);
-        if (Input.GetButton("Jump"))//スペース長押し
+        if (Input.GetButton("Jump") || Input.GetMouseButton(0))//スペース長押し
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             _returnPillowInPos = false;
         }
-        if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回
+        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(0))//自動で動くために距離計算を行う,スペースキー一回
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {

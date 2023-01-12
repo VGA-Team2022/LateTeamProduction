@@ -72,11 +72,9 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = _moveVelocity;
             VelocitySave(_rb.velocity);
         }
-        //if (Input.GetMouseButton(0))//スペース長押し
-
-
-        if (Input.GetButton("Jump"))
-            {
+        //if (Input.GetButton("Jump"))//スペース長押し
+        if (Input.GetMouseButton(0))
+        {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 TranslatePlayerPos();
@@ -87,10 +85,9 @@ public class PlayerController : MonoBehaviour
             _returnPillowInPos = false;
             _autoAnim = false;
         }
-        //if (Input.GetMouseButtonDown(0))//自動で動くために距離計算を行う,スペースキー一回 || 
-
-        if (Input.GetButtonDown("Jump"))
-            {
+        //if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回 || 
+        if (Input.GetMouseButtonDown(0))
+        {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
                 PlayerAndEnemyDis();

@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class HouseBase
 {
+    [Tooltip("‰Æ‚Ì‘®«")]
+    protected HouseType _houseType = HouseType.None;
 
     public virtual void Initialize<T>(T house) where T : HouseBehaviour 
     {

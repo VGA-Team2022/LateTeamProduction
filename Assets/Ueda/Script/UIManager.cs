@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
             _player.PillowEnemy.ObjectRevers();
             _chargeSlider.value = 0;
             GameManager.Instance.CheckSleepingEnemy();
+            _soundManager.GaugeStop();
             _player.InformationReset();
         }
     }

@@ -542,6 +542,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb1997627fdbf845aeeb51c9fd7cc1c, type: 3}
+--- !u!1 &468276035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468276036}
+  - component: {fileID: 468276037}
+  m_Layer: 0
+  m_Name: RetrySceneLoader (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &468276036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468276035}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1802219010}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &468276037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468276035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadSceneName: GameScene5
+  _fadePanel: {fileID: 221675707}
+  _fastFadeTime: 1
+  _loadFadeTime: 1
 --- !u!1 &474324297
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,11 +1023,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -299
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -339
+      value: -340
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1680,6 +1728,7 @@ Transform:
   - {fileID: 1966442674}
   - {fileID: 2052888206}
   - {fileID: 550197775}
+  - {fileID: 468276036}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3050,10 +3099,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2052888208}
-    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 454
-      objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376765, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_Name
       value: Pause
@@ -3187,6 +3232,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4712436284648449642, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6411402990296471997, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
       propertyPath: m_Name
       value: ClearPanel
@@ -3278,6 +3327,10 @@ PrefabInstance:
     - target: {fileID: 6411402990296471998, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6734618528025790119, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -222
       objectReference: {fileID: 0}
     - target: {fileID: 6824025175988465966, guid: 948238ce8b1530448b6e1ad9bf124b49, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

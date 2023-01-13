@@ -7,7 +7,7 @@ using System.Linq;
 public class HouseOnDevilArrow : HouseBase
 {
     [Tooltip("プレイヤーが子供に戻る時間")]
-    float _cancellationTime = 0f;
+    float _cancellationTime = 5f;
     [Tooltip("カウントダウン")]
     float _time = 0;
 
@@ -42,7 +42,5 @@ public class HouseOnDevilArrow : HouseBase
     public void ResetTimer()
     {
         _time = 0;
-
-        List<string> data = new List<string>();
     }
 }

@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1687635923912341863}
-  - component: {fileID: 7297490399615215401}
+  - component: {fileID: 121423188}
   m_Layer: 0
   m_Name: SE_Gauge(CriAtomSource)
   m_TagString: Untagged
@@ -487,7 +487,7 @@ Transform:
   m_Father: {fileID: 8731466407964354003}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7297490399615215401
+--- !u!114 &121423188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -504,7 +504,7 @@ MonoBehaviour:
   _listenerOnStart: {fileID: 0}
   _use3dPositioning: 1
   _freezeOrientation: 0
-  _loop: 1
+  _loop: 0
   _volume: 1
   _pitch: 0
   _androidUseLowLatencyVoicePool: 0
@@ -1127,7 +1127,7 @@ MonoBehaviour:
         m_MethodName: AudioPlay
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 9101057143978318159}
+          m_ObjectArgument: {fileID: 121423188}
           m_ObjectArgumentAssemblyTypeName: CriWare.CriAtomSource, CriMw.CriWare.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0

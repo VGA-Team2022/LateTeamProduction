@@ -3399,6 +3399,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1802219010}
     m_Modifications:
+    - target: {fileID: 8731466407964354000, guid: 873d3b4677eb6914e82cdca7a22ca566, type: 3}
+      propertyPath: _onGauging.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 38677943705744984}
+    - target: {fileID: 8731466407964354000, guid: 873d3b4677eb6914e82cdca7a22ca566, type: 3}
+      propertyPath: _onGauging.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AudioPlay
+      objectReference: {fileID: 0}
     - target: {fileID: 8731466407964354002, guid: 873d3b4677eb6914e82cdca7a22ca566, type: 3}
       propertyPath: m_Name
       value: SoundManager

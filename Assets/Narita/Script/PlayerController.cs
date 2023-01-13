@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     Returnpillow _pillowEnemy = null;
     [Tooltip("寝ている敵そのもの")]
     GameObject _pillowEnemyObject = null;
+    [SerializeField, Tooltip("枕を返すためのボタン")]
+    GameObject _returnPillowButton = null;
     [SerializeField, Header("プレイヤーが大人か子供か"), Tooltip("大人の時True")]
     bool _adultState = false;
     [SerializeField, Header("枕を返そうとしている時True"), Tooltip("枕を返せる位置にいてスペースキーを押しているときTrue")]
@@ -39,6 +41,8 @@ public class PlayerController : MonoBehaviour
     bool _playerMove = false;
     [Tooltip("右側が近いときTrue")]
     bool _closePos = false;
+    [SerializeField, Header("寝ている敵の当たり判定内にいて、ボタンが押されたときTrue")]
+    bool _returnPillowAction = false;
     [SerializeField, Tooltip("スライダーに値を渡すために使用")]
     UIManager _ui = null;
     [SerializeField, Tooltip("敵の範囲内に入ったとき、出たときに使用")]
@@ -55,10 +59,13 @@ public class PlayerController : MonoBehaviour
     public GameObject PillowEnemyObject { get => _pillowEnemyObject; }
     [Tooltip("枕を返せる位置にいてスペースキーを押しているときTrue, 外部参照用")]
     public Vector2 ReturnPillowPos { get => _returnPillowPos; }
+    public bool ReturnPillowAction { get => _returnPillowAction; set => _returnPillowAction = value; }
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _playerAnim = GetComponent<Animator>();
+        _returnPillowButton.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -66,6 +73,14 @@ public class PlayerController : MonoBehaviour
         float _joyX = _joyStick.Horizontal;
         float _joyY = _joyStick.Vertical;
         _collider.isTrigger = _returnPillowInPos == true ? true : false;
+        if(_pillowEnemy)
+        {
+            _returnPillowButton.SetActive(true);
+        }
+        else
+        {
+            _returnPillowButton.SetActive(false);
+        }
         if (!_autoAnim)
         {
             ModeCheck(_joyX, _joyY);
@@ -73,7 +88,8 @@ public class PlayerController : MonoBehaviour
             VelocitySave(_rb.velocity);
         }
         //if (Input.GetButton("Jump"))//スペース長押し
-        if (Input.GetMouseButton(0))
+        //if (Input.GetMouseButton(0))
+        if(_returnPillowAction)
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
@@ -86,11 +102,14 @@ public class PlayerController : MonoBehaviour
             _autoAnim = false;
         }
         //if (Input.GetButtonDown("Jump"))//自動で動くために距離計算を行う,スペースキー一回 || 
-        if (Input.GetMouseButtonDown(0))
+        if (_returnPillowAction)
         {
             if (_pillowEnemy)//枕返し圏内にいたら
             {
-                PlayerAndEnemyDis();
+                if (_returnPillowPos == default)
+                {
+                    PlayerAndEnemyDis();
+                }
             }
         }
         if (!_playerAnim)
@@ -157,6 +176,7 @@ public class PlayerController : MonoBehaviour
     public void InformationReset()//取得したデータ全消し、スライダーの初期化
     {
         _autoAnim = false;
+        _returnPillowAction = false;
         _returnPillowInPos = false;
         _pillowEnemyObject = null;
         _pillowEnemy = null;

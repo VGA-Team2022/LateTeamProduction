@@ -34,5 +34,13 @@ public class DoubleHouseBehaviour : HouseBehaviour
         base.CreateHouseObject(mapInstance, house1);
         house2.Initialize(this);
         _data2 = house2;
+        switch (_data2.Type)
+        {
+            case HouseType.None:
+                break;
+            default:
+                _objectsOfHouse[(int)_data2.Type].SetActive(true);
+                break;
+        }
     }
 }

@@ -3116,6 +3116,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 454
+      objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376765, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_Name
       value: Pause

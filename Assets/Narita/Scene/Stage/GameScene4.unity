@@ -3040,6 +3040,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 454
+      objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376765, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_Name
       value: Pause
@@ -3114,7 +3122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376766, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376766, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

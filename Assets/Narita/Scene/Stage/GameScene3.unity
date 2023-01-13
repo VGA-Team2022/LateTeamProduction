@@ -300,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_Pivot.y
@@ -376,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -300
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3041,8 +3041,12 @@ PrefabInstance:
       value: PauseButton
       objectReference: {fileID: 0}
     - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 469
+      value: 454
       objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376765, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_Name

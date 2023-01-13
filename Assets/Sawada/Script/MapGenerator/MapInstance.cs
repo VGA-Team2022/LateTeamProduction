@@ -47,7 +47,7 @@ public class MapInstance : MonoBehaviour
     public int AllPillowValue => _allPillowValue;
 
 
-    void Start()
+    void Awake()
     {
         _mapData = new MapData(_filePath);　//CSVデータの読み込み
         _allPillowValue = _mapData.data[_currentMapLevel][0]; //枕の総数を初期化
@@ -132,7 +132,7 @@ public class MapInstance : MonoBehaviour
     /// <param name="house">セットする家のプレハブ</param>
     int SetHouse(HouseBehaviour[] houses)
     {
-        SpawnPosState[] unUsePosValue = null;
+        SpawnPosState[] unUsePosValue = new SpawnPosState[0];
         for (int i = 0; i < houses.Length; i++)
         {
             unUsePosValue = _insPos.Where(x => x.State == SpawnPosState.SpawnState.none).ToArray();　//使われていない座標を配列で取得

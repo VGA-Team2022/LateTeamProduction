@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TestRun : MonoBehaviour
 {
+    MapInstance _MapInstance = null;
     // Start is called before the first frame update
     void Start()
     {

@@ -10,6 +10,8 @@ public class HouseBase
     [Tooltip("‰Æ‚Ì‘®«")]
     protected HouseType _houseType = HouseType.None;
 
+    public HouseType Type => _houseType; 
+
     public virtual void Initialize<T>(T house) where T : HouseBehaviour 
     {
         house.ReturnPillows.ToList().ForEach(x => x.GetUpTimeAndTimeInPlayerStats(house.GetUpTime));

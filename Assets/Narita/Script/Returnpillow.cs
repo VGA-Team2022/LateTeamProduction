@@ -110,6 +110,7 @@ public class Returnpillow : MonoBehaviour, IRevers
     public void ObjectRevers()
     {
         _returnPillow = true;
+        _sound.MakuraReverse();
         if (_returnPillowAnim)
             _returnPillowAnim.SetBool("returnPillowPlay", _returnPillow);
         foreach (var col in collider)

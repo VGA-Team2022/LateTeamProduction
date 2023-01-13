@@ -39,7 +39,7 @@ public class Returnpillow : MonoBehaviour, IRevers
     [Tooltip("当たり判定の配列")]
     Collider2D[] collider = null;
     SleepingEnemyAnimControle _sleepHumanController = null;
-    [SerializeField, Tooltip("playerを見つけたときに使用")]
+    [Tooltip("playerを見つけたときに使用")]
     SoundManager _sound = null;
     [Tooltip("枕を返されたかどうか、外部参照用")]
     public bool ReturnPillow { get => _returnPillow; set => _returnPillow = value; }
@@ -53,6 +53,7 @@ public class Returnpillow : MonoBehaviour, IRevers
         _reactionObject.SetActive(false);
         _sleepHumanController = GetComponent<SleepingEnemyAnimControle>();
         collider = GetComponents<Collider2D>();
+        _sound = GameObject.FindObjectOfType<SoundManager>();
     }
 
 

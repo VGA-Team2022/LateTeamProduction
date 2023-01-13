@@ -72,7 +72,7 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     public void MakuraReverse()
     {
-        _onCanceled.Invoke();
+        _onMakuraReverse.Invoke();
     }
 
     /// <summary>

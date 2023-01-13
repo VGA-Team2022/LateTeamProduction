@@ -5,28 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Iwamae/Scenes/IwamaeScene.unity
-    guid: 095ce838d0d547d429967c4e8e09af4b
-  - enabled: 1
-    path: Assets/Iwamae/Scenes/test2.unity
-    guid: 1845a4c7eafef374fb760e4ce0a00908
-  - enabled: 1
-    path: Assets/Narita/GameScene/CopySawadaScene.unity
-    guid: 25bc8e5f3039d354f9066a15059f05fe
-  - enabled: 1
-    path: Assets/Ueda/Scene/Title.unity
-    guid: cf158b9c0f1755a45970677fc67855bb
-  - enabled: 1
-    path: Assets/Sawada/SawadaScene.unity
-    guid: 8c5c48e2a270b534882fcdff7eef54eb
   - enabled: 1
     path: Assets/Mastar/MastarTitleScene.unity
     guid: 97fb11033b10f7246be398dcca8928c0
   - enabled: 1
-    path: Assets/Mastar/MastarGameScene.unity
-    guid: 5bf7fa1d09e4be345b006555586064f6
+    path: Assets/Tozawa/Tozawa_StageSelect.unity
+    guid: ffb6da8e43fb5bb499d083e3c338e59f
+  - enabled: 1
+    path: Assets/Narita/Scene/Stage/GameScene1.unity
+    guid: af2f99eb1e2c4484c89c3598b211d1a1
+  - enabled: 1
+    path: Assets/Narita/Scene/Stage/GameScene2.unity
+    guid: 8cba37e392b1f614b905f1ecbe5d8de9
+  - enabled: 1
+    path: Assets/Narita/Scene/Stage/GameScene3.unity
+    guid: 9d86b803e4784d14cbfd12023f176560
+  - enabled: 1
+    path: Assets/Narita/Scene/Stage/GameScene4.unity
+    guid: ecc51937ab2fd524cb3dd8d7c4f55b56
+  - enabled: 1
+    path: Assets/Narita/Scene/Stage/GameScene5.unity
+    guid: 622a9bc788c20d5499335675f773a684
   m_configObjects: {}

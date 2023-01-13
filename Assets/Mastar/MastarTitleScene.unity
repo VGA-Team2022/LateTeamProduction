@@ -1984,7 +1984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadSceneName: MastarGameScene
+  _loadSceneName: Tozawa_StageSelect
   _fadePanel: {fileID: 1666409827}
   _fastFadeTime: 1
   _loadFadeTime: 1

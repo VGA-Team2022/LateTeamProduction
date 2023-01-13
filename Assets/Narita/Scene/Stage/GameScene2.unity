@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadSceneName: MastarGameScene
+  _loadSceneName: GameScene2
   _fadePanel: {fileID: 221675707}
   _fastFadeTime: 1
   _loadFadeTime: 1

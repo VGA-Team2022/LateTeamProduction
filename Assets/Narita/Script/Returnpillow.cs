@@ -67,14 +67,14 @@ public class Returnpillow : MonoBehaviour, IRevers
             {
                 _reactionObject.SetActive(true);
             }
-            if (_getupTime < _getupCountTimer)//§ŒÀŽžŠÔ‚ð’´‚¦‚½ + –‚ð•Ô‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç 
+            if (_getupTime < _getupCountTimer && !_getUp)//§ŒÀŽžŠÔ‚ð’´‚¦‚½ + –‚ð•Ô‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç 
             {
                 _sound.Discoverd();
                 _sleepHumanController.Awaken();
                 _getUp = true;
                 _sleepHumanController.Discover();
             }
-            if(_getupTime + _resultDelayTime < _getupCountTimer )
+            if(_getupTime + _resultDelayTime < _getupCountTimer)
             {
                 GetUp();
             }
@@ -110,8 +110,11 @@ public class Returnpillow : MonoBehaviour, IRevers
 
     public void ObjectRevers()
     {
+        if (!_returnPillow)
+        {
+            _sound.MakuraReverse();
+        }
         _returnPillow = true;
-        _sound.MakuraReverse();
         if (_returnPillowAnim)
             _returnPillowAnim.SetBool("returnPillowPlay", _returnPillow);
         foreach (var col in collider)

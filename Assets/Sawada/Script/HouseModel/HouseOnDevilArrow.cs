@@ -11,10 +11,15 @@ public class HouseOnDevilArrow : HouseBase
     [Tooltip("カウントダウン")]
     float _time = 0;
 
+    public override void Initialize<T>(T house)
+    {
+        base.Initialize(house);
+        _houseType = HouseType.DevilArrow;
+    }
+
     public override void PlayerInHouseMotion(PlayerController player)
     {
         base.PlayerInHouseMotion(player);
-        _houseType = HouseType.DevilArrow;
         //カウントダウン終了時に子供にする
         if (IsCountUp() && player.AdultState)
         {

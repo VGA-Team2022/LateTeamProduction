@@ -824,16 +824,20 @@ MonoBehaviour:
   - {fileID: 3966278859034875221}
   - {fileID: 4769948457457455579}
   _collidersInHouse:
+  - {fileID: 9205657590211296742}
+  - {fileID: 6440110143204270704}
   - {fileID: 7204963061041598001}
+  - {fileID: 768364084217632376}
   - {fileID: 6153035791409968713}
   - {fileID: 1027403856996519580}
+  - {fileID: 4030137378435573964}
   - {fileID: 7505199250005395709}
   - {fileID: 3676689757707710504}
+  - {fileID: 774119794243257980}
   - {fileID: 6157555085997205069}
   - {fileID: 1032991813937847960}
-  - {fileID: 6440110143204270704}
-  - {fileID: 2843542455708383808}
   - {fileID: 3836361822044152425}
+  - {fileID: 2843542455708383808}
   _returnPillows:
   - {fileID: 2834995329151593756}
   - {fileID: 1879063983011402664}
@@ -1993,6 +1997,11 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2318993449601392817, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
   m_PrefabInstance: {fileID: 1380495791504674969}
   m_PrefabAsset: {fileID: 0}
+--- !u!58 &4030137378435573964 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2649643855814850645, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
+  m_PrefabInstance: {fileID: 1380495791504674969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &4808682901768958594 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5878145312469557787, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
@@ -2161,6 +2170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
+--- !u!58 &768364084217632376 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2649643855814850645, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
+  m_PrefabInstance: {fileID: 3345235661251030573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1027403856996519580 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2318993449601392817, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
@@ -2274,6 +2288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
+--- !u!58 &774119794243257980 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2649643855814850645, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}
+  m_PrefabInstance: {fileID: 3349364024139857449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1032991813937847960 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2318993449601392817, guid: 2f6f4218108e20e46a61c3ca4d321874, type: 3}

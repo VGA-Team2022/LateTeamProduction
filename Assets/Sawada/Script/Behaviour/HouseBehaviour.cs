@@ -14,7 +14,7 @@ public class HouseBehaviour : MonoBehaviour, IHousePool
     [SerializeField, Header("家の中にいる枕")]
     protected Returnpillow[] _returnPillows = null;
     [SerializeField, Header("家の属性ごとに配置するオブジェクト")]
-    GameObject[] _objectsOfHouse;
+    protected GameObject[] _objectsOfHouse;
 
     [Tooltip("家のデータ1")]
     protected HouseBase _data1 = null;

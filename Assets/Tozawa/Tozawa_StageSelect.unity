@@ -445,6 +445,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 835082736881965892, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 2312
+      objectReference: {fileID: 0}
     - target: {fileID: 1299235395596364435, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -452,6 +456,10 @@ PrefabInstance:
     - target: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_Name
       value: FadeinObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548470289406670131, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4319889888202405374, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_Pivot.x
@@ -507,15 +515,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4319889888202405374, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4319889888202405374, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4319889888202405374, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4319889888202405374, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -536,6 +544,10 @@ PrefabInstance:
     - target: {fileID: 4319889888202405374, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834895256618162135, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2312
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c2dab7d67f9ef24d93eb9f717f29a49, type: 3}

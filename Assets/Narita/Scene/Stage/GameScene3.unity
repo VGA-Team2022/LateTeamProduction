@@ -1114,54 +1114,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c446fcc716fdd774a854905524866018, type: 3}
---- !u!1 &969390488
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 969390489}
-  - component: {fileID: 969390490}
-  m_Layer: 0
-  m_Name: RetrySceneLoader (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &969390489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969390488}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1802219010}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &969390490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969390488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _loadSceneName: GameScene3
-  _fadePanel: {fileID: 221675707}
-  _fastFadeTime: 1
-  _loadFadeTime: 1
 --- !u!1 &1162818091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,6 +1325,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397173758}
   m_CullTransparentMesh: 1
+--- !u!1 &1535698291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1535698292}
+  - component: {fileID: 1535698293}
+  m_Layer: 0
+  m_Name: RetrySceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1535698292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535698291}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1802219010}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535698293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535698291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadSceneName: GameScene3
+  _fadePanel: {fileID: 221675707}
+  _fastFadeTime: 1
+  _loadFadeTime: 1
 --- !u!114 &1571130494 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7305842010178376767, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
@@ -1692,7 +1692,7 @@ Transform:
   - {fileID: 1966442674}
   - {fileID: 2052888206}
   - {fileID: 550197775}
-  - {fileID: 969390489}
+  - {fileID: 1535698292}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2536,7 +2536,7 @@ PrefabInstance:
     - target: {fileID: 4112468736947044628, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 550197776}
+      objectReference: {fileID: 1535698293}
     - target: {fileID: 4112468736947044628, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

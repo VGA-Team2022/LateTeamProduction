@@ -144,11 +144,14 @@ MonoBehaviour:
   _joyStick: {fileID: 0}
   _childMoveSpeed: 10
   _adultMoveSpeed: 12
+  _autoMoveSpeed: 3
   _toleranceDis: 0.3
+  _returnPillowButton: {fileID: 0}
   _adultState: 0
   _returnPillowInPos: 0
   _autoAnim: 0
   _playerMove: 0
+  _returnPillowAction: 0
   _ui: {fileID: 0}
   _sound: {fileID: 0}
   _collider: {fileID: 1585636293}

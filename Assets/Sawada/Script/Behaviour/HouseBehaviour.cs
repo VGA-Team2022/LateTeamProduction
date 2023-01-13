@@ -16,19 +16,20 @@ public class HouseBehaviour : MonoBehaviour, IHousePool
     [SerializeField, Header("家の属性ごとに配置するオブジェクト")]
     GameObject[] _objectsOfHouse;
 
-    [Tooltip("プレイヤーを格納する変数")]
-    protected PlayerController _playerController;
     [Tooltip("家のデータ1")]
     protected HouseBase _data1 = null;
+    bool _isMapInstance = false;
 
 
     public float GetUpTime => _getUpTime;
     public Collider2D[] ColidersInHouse => _collidersInHouse;
     public Returnpillow[] ReturnPillows => _returnPillows;
+    public GameObject ObjectsOfHouse => _objectsOfHouse[(int)_data1.Type];
 
-    private void Start()
+
+    void Start()
     {
-        CreateHouseObject(new HouseBase());
+        if (!_isMapInstance) CreateHouseObject(new HouseBase());
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -91,12 +92,19 @@ public class HouseBehaviour : MonoBehaviour, IHousePool
     {
         _data1 = house1;
         _data1.Initialize(this);
+        _isMapInstance = true;
         int remainPillows = _data1.SetPillow(_returnPillows, mapInstance.AllPillowValue);
         Array.ForEach(_returnPillows, x => x.gameObject.SetActive(false));
         _hangingScroll.Initialize();
         Desactivate();
-        //_objectsOfHouse[_da]
-
+        switch(_data1.Type)
+        {
+            case HouseType.None:
+                break;
+            default:
+                _objectsOfHouse[(int)_data1.Type].SetActive(true);
+                break;
+        }
 
         return remainPillows;
     }

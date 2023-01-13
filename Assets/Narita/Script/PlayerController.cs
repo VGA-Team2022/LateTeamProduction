@@ -61,6 +61,10 @@ public class PlayerController : MonoBehaviour
     public Vector2 ReturnPillowPos { get => _returnPillowPos; }
     public bool ReturnPillowAction { get => _returnPillowAction; set => _returnPillowAction = value; }
 
+    private void Awake()
+    {
+        IsGame.GameManager.Instance.PlayerSet(this);
+    }
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();

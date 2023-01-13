@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -450
+      value: -340
       objectReference: {fileID: 0}
     - target: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -811,6 +811,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 0}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 0}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!114 &670192349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,6 +1308,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 0}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!4 &1599405589
 Transform:
   m_ObjectHideFlags: 0
@@ -2811,6 +2864,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1802219010}
     m_Modifications:
+    - target: {fileID: 7280225750196911514, guid: cf72e3213e721304bbb3bff67604bc35, type: 3}
+      propertyPath: _insTrans.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280225750196911514, guid: cf72e3213e721304bbb3bff67604bc35, type: 3}
+      propertyPath: _insTrans.Array.data[0]
+      value: 
+      objectReference: {fileID: 424334954}
+    - target: {fileID: 7280225750196911514, guid: cf72e3213e721304bbb3bff67604bc35, type: 3}
+      propertyPath: _insTrans.Array.data[1]
+      value: 
+      objectReference: {fileID: 1717478780}
+    - target: {fileID: 7280225750196911514, guid: cf72e3213e721304bbb3bff67604bc35, type: 3}
+      propertyPath: _insTrans.Array.data[2]
+      value: 
+      objectReference: {fileID: 1596925426}
     - target: {fileID: 7280225750196911517, guid: cf72e3213e721304bbb3bff67604bc35, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2931,6 +3000,10 @@ PrefabInstance:
     - target: {fileID: 7305842009602088457, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_Name
       value: PauseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305842009602088458, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 456
       objectReference: {fileID: 0}
     - target: {fileID: 7305842010178376765, guid: 8c813a40cd8757149a6307927dd42b81, type: 3}
       propertyPath: m_Name

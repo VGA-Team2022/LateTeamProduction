@@ -406,6 +406,54 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3278973794334240789, guid: 7bdbc3c62c87f264c845cfb05a338727, type: 3}
   m_PrefabInstance: {fileID: 82610068}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &83543007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 83543008}
+  - component: {fileID: 83543009}
+  m_Layer: 0
+  m_Name: RetrySceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &83543008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83543007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1802219010}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83543009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83543007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadSceneName: GameScene1
+  _fadePanel: {fileID: 221675707}
+  _fastFadeTime: 1
+  _loadFadeTime: 1
 --- !u!1 &221675706
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +733,7 @@ GameObject:
   - component: {fileID: 550197775}
   - component: {fileID: 550197776}
   m_Layer: 0
-  m_Name: NextSceneLoader (1)
+  m_Name: NextSceneLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -718,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a293297ca7b454d858267dfe748ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadSceneName: GameScene1
+  _loadSceneName: GameScene2
   _fadePanel: {fileID: 221675707}
   _fastFadeTime: 1
   _loadFadeTime: 1
@@ -1644,6 +1692,7 @@ Transform:
   - {fileID: 1966442674}
   - {fileID: 2052888206}
   - {fileID: 550197775}
+  - {fileID: 83543008}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2487,7 +2536,7 @@ PrefabInstance:
     - target: {fileID: 4112468736947044628, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 550197776}
+      objectReference: {fileID: 83543009}
     - target: {fileID: 4112468736947044628, guid: 031dba0ea8fe9cf4d860ca75524a5754, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
             ModeCheck(_joyX, _joyY);
             _rb.velocity = _moveVelocity;
             VelocitySave(_rb.velocity);
-            _sound.GaugeStop();
         }
         //if (Input.GetButton("Jump"))//スペース長押し
         //if (Input.GetMouseButton(0))
